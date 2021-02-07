@@ -15,8 +15,6 @@ public class DefenseTower : Building
     public float range;
     //팀에 속하지 않을 때, 가장 먼저  hp만큼의 유닛을 보낸 팀이 공격하는 타워를 선점가능
     public int hp;
-
-
  
     protected override void Awake()
     {

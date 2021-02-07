@@ -226,10 +226,11 @@ GameObject:
   - component: {fileID: 141032350}
   - component: {fileID: 141032349}
   - component: {fileID: 141032348}
+  - component: {fileID: 141032353}
   - component: {fileID: 141032352}
   m_Layer: 0
   m_Name: HouseTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,6 +324,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 0
+  speed: 3
+  departObj: {fileID: 0}
+  arriveObj: {fileID: 0}
+  touchCount: 0
+--- !u!143 &141032353
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141032347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &288207269
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,9 +813,11 @@ GameObject:
   - component: {fileID: 1514629609}
   - component: {fileID: 1514629608}
   - component: {fileID: 1514629607}
+  - component: {fileID: 1514629612}
+  - component: {fileID: 1514629611}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,6 +898,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514629611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514629606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3799a64f8dbd3534b9aa04b8336e00c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  speed: 3
+  departObj: {fileID: 0}
+  arriveObj: {fileID: 0}
+  touchCount: 0
+--- !u!143 &1514629612
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514629606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1632630585
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,10 +945,11 @@ GameObject:
   - component: {fileID: 1632630588}
   - component: {fileID: 1632630587}
   - component: {fileID: 1632630586}
+  - component: {fileID: 1632630591}
   - component: {fileID: 1632630590}
   m_Layer: 0
   m_Name: DefenseTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,11 +1043,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 0
+  speed: 3
+  departObj: {fileID: 0}
+  arriveObj: {fileID: 0}
+  touchCount: 0
   bombPref: {fileID: 0}
   firePos: {fileID: 0}
   target: {fileID: 0}
   range: 0
   hp: 0
+--- !u!143 &1632630591
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632630585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1798163126
 GameObject:
   m_ObjectHideFlags: 0

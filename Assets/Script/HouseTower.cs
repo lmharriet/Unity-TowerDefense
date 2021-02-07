@@ -26,7 +26,7 @@ public class HouseTower : Building
         base.Update();
         spawnTime += Time.deltaTime;
         SpawnUnit();
-        StartCoroutine(DragObject());
+        //StartCoroutine(DragObject());
     }
 
 
