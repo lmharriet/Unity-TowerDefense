@@ -27,6 +27,7 @@ public class HouseTower : Building
         spawnTime += Time.deltaTime;
         SpawnUnit();
         //StartCoroutine(DragObject());
+        CreateUnit();
     }
 
 

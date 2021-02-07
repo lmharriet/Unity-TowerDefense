@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    //temp
+    public GameObject unit;
+    public int num;
+
+
     public enum TOWERKIND
     {
         HOUSE, DEFENSE, CASTLE
@@ -16,7 +21,7 @@ public class Building : MonoBehaviour
     protected float spawnTime = 0f;
     protected TextMesh showText;
 
-    [Range(3,10)]
+    [Range(3, 10)]
     public float speed;
 
 
@@ -28,8 +33,9 @@ public class Building : MonoBehaviour
 
     protected virtual void Awake()
     {
-       
+
         showText = GetComponentInChildren<TextMesh>();
+        num = transform.GetInstanceID();
     }
     protected virtual void Start()
     {
@@ -40,45 +46,6 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0) && touchCount < 2)
-        {
-            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit _hit;
-
-
-            if (Physics.Raycast(_ray, out _hit))
-            {
-                if (_hit.transform.CompareTag("Tower"))
-                {
-                    if (touchCount == 0)
-                    {
-                        departObj = _hit.transform.gameObject;
-                        touchCount++;
-                    }
-                    else if (touchCount == 1)
-                    {
-
-                        if (_hit.transform.name == departObj.name)
-                        {
-                            departObj = null;
-                            touchCount = 0;
-                        }
-                        else
-                        {
-                            arriveObj = _hit.transform.gameObject;
-                            touchCount++;
-                        }
-                    }
-                }
-            }
-        }
-
-        if(touchCount ==2)
-        {
-           
-            
-        }
-
 
         if (Input.GetMouseButton(0))
         {
@@ -119,4 +86,41 @@ public class Building : MonoBehaviour
             yield return null;
         }
     }
+
+    public int HaveUnit
+    {
+        get { return unitNum; }
+        set { unitNum = value; }
+    }
+
+    protected void CreateUnit()
+    {
+
+        if (Input.GetMouseButtonDown(0) && touchCount < 2)
+        {
+            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit _hit;
+
+
+            if (Physics.Raycast(_ray, out _hit))
+            {
+
+            }
+        }
+
+
+        if (touchCount == 2)
+        {
+            var _mush = Instantiate(unit, departObj.transform.position, Quaternion.identity);
+            _mush.GetComponent<MushRoomMove>().InitMushroom(arriveObj.transform, speed);
+
+
+            touchCount = 0;
+            departObj = null;
+            arriveObj = null;
+        }
+
+
+    }
+
 }

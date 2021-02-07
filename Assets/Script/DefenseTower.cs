@@ -36,6 +36,7 @@ public class DefenseTower : Building
             spawnTime += Time.deltaTime;
             SpawnUnit();
         }
+        CreateUnit();
     }
 
     public void attack()
