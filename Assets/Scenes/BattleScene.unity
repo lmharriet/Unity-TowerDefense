@@ -322,9 +322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3799a64f8dbd3534b9aa04b8336e00c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233, type: 3}
   kind: 0
   speed: 3
+  myId: 0
   departObj: {fileID: 0}
   arriveObj: {fileID: 0}
   touchCount: 0
@@ -360,9 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3799a64f8dbd3534b9aa04b8336e00c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233, type: 3}
   kind: 0
   speed: 3
+  myId: 2
   departObj: {fileID: 0}
   arriveObj: {fileID: 0}
   touchCount: 0
@@ -1005,9 +1005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3799a64f8dbd3534b9aa04b8336e00c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233, type: 3}
   kind: 0
   speed: 3
+  myId: 1
   departObj: {fileID: 0}
   arriveObj: {fileID: 0}
   touchCount: 0
@@ -1119,9 +1119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d00e080762541640b648107dd53b53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233, type: 3}
   kind: 0
   speed: 3
+  myId: 4
   departObj: {fileID: 0}
   arriveObj: {fileID: 0}
   touchCount: 0

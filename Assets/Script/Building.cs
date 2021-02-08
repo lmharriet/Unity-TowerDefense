@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    //temp
-    public GameObject unit;
-    public int num;
-
-
     public enum TOWERKIND
     {
         HOUSE, DEFENSE, CASTLE
@@ -24,6 +19,7 @@ public class Building : MonoBehaviour
     [Range(3, 10)]
     public float speed;
 
+    public int myId;
 
     //mouse drag
     public GameObject departObj;
@@ -33,25 +29,18 @@ public class Building : MonoBehaviour
 
     protected virtual void Awake()
     {
-
         showText = GetComponentInChildren<TextMesh>();
-        num = transform.GetInstanceID();
+
     }
     protected virtual void Start()
     {
-
         showText.text = unitNum.ToString();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-
-        if (Input.GetMouseButton(0))
-        {
-
-
-        }
+        CreateUnit();
     }
 
     protected void SpawnUnit()
@@ -87,39 +76,39 @@ public class Building : MonoBehaviour
         }
     }
 
-    public int HaveUnit
-    {
-        get { return unitNum; }
-        set { unitNum = value; }
-    }
 
     protected void CreateUnit()
     {
+        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition) ;
+        RaycastHit _hit;
 
         if (Input.GetMouseButtonDown(0) && touchCount < 2)
         {
-            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit _hit;
-
-
-            if (Physics.Raycast(_ray, out _hit))
+            if(Physics.Raycast(_ray, out _hit))
             {
-
+                if(_hit.transform.GetComponent<Building>().myId.Equals
+                    (_hit.transform.GetComponent<Building>().myId))
+                {
+                    if(touchCount ==0)
+                    {
+                        departObj = _hit.transform.gameObject;
+                    }
+                    else if(touchCount ==1)
+                    {
+                        if (departObj != _hit.transform.gameObject)
+                        {
+                            arriveObj = _hit.transform.gameObject;
+                        }
+                    }
+                }
             }
         }
 
 
-        if (touchCount == 2)
+        if(touchCount ==2)
         {
-            var _mush = Instantiate(unit, departObj.transform.position, Quaternion.identity);
-            _mush.GetComponent<MushRoomMove>().InitMushroom(arriveObj.transform, speed);
-
-
-            touchCount = 0;
-            departObj = null;
-            arriveObj = null;
+         //  Instantiate(unit)
         }
-
 
     }
 
