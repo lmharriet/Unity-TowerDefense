@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DefenseTower : Building
+public class DefTower : Building
 {
     //공격하는 타워 (default- 팀에 속하지 않음)
     
