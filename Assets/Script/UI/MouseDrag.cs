@@ -14,7 +14,9 @@ public class MouseDrag : MonoBehaviour
     private Vector3 arrive;
     public GameObject myTower;
     public GameObject towardTower;
-    private int touchCount = 0;
+
+    public GameObject unitPref;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,6 @@ public class MouseDrag : MonoBehaviour
         //드래그 중
         if (Input.GetMouseButton(0))
         {
-
             Vector3 currentPos = Input.mousePosition;
             img.transform.localScale = new Vector2(Vector3.Distance(currentPos, startPos), 1);
             img.transform.localRotation = Quaternion.Euler(0, 0, AngleInDegree(startPos, currentPos));
@@ -97,6 +98,17 @@ public class MouseDrag : MonoBehaviour
             }
 
            
+
+        }
+
+
+        if(towardTower!=null)
+        {
+            //유닛 생성
+            var obj =Instantiate(unitPref, myTower.transform.position, Quaternion.identity);
+            obj.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
+            myTower = null;
+            towardTower = null;
 
         }
     }

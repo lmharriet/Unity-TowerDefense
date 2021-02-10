@@ -1137,6 +1137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2035024649}
+  myTower: {fileID: 0}
+  towardTower: {fileID: 0}
+  unitPref: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233,
+    type: 3}
 --- !u!4 &1915160822
 Transform:
   m_ObjectHideFlags: 0
