@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class MushRoomMove : MonoBehaviour
 {
-    CharacterController cc;
+    Rigidbody rigid;
     Transform target;
     float speed;
 
     private void Awake()
     {
-        cc = GetComponent<CharacterController>();
-
+        rigid = transform.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -23,7 +22,8 @@ public class MushRoomMove : MonoBehaviour
 
             if (_distance >= 0.5f)
             {
-                cc.Move(_direction * speed * Time.deltaTime);
+                transform.Translate(_direction * speed * Time.deltaTime);
+                //cc.Move(_direction * speed * Time.deltaTime);
             }
         }
     }
@@ -34,4 +34,12 @@ public class MushRoomMove : MonoBehaviour
         speed = moveSpeed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name.Equals(target.transform.name) 
+            && other.CompareTag("Tower"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

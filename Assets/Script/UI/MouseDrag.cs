@@ -104,12 +104,22 @@ public class MouseDrag : MonoBehaviour
 
         if(towardTower!=null)
         {
-            //유닛 생성
-            var obj =Instantiate(unitPref, myTower.transform.position, Quaternion.identity);
-            obj.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
+            ////유닛 생성
+            //var obj =Instantiate(unitPref, myTower.transform.position, Quaternion.identity);
+            //obj.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
+            //myTower = null;
+            //towardTower = null;
+
+            GameObject _unit = ObjectPool.instance.GetObjectFromPooler();
+            if(_unit!=null)
+            {
+                _unit.transform.position = myTower.transform.position;
+                _unit.transform.rotation = Quaternion.identity;
+                _unit.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
+                _unit.SetActive(true);
+            }
             myTower = null;
             towardTower = null;
-
         }
     }
 
