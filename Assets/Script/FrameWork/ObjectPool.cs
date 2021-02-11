@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable] //class를 inspector창에서 볼 수있게 해주는 어트리뷰트
+public class ObjectPoolItem
+{
+    public int amount;
+    public GameObject prefToPool;
+    public bool shouldExpend;
+}
 public class ObjectPool : MonoBehaviour
 {
+
+    public List<ObjectPoolItem> itemToPool;
+
     public static ObjectPool instance;
-    public List<GameObject> pooledObject;
-    public GameObject objectToPool;
-    public int amountToPool;
+    private List<GameObject> pooledObject;
+
     private void Awake()
     {
         instance = this;
@@ -16,12 +25,17 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         pooledObject = new List<GameObject>();
-        for (int i = 0; i < amountToPool; i++)
+
+        foreach (ObjectPoolItem item in itemToPool)
         {
-            GameObject _obj = (GameObject)Instantiate(objectToPool);
-            _obj.SetActive(false);
-            pooledObject.Add(_obj);
+            for (int i = 0; i < item.amount; i++)
+            {
+                GameObject _obj = Instantiate(item.prefToPool);
+                _obj.SetActive(false);
+                pooledObject.Add(_obj);
+            }
         }
+
     }
 
     public GameObject GetObjectFromPooler()
@@ -29,11 +43,45 @@ public class ObjectPool : MonoBehaviour
         int _size = pooledObject.Count;
         for (int i = 0; i < _size; i++)
         {
-            if(!pooledObject[i].activeInHierarchy)
+            if (!pooledObject[i].activeInHierarchy)
             {
                 return pooledObject[i];
             }
         }
         return null;
     }
+
+    public GameObject GetObjectFromPooler(string tag)
+    {
+        int _size = pooledObject.Count;
+        for (int i = 0; i < _size; i++)
+        {
+            if (!pooledObject[i].activeInHierarchy)
+            {
+                return pooledObject[i];
+            }
+        }
+
+
+        foreach (ObjectPoolItem item in itemToPool)
+        {
+            if (item.prefToPool.CompareTag(tag))
+            {
+                if (item.shouldExpend)
+                {
+                    GameObject _obj = (GameObject)Instantiate(item.prefToPool);
+                    _obj.SetActive(false);
+                    pooledObject.Add(_obj);
+
+                    return _obj;
+                }
+            }
+
+        }
+
+        return null;
+    }
+
 }
+
+

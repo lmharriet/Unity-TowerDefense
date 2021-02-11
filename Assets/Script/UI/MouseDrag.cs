@@ -70,9 +70,9 @@ public class MouseDrag : MonoBehaviour
 
 
 
-            if (myTower != null)
+            if (myTower != null && myTower.GetComponent<BuildingManager>().isPlayerTeam)
             {
-                
+
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -86,37 +86,39 @@ public class MouseDrag : MonoBehaviour
                     //{
                     //    myTower = null;
                     //}
-                    
+
                 }
                 //else
                 //{
-                    //raycast 안에 어떤 정보도 없을 때( 하늘? )
+                //raycast 안에 어떤 정보도 없을 때( 하늘? )
                 //    myTower = null; 
                 //}
 
                 if (towardTower == null) myTower = null;
             }
 
-           
+
 
         }
 
 
-        if(towardTower!=null)
+        if (towardTower != null)
         {
             ////유닛 생성
             //var obj =Instantiate(unitPref, myTower.transform.position, Quaternion.identity);
             //obj.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
             //myTower = null;
             //towardTower = null;
-
-            GameObject _unit = ObjectPool.instance.GetObjectFromPooler();
-            if(_unit!=null)
+        
+            GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+            if (_unit != null)
             {
                 _unit.transform.position = myTower.transform.position;
                 _unit.transform.rotation = Quaternion.identity;
                 _unit.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
                 _unit.SetActive(true);
+               // Debug.Log("생성");
+
             }
             myTower = null;
             towardTower = null;

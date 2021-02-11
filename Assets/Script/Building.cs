@@ -26,7 +26,6 @@ public class Building : MonoBehaviour
     public GameObject arriveObj;
     public int touchCount = 0;
 
-
     protected virtual void Awake()
     {
         showText = GetComponentInChildren<TextMesh>();
@@ -40,7 +39,7 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        CreateUnit();
+       CreateUnit();
     }
 
     protected void SpawnUnit()
@@ -79,21 +78,21 @@ public class Building : MonoBehaviour
 
     protected void CreateUnit()
     {
-        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition) ;
+        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit _hit;
 
         if (Input.GetMouseButtonDown(0) && touchCount < 2)
         {
-            if(Physics.Raycast(_ray, out _hit))
+            if (Physics.Raycast(_ray, out _hit))
             {
-                if(_hit.transform.GetComponent<Building>().myId.Equals
+                if (_hit.transform.GetComponent<Building>().myId.Equals
                     (_hit.transform.GetComponent<Building>().myId))
                 {
-                    if(touchCount ==0)
+                    if (touchCount == 0)
                     {
                         departObj = _hit.transform.gameObject;
                     }
-                    else if(touchCount ==1)
+                    else if (touchCount == 1)
                     {
                         if (departObj != _hit.transform.gameObject)
                         {
@@ -105,9 +104,9 @@ public class Building : MonoBehaviour
         }
 
 
-        if(touchCount ==2)
+        if (touchCount == 2)
         {
-         //  Instantiate(unit)
+            //  Instantiate(unit)
         }
 
     }

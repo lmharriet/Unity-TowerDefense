@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class SpawnTower : MonoBehaviour
 {
+    public GameObject team;
     public Transform[] teamSpawnPos;
+    
     public GameObject[] TowerPrefs; //0 :house 1: defense 2:factory
-    int maxTower = 8;
+    int maxTower = 12;
     int teamCount;
     bool isCreat;
+    
     // Start is called before the first frame update
     void Start()
     {
         teamCount = Random.Range(2, 4);
+
+
+        Transform obj = team.transform.GetChild(Random.Range(0, 2));
+
+        for(int i=0;i<obj.childCount;i++)
+        {
+            obj.GetChild(i).GetComponent<BuildingManager>().isPlayerTeam = true;
+        }
     }
 
     // Update is called once per frame
@@ -26,27 +37,32 @@ public class SpawnTower : MonoBehaviour
 
         //}
 
-        if (!isCreat)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                Instantiate(TowerPrefs[0], teamSpawnPos[0].GetChild(i).GetComponentInChildren<Transform>().position, Quaternion.identity);
+        //if (!isCreat)
+        //{
+        //    for (int i = 0; i < 2; i++)
+        //    {
+        //        Instantiate(TowerPrefs[0], teamSpawnPos[0].GetChild(i).GetComponentInChildren<Transform>().position, Quaternion.identity);
 
-                if (i == 1)
-                {
-                    Instantiate(TowerPrefs[1], teamSpawnPos[0].GetChild(2).GetComponentInChildren<Transform>().position,
-                        Quaternion.identity);
-                    Instantiate(TowerPrefs[2], teamSpawnPos[0].GetChild(3).GetComponentInChildren<Transform>().position,
-                        Quaternion.identity);
-                    isCreat = true;
-                }
-            }
-        }
+        //        if (i == 1)
+        //        {
+        //            Instantiate(TowerPrefs[1], teamSpawnPos[0].GetChild(2).GetComponentInChildren<Transform>().position,
+        //                Quaternion.identity);
+        //            Instantiate(TowerPrefs[2], teamSpawnPos[0].GetChild(3).GetComponentInChildren<Transform>().position,
+        //                Quaternion.identity);
+        //            isCreat = true;
+        //        }
+        //    }
+        //}
 
 
 
 
         //team이 3개 일 떄 :
         //team1은 왼쪽 team 2는 중간 team 3은 오른쪽
+    }
+
+   public void GetMyTeam()
+    {
+        
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownTower : MonoBehaviour
+public class TownTower : BuildingManager
 {
 
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
@@ -22,6 +22,7 @@ public class TownTower : MonoBehaviour
     private void Awake()
     {
         showUnit = transform.GetComponentInChildren<TextMesh>();
+        isPlayerTeam = false;
     }
 
     void Start()
