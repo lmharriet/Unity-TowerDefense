@@ -27,6 +27,8 @@ public class MushRoomMove : MonoBehaviour
                 //cc.Move(_direction * speed * Time.deltaTime);
             }
         }
+
+
     }
 
     public void InitMushroom(Transform targetPos, float moveSpeed)
@@ -54,6 +56,7 @@ public class MushRoomMove : MonoBehaviour
                     _tower.showUnit.text = _tower.unitCount.ToString();
                   //  Debug.Log(_tower.unitCount);
                 }
+
                 else
                 {
                     //player team이 아니면 unit count 감소
@@ -61,9 +64,9 @@ public class MushRoomMove : MonoBehaviour
                    
                     //Debug.Log(_tower.unitCount);
                 }
+
                 gameObject.SetActive(false);
             }
         }
-
     }
 }
