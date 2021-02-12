@@ -39,7 +39,8 @@ public class FactoryTower : BuildingManager
                 break;
         }
         unit = Random.Range(5, 16);
-        showUnit.text = unit.ToString();
+        if (isPlayerTeam)
+            showUnit.text = unit.ToString();
     }
 
     // Update is called once per frame

@@ -12,5 +12,10 @@ public class BuildingManager : MonoBehaviour
     public int upgradeCost;
     public TextMesh showUnit;
 
+    public int unitCount
+    {
+        get { return unit; }
+        set { unit = value; }
+    }
 
 }

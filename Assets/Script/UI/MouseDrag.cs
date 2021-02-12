@@ -35,7 +35,7 @@ public class MouseDrag : MonoBehaviour
             departure = startPos;
             img.transform.position = startPos;
 
-            
+
             if (myTower != null)
             {
                 myTower = null;
@@ -43,11 +43,12 @@ public class MouseDrag : MonoBehaviour
             }
 
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit)&& hit.transform.GetComponent<BuildingManager>().isPlayerTeam)
+            if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.CompareTag("Tower"))
                 {
-                    myTower = hit.transform.gameObject;
+                    if (hit.transform.GetComponent<BuildingManager>().isPlayerTeam)
+                        myTower = hit.transform.gameObject;
                 }
             }
 
@@ -120,6 +121,7 @@ public class MouseDrag : MonoBehaviour
         // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
         _size = (int)(_size * percentage);
 
+
         //_size만큼의 병력을 미리 생성된 unit중 활성화하기
         for (int i = 0; i < _size; i++)
         {
@@ -133,7 +135,11 @@ public class MouseDrag : MonoBehaviour
                 _unit.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
                 _unit.SetActive(true);
 
+                myTower.GetComponent<BuildingManager>().unitCount--;
+                myTower.GetComponent<BuildingManager>().showUnit.text =
+                    myTower.GetComponent<BuildingManager>().unitCount.ToString();
             }
+          
         }
 
         //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기

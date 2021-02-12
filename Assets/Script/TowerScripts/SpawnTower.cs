@@ -11,19 +11,18 @@ public class SpawnTower : MonoBehaviour
     int maxTower = 12;
     int teamCount;
     bool isCreat;
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         teamCount = Random.Range(2, 4);
 
         Transform obj = team.transform.GetChild(Random.Range(0, 2));
 
-        for(int i=0;i<obj.childCount;i++)
+        for (int i = 0; i < obj.childCount; i++)
         {
             obj.GetChild(i).GetComponent<BuildingManager>().isPlayerTeam = true;
         }
     }
+  
 
     // Update is called once per frame
     void Update()

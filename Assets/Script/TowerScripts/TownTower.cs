@@ -19,6 +19,7 @@ public class TownTower : BuildingManager
         isPlayerTeam = false;
     }
 
+
     void Start()
     {
 
@@ -45,8 +46,9 @@ public class TownTower : BuildingManager
                 unit = Random.Range(40, maxCapacity - 46);
                 break;
         }
-        showUnit.text = unit.ToString();
 
+        if (isPlayerTeam)
+            showUnit.text = unit.ToString();
 
     }
 
@@ -59,7 +61,8 @@ public class TownTower : BuildingManager
         {
             time = 0f;
             unit++;
-            showUnit.text = unit.ToString();
+            if (isPlayerTeam)
+                showUnit.text = unit.ToString();
         }
 
     }

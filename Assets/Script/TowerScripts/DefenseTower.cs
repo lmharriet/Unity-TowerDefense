@@ -7,7 +7,7 @@ public class DefenseTower : BuildingManager
     //유효 사정거리에 있는 적을 사격
     //방어력을 높여주지만, 유닛을 생산하지는 않음
     ///private string kind = "Defense";
-   
+
     public float range;                 //레벨에 따른 공격 범위
     public float def;                   //레벨에 따른 방어력
 
@@ -20,8 +20,8 @@ public class DefenseTower : BuildingManager
     }
     void Start()
     {
-        
-        switch(level)
+
+        switch (level)
         {
             case 1:
                 range = 1.0f;
@@ -41,11 +41,12 @@ public class DefenseTower : BuildingManager
                 break;
         }
         unit = Random.Range(10, 20);
-        showUnit.text = unit.ToString();
+        if (isPlayerTeam)
+            showUnit.text = unit.ToString();
     }
 
     void Update()
     {
-        
+
     }
 }
