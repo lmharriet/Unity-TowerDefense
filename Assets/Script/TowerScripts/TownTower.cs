@@ -7,17 +7,11 @@ public class TownTower : BuildingManager
 
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
     //max level = 5
-
-
     /// private string kind = "Town";
-    public int myId;         // 몇 번째 타워인지
-    public int level=1;        //max level = 5
-    public int unit = 0;
+
     public int maxCapacity;  // 20 40 60 80 100 수용 가능
-    public int upgradeCost;     //     5 10 20     비용으로 업그레이드 가능
     public float time = 0f;
 
-    public TextMesh showUnit;
 
     private void Awake()
     {

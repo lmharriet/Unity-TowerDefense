@@ -7,23 +7,20 @@ public class DefenseTower : BuildingManager
     //유효 사정거리에 있는 적을 사격
     //방어력을 높여주지만, 유닛을 생산하지는 않음
     ///private string kind = "Defense";
-    public int myId;
-    public int level = 1;               //maxLevel =4
-    public int unit;                    //현재 수용하고 있는 유닛
+   
     public float range;                 //레벨에 따른 공격 범위
     public float def;                   //레벨에 따른 방어력
-    private int upgradeCost=20;
-    //public bool isPlayerTeam;
-    public TextMesh showUnit;
+
 
     private void Awake()
     {
         showUnit = transform.GetComponentInChildren<TextMesh>();
         isPlayerTeam = false;
-        
+        upgradeCost = 20;
     }
     void Start()
     {
+        
         switch(level)
         {
             case 1:
@@ -47,7 +44,6 @@ public class DefenseTower : BuildingManager
         showUnit.text = unit.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -7,15 +7,12 @@ public class FactoryTower : BuildingManager
     //유닛 수용은 가능하지만 생성 불가
     //공격력 방어력 향상
     /// private string kind = "Factory";
-    public int myId;
-    public int unit;          //수용하고 있는 unit
-    public int level = 1;       //maxLevel =4
     public float def;         //레벨에 따른 방어력
     public float atk;         //레벨에 따른 공격력
-    public TextMesh showUnit;
 
     private void Awake()
     {
+        level = 1;
         showUnit = transform.GetComponentInChildren<TextMesh>();
         isPlayerTeam = false;
       

@@ -17,7 +17,6 @@ public class SpawnTower : MonoBehaviour
     {
         teamCount = Random.Range(2, 4);
 
-
         Transform obj = team.transform.GetChild(Random.Range(0, 2));
 
         for(int i=0;i<obj.childCount;i++)

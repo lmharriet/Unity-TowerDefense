@@ -690,10 +690,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToPool:
-  - amount: 20
+  - amount: 50
     prefToPool: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233,
       type: 3}
-    shouldExpend: 0
+    shouldExpend: 1
 --- !u!4 &593324520
 Transform:
   m_ObjectHideFlags: 0
