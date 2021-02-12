@@ -131,10 +131,12 @@ public class MouseDrag : MonoBehaviour
                 //***열에 맞춰서 position세팅을 바꿔야함.
                 _unit.transform.position = myTower.transform.position;
                 //
+                
                 _unit.transform.rotation = Quaternion.identity;
                 _unit.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
                 _unit.SetActive(true);
 
+                //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
                 myTower.GetComponent<BuildingManager>().unitCount--;
                 myTower.GetComponent<BuildingManager>().showUnit.text =
                     myTower.GetComponent<BuildingManager>().unitCount.ToString();

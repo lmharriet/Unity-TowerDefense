@@ -8,11 +8,12 @@ public class SpawnTower : MonoBehaviour
     public Transform[] teamSpawnPos;
     
     public GameObject[] TowerPrefs; //0 :house 1: defense 2:factory
-    int maxTower = 12;
+    int maxTower;
     int teamCount;
     bool isCreat;
     private void Awake()
     {
+        maxTower = 12;
         teamCount = Random.Range(2, 4);
 
         Transform obj = team.transform.GetChild(Random.Range(0, 2));
