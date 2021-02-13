@@ -17,6 +17,9 @@ public class MouseDrag : MonoBehaviour
 
     public GameObject unitPref;
 
+    private Transform sortCenter;
+    private Vector3 sortVector;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -120,18 +123,19 @@ public class MouseDrag : MonoBehaviour
 
         // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
         _size = (int)(_size * percentage);
-
-
+        //temp
+        int row = 5;
         //_size만큼의 병력을 미리 생성된 unit중 활성화하기
-        for (int i = 0; i < _size; i++)
+        for (int i = 0; i < _size; i++) // 5
         {
             GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
             if (_unit != null)
             {
                 //***열에 맞춰서 position세팅을 바꿔야함.
                 _unit.transform.position = myTower.transform.position;
+
                 //
-                
+              
                 _unit.transform.rotation = Quaternion.identity;
                 _unit.transform.GetComponent<MushRoomMove>().InitMushroom(towardTower.transform, 2);
                 _unit.SetActive(true);
@@ -141,12 +145,30 @@ public class MouseDrag : MonoBehaviour
                 myTower.GetComponent<BuildingManager>().showUnit.text =
                     myTower.GetComponent<BuildingManager>().unitCount.ToString();
             }
-          
+
         }
 
         //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
         myTower = null;
         towardTower = null;
+    }
+
+
+    private void SortUnitPosition(GameObject unit, int count, int row)
+    {
+        float xOffset = myTower.transform.position.x;
+        float zOffset = myTower.transform.position.z;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (i % row == 0 && i != 0)
+            {
+                xOffset = myTower.transform.position.x;
+                zOffset += 2f;
+            }
+            unit.transform.position = new Vector3(xOffset + 2f * (i % row),
+                 myTower.transform.position.y, zOffset);
+        }
     }
 
     #region angle
