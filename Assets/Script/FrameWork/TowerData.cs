@@ -6,14 +6,34 @@ public class TowerData : Singleton<TowerData>
 {
     protected TowerData() { }
 
-    int id;
-    
+    public BuildingManager departTower;
+    public BuildingManager arriveTower;
 
-    public int TowardTowerID
+    public void ResetBothTowers()
     {
-        get { return id; }
-        set { id = value; }
+        departTower = null;
+        arriveTower = null;
     }
-    
+
+    public void SetDepartTower(RaycastHit hitInfo)
+    {
+        departTower = hitInfo.transform.GetComponent<BuildingManager>();
+
+    }
+
+    public void SetArriveTower(RaycastHit hitInfo)
+    {
+        arriveTower = hitInfo.transform.GetComponent<BuildingManager>();
+    }
+
+    public Vector3 GetDepartPos()
+    {
+        return departTower.transform.position;
+    }
+
+    public Vector3 GetArrivePos()
+    {
+        return arriveTower.transform.position;
+    }
 
 }

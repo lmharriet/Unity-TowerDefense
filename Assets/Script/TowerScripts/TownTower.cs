@@ -48,7 +48,10 @@ public class TownTower : BuildingManager
         }
 
         if (isPlayerTeam)
-            showUnit.text = unit.ToString();
+            showUnit.text = "P" + unit.ToString();
+        else
+            showUnit.text = "E" + unit.ToString();
+
 
     }
 

@@ -44,11 +44,11 @@ public class SortObjPostion : MonoBehaviour
 
     public void SortUnits()
     {
-        //기준점이 되는 위치를 한 행의 전체 갯수에서 가운데로 맞춘다.
+        //기준점이 되는 위치를 한 행의 전체 열에서 가운데로 맞춘다.
         float x = centerPos.position.x - (column / 2) * newDistance;
         float z = centerPos.position.z;
 
-        if (size < column) //전체 사이즈가 내가 지정한 한 행의 맥스 
+        if (size < column) //전체 사이즈가 내가 지정한 맥스 열보다 작을 때 
         {
             for (int i = 0; i < size; i++)
             {
@@ -59,7 +59,7 @@ public class SortObjPostion : MonoBehaviour
                 _unit.SetActive(true);
             }
         }
-        else
+        else //전체 사이즈가 내가 지정한 맥스 열보다 클 때, (행을 바꿔줘야 한다)
         {
             for (int i = 0; i < size; i++)
             {

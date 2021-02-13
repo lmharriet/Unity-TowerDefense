@@ -40,7 +40,9 @@ public class FactoryTower : BuildingManager
         }
         unit = Random.Range(5, 16);
         if (isPlayerTeam)
-            showUnit.text = unit.ToString();
+            showUnit.text = "P"+unit.ToString();
+        else
+            showUnit.text = "E" + unit.ToString();
     }
 
     // Update is called once per frame
