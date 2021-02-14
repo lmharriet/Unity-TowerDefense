@@ -47,8 +47,8 @@ public class DefenseTower : BuildingManager
             showUnit.text = "E" + unit.ToString();
     }
 
-    void Update()
+    protected override void Update()
     {
-
+        base.Update();
     }
 }

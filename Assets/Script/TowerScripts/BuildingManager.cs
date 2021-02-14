@@ -18,5 +18,17 @@ public class BuildingManager : MonoBehaviour
         set { unit = value; }
     }
 
+    protected virtual void Update()
+    {
+        if(!isPlayerTeam)
+        {
+            if(unit<=0)
+            {
+                unit = 0;
+                isPlayerTeam = true;
+                showUnit.text = "P" + unit.ToString();
+            }
+        }
+    }
     
 }

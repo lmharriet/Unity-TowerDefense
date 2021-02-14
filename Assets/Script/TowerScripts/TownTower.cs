@@ -56,8 +56,9 @@ public class TownTower : BuildingManager
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         time += Time.deltaTime;
 
         if (time > 2f)
@@ -65,7 +66,9 @@ public class TownTower : BuildingManager
             time = 0f;
             unit++;
             if (isPlayerTeam)
-                showUnit.text = unit.ToString();
+                showUnit.text = "P" + unit.ToString();
+            else
+                showUnit.text = "E" + unit.ToString();
         }
 
     }

@@ -9,6 +9,7 @@ public class TowerData : Singleton<TowerData>
     public BuildingManager departTower;
     public BuildingManager arriveTower;
 
+
     public void ResetBothTowers()
     {
         departTower = null;
@@ -18,7 +19,6 @@ public class TowerData : Singleton<TowerData>
     public void SetDepartTower(RaycastHit hitInfo)
     {
         departTower = hitInfo.transform.GetComponent<BuildingManager>();
-
     }
 
     public void SetArriveTower(RaycastHit hitInfo)

@@ -53,7 +53,7 @@ public class MushRoomMove : MonoBehaviour
                 {
                     //player team이면 unit count 증가
                     _tower.unitCount++;
-                    _tower.showUnit.text = _tower.unitCount.ToString();
+                    _tower.showUnit.text = "P"+_tower.unitCount.ToString();
                   //  Debug.Log(_tower.unitCount);
                 }
 
@@ -61,7 +61,7 @@ public class MushRoomMove : MonoBehaviour
                 {
                     //player team이 아니면 unit count 감소
                     _tower.unitCount--;
-                   
+                    _tower.showUnit.text = "E"+_tower.unitCount.ToString();
                     //Debug.Log(_tower.unitCount);
                 }
 

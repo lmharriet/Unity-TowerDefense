@@ -175,7 +175,7 @@ public class MouseDrag : MonoBehaviour
 
                 //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
                 TowerData.Instance.departTower.unitCount--;
-                TowerData.Instance.departTower.showUnit.text =
+                TowerData.Instance.departTower.showUnit.text ="P"+
                    TowerData.Instance.departTower.unitCount.ToString();
 
             }

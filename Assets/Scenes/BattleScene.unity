@@ -438,13 +438,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288207269}
-  m_LocalRotation: {x: -0.26384547, y: -0.0040544607, z: 0.0011077232, w: -0.96455586}
-  m_LocalPosition: {x: -0.18427932, y: 12.196199, z: -27.314007}
+  m_LocalRotation: {x: 0.52361417, y: 0, z: 0, w: 0.85195553}
+  m_LocalPosition: {x: -0, y: 20.555914, z: -14.515839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 63.15, y: 0, z: 0}
 --- !u!1 &404234662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,10 +1906,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2035024649}
-  myTower: {fileID: 0}
-  towardTower: {fileID: 0}
   unitPref: {fileID: 4205519965986051818, guid: b86f173d2619d124a89d37bd972fb233,
     type: 3}
+  column: 0
+  unitDistance: 0
 --- !u!4 &1915160822
 Transform:
   m_ObjectHideFlags: 0
