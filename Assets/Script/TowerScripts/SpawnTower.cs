@@ -18,7 +18,7 @@ public class SpawnTower : MonoBehaviour
 
     private void Awake()
     {
-        howManyTeams = 2; // Random.Range(2, 5);
+        howManyTeams =  Random.Range(2, 5);
 
         colorTeam[0] = team.transform.GetChild(0).gameObject;
         maxTower = colorTeam[0].transform.childCount;
@@ -48,14 +48,16 @@ public class SpawnTower : MonoBehaviour
     public void SetPlayerTeam()
     {
         List<int> teamNum = new List<int>();
+        List<GameObject> divisionTeam = new List<GameObject>();
 
-        // int rndNum=
-
-        for (int i = 0; i < maxTower / howManyTeams; i++)
+        int division = maxTower / howManyTeams;
+       
+        for (int i = 0; i < division; i++)
         {
-            
-
+             teamNum.Add(i);
         }
+        
+
 
         //int _enemyTeamNum;
 
