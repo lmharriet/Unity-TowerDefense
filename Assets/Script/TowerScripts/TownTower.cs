@@ -20,9 +20,9 @@ public class TownTower : BuildingManager
     }
 
 
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();
         switch (level)
         {
             case 1:

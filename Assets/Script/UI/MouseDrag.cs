@@ -159,9 +159,7 @@ public class MouseDrag : MonoBehaviour
             if (_unit != null)
             {
                 //***열에 맞춰서 position세팅을 바꿔야함.
-
                 //_unit.transform.position = departPos;
-
 
                 float _x = departPos.x - (column / 2) * unitDistance;
                 float _z = departPos.z;

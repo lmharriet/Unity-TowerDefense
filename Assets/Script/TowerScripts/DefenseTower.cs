@@ -18,9 +18,9 @@ public class DefenseTower : BuildingManager
         isPlayerTeam = false;
         upgradeCost = 20;
     }
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();
         switch (level)
         {
             case 1:

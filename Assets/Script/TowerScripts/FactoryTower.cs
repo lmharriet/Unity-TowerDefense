@@ -17,8 +17,9 @@ public class FactoryTower : BuildingManager
         isPlayerTeam = false;
       
     }
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         switch (level)
         {
             case 1:
