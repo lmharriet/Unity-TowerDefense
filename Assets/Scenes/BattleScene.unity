@@ -158,6 +158,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000901462}
     m_Modifications:
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 420187298355375538, guid: be040ca470fff8a40a3e5a5fb2c321d9,
         type: 3}
       propertyPath: myId
@@ -303,6 +323,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &153782024 stripped
@@ -401,6 +441,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000901462}
     m_Modifications:
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 420187297885197312, guid: be040ca470fff8a40a3e5a5fb2c321d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 420187298355375539, guid: be040ca470fff8a40a3e5a5fb2c321d9,
         type: 3}
       propertyPath: m_RootOrder
@@ -741,6 +801,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &627706692 stripped
@@ -821,6 +901,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &781331334 stripped
@@ -900,6 +1000,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HouseTower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
@@ -1165,6 +1285,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &1141456608 stripped
@@ -1180,6 +1320,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000901462}
     m_Modifications:
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8570751687407397330, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
         type: 3}
       propertyPath: m_Name
@@ -1454,6 +1614,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &1309030856 stripped
@@ -1564,6 +1744,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseTower (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
 --- !u!4 &1337969336 stripped
@@ -1609,6 +1809,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2000901462}
     m_Modifications:
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570751687289190990, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8570751687407397330, guid: cc74d2210f84d2a4eadf9bb0cf8d63ef,
         type: 3}
       propertyPath: m_Name
@@ -1753,6 +1973,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HouseTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109049292030193940, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1cdde41b0e4c74bb5922d1c1b1d93e, type: 3}
