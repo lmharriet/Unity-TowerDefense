@@ -12,14 +12,13 @@ public class BuildingManager : MonoBehaviour
     public int upgradeCost;
     public TextMesh showUnit;
 
-
-    public enum TOWERCOLOR
+    public enum TEAMCOLOR
     {
-        NONE,RED,ORANGE
+        NONE, RED, ORANGE, BLUE, GREEN
     }
 
-    public TOWERCOLOR teamColor = TOWERCOLOR.NONE;
-
+    public TEAMCOLOR teamColor = TEAMCOLOR.NONE;
+   
     public int unitCount
     {
         get { return unit; }
@@ -27,11 +26,13 @@ public class BuildingManager : MonoBehaviour
     }
     protected virtual void Start()
     {
-        if(isPlayerTeam)
+        if (isPlayerTeam)
         {
-            Debug.Log("my ID" +myId);
-            Debug.Log("my teamColor" +teamColor);
+            Debug.Log("my ID" + myId);
+            Debug.Log("my teamColor" + teamColor);
         }
+
+
     }
 
     protected virtual void Update()
@@ -49,7 +50,7 @@ public class BuildingManager : MonoBehaviour
     public void EnemyAI()
     {
         //
-       
+
     }
 
 
@@ -64,5 +65,11 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    
+    public TEAMCOLOR myColor
+    {
+        get { return teamColor; }
+        set { teamColor = value; }
+    }
+
+  
 }

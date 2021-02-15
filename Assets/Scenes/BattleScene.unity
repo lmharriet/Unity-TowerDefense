@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: {fileID: 2020567116}
   howManyTeams: 2
-  colorTeam:
+  colorOfTeam:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

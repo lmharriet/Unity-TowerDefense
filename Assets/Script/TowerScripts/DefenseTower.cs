@@ -44,7 +44,7 @@ public class DefenseTower : BuildingManager
         if (isPlayerTeam)
             showUnit.text = "P"+unit.ToString();
         else
-            showUnit.text = "E" + unit.ToString();
+            showUnit.text = teamColor + unit.ToString();
     }
 
     protected override void Update()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MushRoomMove : MonoBehaviour
 {
+    public BuildingManager.TEAMCOLOR unitColor;
+    public Renderer render;
     Rigidbody rigid;
     Transform target;
     int targetId;
@@ -31,11 +33,13 @@ public class MushRoomMove : MonoBehaviour
 
     }
 
-    public void InitMushroom(Transform targetPos, float moveSpeed)
+    public void InitMushroom(Transform targetPos, float moveSpeed, BuildingManager.TEAMCOLOR unit_Color)
     {
         target = targetPos;
         speed = moveSpeed;
         targetId = target.transform.GetComponent<BuildingManager>().myId;
+        unitColor = unit_Color;
+        //render.material.color
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,15 +57,15 @@ public class MushRoomMove : MonoBehaviour
                 {
                     //player team이면 unit count 증가
                     _tower.unitCount++;
-                    _tower.showUnit.text = "P"+_tower.unitCount.ToString();
-                  //  Debug.Log(_tower.unitCount);
+                    _tower.showUnit.text = "P" + _tower.unitCount.ToString();
+                    //  Debug.Log(_tower.unitCount);
                 }
 
                 else
                 {
                     //player team이 아니면 unit count 감소
                     _tower.unitCount--;
-                    _tower.showUnit.text = "E"+_tower.unitCount.ToString();
+                    _tower.showUnit.text = "E" + _tower.unitCount.ToString();
                     //Debug.Log(_tower.unitCount);
                 }
 

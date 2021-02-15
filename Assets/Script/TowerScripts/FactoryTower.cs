@@ -43,7 +43,7 @@ public class FactoryTower : BuildingManager
         if (isPlayerTeam)
             showUnit.text = "P"+unit.ToString();
         else
-            showUnit.text = "E" + unit.ToString();
+            showUnit.text = teamColor + unit.ToString();
     }
 
     // Update is called once per frame

@@ -50,7 +50,7 @@ public class TownTower : BuildingManager
         if (isPlayerTeam)
             showUnit.text = "P" + unit.ToString();
         else
-            showUnit.text = "E" + unit.ToString();
+            showUnit.text = teamColor + unit.ToString();
 
 
     }
@@ -61,14 +61,18 @@ public class TownTower : BuildingManager
         base.Update();
         time += Time.deltaTime;
 
-        if (time > 2f)
+        if (teamColor != TEAMCOLOR.NONE
+            && unit< maxCapacity)
         {
-            time = 0f;
-            unit++;
-            if (isPlayerTeam)
-                showUnit.text = "P" + unit.ToString();
-            else
-                showUnit.text = "E" + unit.ToString();
+            if (time > 2f)
+            {
+                time = 0f;
+                unit++;
+                if (isPlayerTeam)
+                    showUnit.text = "P" + unit.ToString();
+                else
+                    showUnit.text = teamColor + unit.ToString();
+            }
         }
 
     }
