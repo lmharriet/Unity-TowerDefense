@@ -13,9 +13,10 @@ public class TownTower : BuildingManager
     public float time = 0f;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        showUnit = transform.GetComponentInChildren<TextMesh>();
+        base.Awake();
+        //showUnit = transform.GetComponentInChildren<TextMesh>();
         isPlayerTeam = false;
     }
 

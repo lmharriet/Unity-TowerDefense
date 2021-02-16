@@ -10,6 +10,7 @@ public class BuildingManager : MonoBehaviour
     public int unit;
     public int level = 1;
     public int upgradeCost;
+    public Renderer render;
     public TextMesh showUnit;
 
     public enum TEAMCOLOR
@@ -18,14 +19,20 @@ public class BuildingManager : MonoBehaviour
     }
 
     public TEAMCOLOR teamColor = TEAMCOLOR.NONE;
-   
+
     public int unitCount
     {
         get { return unit; }
         set { unit = value; }
     }
+    protected virtual void Awake()
+    {
+        showUnit = transform.GetComponentInChildren<TextMesh>();
+        render = transform.GetComponent<Renderer>();
+    }
     protected virtual void Start()
     {
+        
         if (isPlayerTeam)
         {
             Debug.Log("my ID" + myId);
@@ -43,7 +50,7 @@ public class BuildingManager : MonoBehaviour
             EnemyAI();
 
             //unit 개체수가 0이하로 떨어질 경우 공격한 팀으로 변경
-            CheckPlayerTeam();
+            // CheckPlayerTeam();
         }
     }
 
@@ -55,13 +62,42 @@ public class BuildingManager : MonoBehaviour
 
 
 
-    public void CheckPlayerTeam()
+    public void CheckAttack(TEAMCOLOR unitColor)
     {
-        if (unit <= 0)
+
+        if (unitColor == myColor)
         {
-            unit = 0;
-            isPlayerTeam = true;
-            showUnit.text = "P" + unit.ToString();
+            unit++;
+            if (isPlayerTeam)
+                showUnit.text = "p" + unit.ToString();
+            else
+                showUnit.text = teamColor.ToString() + unit.ToString();
+
+        }
+
+        else
+        {
+            unit--;
+            if (unit <= 0)
+            {
+                unit = 0;
+                myColor = unitColor;
+                render.material.color = TowerData.Instance.GetColor(myColor);
+                transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
+                
+                if (isPlayerTeam) isPlayerTeam = false;
+                else
+                {
+                    if (myColor == TowerData.Instance.playerColor) isPlayerTeam = true;
+                }
+
+            }
+
+
+            if (isPlayerTeam)
+                showUnit.text = "p" + unit.ToString();
+            else
+                showUnit.text = teamColor.ToString() + unit.ToString();
         }
     }
 
@@ -71,5 +107,5 @@ public class BuildingManager : MonoBehaviour
         set { teamColor = value; }
     }
 
-  
+
 }

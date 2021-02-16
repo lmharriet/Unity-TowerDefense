@@ -10,10 +10,11 @@ public class FactoryTower : BuildingManager
     public float def;         //레벨에 따른 방어력
     public float atk;         //레벨에 따른 공격력
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         level = 1;
-        showUnit = transform.GetComponentInChildren<TextMesh>();
+        //showUnit = transform.GetComponentInChildren<TextMesh>();
         isPlayerTeam = false;
       
     }

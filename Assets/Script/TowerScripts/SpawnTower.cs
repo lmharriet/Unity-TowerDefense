@@ -19,7 +19,7 @@ public class SpawnTower : MonoBehaviour
     private void Awake()
     {
         howManyTeams = Random.Range(2, 5);
-
+        TowerData.Instance.team = team;
         //color가 None인 obj
         colorOfTeam[0] = team.transform.GetChild(0).gameObject;
         maxTower = colorOfTeam[0].transform.childCount;

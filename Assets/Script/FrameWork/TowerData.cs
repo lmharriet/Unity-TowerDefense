@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerData : Singleton<TowerData>
 {
     protected TowerData() { }
-
+    public GameObject team;
     public List<GameObject> allTowers = new List<GameObject>();
     public BuildingManager departTower;
     public BuildingManager arriveTower;
@@ -55,15 +55,16 @@ public class TowerData : Singleton<TowerData>
     {
         return arriveTower.transform.position;
     }
-    //public Dictionary<BuildingManager.TEAMCOLOR, Color> colorDictionary
-    //{
-    //    get { return haveColor; }
-    //}
 
     public Color GetColor(int teamNum)
     {
-        
+
         return haveColor[(BuildingManager.TEAMCOLOR)teamNum];
+    }
+    public Color GetColor(BuildingManager.TEAMCOLOR teamColor)
+    {
+
+        return haveColor[teamColor];
     }
 
 }

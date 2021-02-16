@@ -12,9 +12,10 @@ public class DefenseTower : BuildingManager
     public float def;                   //레벨에 따른 방어력
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        showUnit = transform.GetComponentInChildren<TextMesh>();
+        base.Awake();
+       // showUnit = transform.GetComponentInChildren<TextMesh>();
         isPlayerTeam = false;
         upgradeCost = 20;
     }
