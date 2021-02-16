@@ -23,7 +23,7 @@ public class SpawnTower : MonoBehaviour
         //color가 None인 obj
         colorOfTeam[0] = team.transform.GetChild(0).gameObject;
         maxTower = colorOfTeam[0].transform.childCount;
-
+        TowerData.Instance.maxTower = maxTower;
         for (int i = 1; i <= 4; i++)
         {
             colorOfTeam[i] = team.transform.GetChild(i).gameObject;
@@ -52,11 +52,13 @@ public class SpawnTower : MonoBehaviour
         //전체 타워 갯수를 팀의 갯수만큼 나눈 몫을 division에 저장
         //만약 타워가 12이고 팀이 2면 ->6
         int division = maxTower / howManyTeams;
-
+        GameObject _team;
         for (int i = 0; i < maxTower; i++)
         {
+            _team = colorOfTeam[0].transform.GetChild(i).gameObject;
             //colorOfTeam[0] = "NONE"obj
-            TowerData.Instance.allTowers.Add(colorOfTeam[0].transform.GetChild(i).gameObject);
+            TowerData.Instance.allTowers.Add(_team);
+            TowerData.Instance.allTowerData.Add(_team.GetComponent<BuildingManager>());
             //divisionTeam.Add(colorOfTeam[0].transform.GetChild(i).gameObject);
         }
 

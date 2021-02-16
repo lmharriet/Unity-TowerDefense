@@ -46,6 +46,8 @@ public class DefenseTower : BuildingManager
             showUnit.text = "P"+unit.ToString();
         else
             showUnit.text = teamColor + unit.ToString();
+
+        upgradeCost = 20;
     }
 
     protected override void Update()

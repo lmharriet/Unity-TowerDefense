@@ -7,13 +7,18 @@ public class TowerData : Singleton<TowerData>
     protected TowerData() { }
     public GameObject team;
     public List<GameObject> allTowers = new List<GameObject>();
+    public List<BuildingManager> allTowerData = new List<BuildingManager>();
+   
     public BuildingManager departTower;
     public BuildingManager arriveTower;
     public BuildingManager.TEAMCOLOR playerColor;
 
-    public Color color;
+    public int maxTower;
 
+    public Color color;
     public Dictionary<BuildingManager.TEAMCOLOR, Color> haveColor = new Dictionary<BuildingManager.TEAMCOLOR, Color>();
+  
+    
     public void Awake()
     {
         color = Color.white;
@@ -26,9 +31,6 @@ public class TowerData : Singleton<TowerData>
         haveColor.Add(BuildingManager.TEAMCOLOR.BLUE, color);
         color = Color.green;
         haveColor.Add(BuildingManager.TEAMCOLOR.GREEN, color);
-
-        //
-        //function(teamColor) switch(red) return color;
     }
     public void ResetBothTowers()
     {

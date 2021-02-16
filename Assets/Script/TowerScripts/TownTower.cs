@@ -9,6 +9,7 @@ public class TownTower : BuildingManager
     //max level = 5
     /// private string kind = "Town";
 
+
     public int maxCapacity;  // 20 40 60 80 100 수용 가능
     public float time = 0f;
 
@@ -29,18 +30,22 @@ public class TownTower : BuildingManager
             case 1:
                 maxCapacity = 20;
                 unit = Random.Range(5, maxCapacity - 6);
+                upgradeCost = 5;
                 break;
             case 2:
                 maxCapacity = 40;
                 unit = Random.Range(10, maxCapacity - 16);
+                upgradeCost = 10;
                 break;
             case 3:
                 maxCapacity = 60;
                 unit = Random.Range(15, maxCapacity - 26);
+                upgradeCost = 15;
                 break;
             case 4:
                 maxCapacity = 80;
                 unit = Random.Range(20, maxCapacity - 36);
+                upgradeCost = 20;
                 break;
             case 5:
                 maxCapacity = 100;
@@ -52,7 +57,6 @@ public class TownTower : BuildingManager
             showUnit.text = "P" + unit.ToString();
         else
             showUnit.text = teamColor + unit.ToString();
-
 
     }
 

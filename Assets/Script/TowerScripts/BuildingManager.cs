@@ -13,6 +13,9 @@ public class BuildingManager : MonoBehaviour
     public Renderer render;
     public TextMesh showUnit;
 
+    public float enemyThinkTime;
+    public float rate;
+
     public enum TEAMCOLOR
     {
         NONE, RED, ORANGE, BLUE, GREEN
@@ -32,33 +35,105 @@ public class BuildingManager : MonoBehaviour
     }
     protected virtual void Start()
     {
-        //if (isPlayerTeam)
-        //{
-        //    Debug.Log("my ID" + myId);
-        //    Debug.Log("my teamColor" + teamColor);
-        //}
 
 
     }
 
     protected virtual void Update()
     {
+        enemyThinkTime += Time.deltaTime;
         //user team이 아닐 때
         if (!isPlayerTeam)
         {
+
+
             EnemyAI();
 
-            //unit 개체수가 0이하로 떨어질 경우 공격한 팀으로 변경
-            // CheckPlayerTeam();
         }
+    }
+
+    public float CalculateRate()
+    {
+        int _ranNum = Random.Range(1, 11);
+
+        if (_ranNum > 0 && _ranNum < 3)
+        {
+            rate = 0.25f;
+        }
+        else if (_ranNum >= 3 && _ranNum < 6)
+        {
+            rate = 0.5f;
+        }
+        else if (_ranNum >= 6 && _ranNum < 9)
+        {
+            rate = 0.75f;
+        }
+        else
+        {
+            rate = 1.0f;
+        }
+        return rate;
     }
 
     public void EnemyAI()
     {
-        //
+  
+        if (myColor != TEAMCOLOR.NONE)
+        {
+            List<int> num = new List<int>();
+            Vector3 _myPos = transform.position;
+            Transform _target;
+            float _delay = Random.Range(3f, 7f);
+            if (enemyThinkTime > _delay)
+            {
+                enemyThinkTime = 0f;
+                for (int i = 0; i < TowerData.Instance.maxTower; i++)
+                {
+                    if (Vector3.Distance(TowerData.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
+
+                    num.Add(i);
+                }
+
+                int _rnd = Random.Range(0, num.Count);
+                _target = TowerData.Instance.allTowers[_rnd].transform;
+
+                int _size = (int)(unit * CalculateRate());
+
+                for (int i = 0; i < _size; i++)
+                {
+                    GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+                    if (_unit != null)
+                    {
+                        //***열에 맞춰서 position세팅을 바꿔야함.
+                        //_unit.transform.position = departPos;
+
+                        int _column = 5;
+                        float _unitDistance = 1f;
+
+                        float _x = transform.position.x - (_column / 2) * _unitDistance;
+                        float _z = transform.position.z;
+                        //열 맞춰 생성
+                        _unit.transform.position = new Vector3(_x + (i % _column) * _unitDistance, transform.position.y,
+                                _z - (i / _column) * _unitDistance);
+
+                        _unit.transform.rotation = Quaternion.identity;
+                        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2f, teamColor);
+                        _unit.SetActive(true);
+
+                        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
+                        unit--;
+                        showUnit.text = teamColor + unit.ToString();
+
+                    }
+
+                }
+            }
+
+
+
+        }
 
     }
-
 
 
     public void CheckAttack(TEAMCOLOR unitColor)
@@ -85,7 +160,7 @@ public class BuildingManager : MonoBehaviour
                 render.material.color = TowerData.Instance.GetColor(myColor);
                 //현재 타워의 팀 변경
                 transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
-                
+
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아니고
                 if (isPlayerTeam) isPlayerTeam = false;
                 else

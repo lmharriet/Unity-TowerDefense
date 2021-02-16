@@ -26,14 +26,17 @@ public class FactoryTower : BuildingManager
             case 1:
                 def = 1.25f;
                 atk = 1.5f;
+                upgradeCost = 5;
                 break;
             case 2:
                 def = 1.35f;
                 atk = 1.75f;
+                upgradeCost = 10;
                 break;
             case 3:
                 def = 1.45f;
                 atk = 1.9f;
+                upgradeCost = 15;
                 break;
             case 4:
                 def = 1.50f;
