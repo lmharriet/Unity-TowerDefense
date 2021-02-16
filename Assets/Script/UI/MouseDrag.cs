@@ -168,7 +168,7 @@ public class MouseDrag : MonoBehaviour
                         _z - (i / column) * unitDistance);
                 
                 _unit.transform.rotation = Quaternion.identity;
-                _unit.transform.GetComponent<MushRoomMove>().InitMushroom(target, 2,TowerData.Instance.departTower.teamColor);
+                _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2,TowerData.Instance.departTower.teamColor);
                 _unit.SetActive(true);
 
                 //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.

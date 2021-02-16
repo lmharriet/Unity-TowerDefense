@@ -32,12 +32,11 @@ public class BuildingManager : MonoBehaviour
     }
     protected virtual void Start()
     {
-        
-        if (isPlayerTeam)
-        {
-            Debug.Log("my ID" + myId);
-            Debug.Log("my teamColor" + teamColor);
-        }
+        //if (isPlayerTeam)
+        //{
+        //    Debug.Log("my ID" + myId);
+        //    Debug.Log("my teamColor" + teamColor);
+        //}
 
 
     }
@@ -64,7 +63,7 @@ public class BuildingManager : MonoBehaviour
 
     public void CheckAttack(TEAMCOLOR unitColor)
     {
-
+        //타워에 부딪힌 유닛 색과 타워 색이 같으면
         if (unitColor == myColor)
         {
             unit++;
@@ -74,20 +73,25 @@ public class BuildingManager : MonoBehaviour
                 showUnit.text = teamColor.ToString() + unit.ToString();
 
         }
-
+        //타워에 부딪힌 유닛 색과 타워 색이 다르면
         else
         {
             unit--;
+            //만약 타워가 가진 유닛의 개체수가 0보다 작아지면
             if (unit <= 0)
             {
                 unit = 0;
-                myColor = unitColor;
+                myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
                 render.material.color = TowerData.Instance.GetColor(myColor);
+                //현재 타워의 팀 변경
                 transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
                 
+                //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아니고
                 if (isPlayerTeam) isPlayerTeam = false;
                 else
                 {
+                    //타워가 플레이어팀이 아니었으면 현재 컬러가 플레이어팀과 같은지 체크하고 
+                    //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerData.Instance.playerColor) isPlayerTeam = true;
                 }
 
