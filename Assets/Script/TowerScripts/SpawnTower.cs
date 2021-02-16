@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum TEAMCOLOR
+{
+    NONE, RED, ORANGE, BLUE, GREEN
+}
 public class SpawnTower : MonoBehaviour
 {
 
@@ -78,17 +83,14 @@ public class SpawnTower : MonoBehaviour
 
 
             //팀의 갯수만큼 균등하게 NOME의 차일드 타워를 분배 , color 색 지정
-            _firstTransform.transform.parent = colorOfTeam[i + 1].transform;
-            _firstTransform.transform.GetComponent<BuildingManager>().teamColor
-                = (BuildingManager.TEAMCOLOR)i + 1;
-
+            _firstTransform.parent = colorOfTeam[i + 1].transform;
+            _firstTransform.GetComponent<BuildingManager>().teamColor = (TEAMCOLOR)i + 1;
 
             _firstTransform.GetComponent<Renderer>().material.color = TowerData.Instance.GetColor(i+1);
 
-            _secondTransform.transform.parent = colorOfTeam[i + 1].transform;
-            _secondTransform.transform.GetComponent<BuildingManager>().teamColor
-                = (BuildingManager.TEAMCOLOR)i + 1;
 
+            _secondTransform.parent = colorOfTeam[i + 1].transform;
+            _secondTransform.GetComponent<BuildingManager>().teamColor = (TEAMCOLOR)i + 1;
 
             _secondTransform.GetComponent<Renderer>().material.color = TowerData.Instance.GetColor(i+1);
 
@@ -97,7 +99,7 @@ public class SpawnTower : MonoBehaviour
 
         int _playerTeam = Random.Range(1, howManyTeams + 1); //1 2 3 4
 
-        TowerData.Instance.playerColor = (BuildingManager.TEAMCOLOR)_playerTeam;
+        TowerData.Instance.playerColor = (TEAMCOLOR)_playerTeam;
 
         int _child = colorOfTeam[_playerTeam].transform.childCount;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitMove : MonoBehaviour
 {
-    public BuildingManager.TEAMCOLOR unitColor;
+    public TEAMCOLOR unitColor;
     public Renderer render;
     Transform target;
     int targetId;
@@ -30,7 +30,7 @@ public class UnitMove : MonoBehaviour
 
     }
 
-    public void InitMushroom(Transform targetPos, float moveSpeed, BuildingManager.TEAMCOLOR unit_Color)
+    public void InitMushroom(Transform targetPos, float moveSpeed, TEAMCOLOR unit_Color)
     {
         target = targetPos;
         speed = moveSpeed;

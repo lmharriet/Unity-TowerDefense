@@ -11,26 +11,26 @@ public class TowerData : Singleton<TowerData>
    
     public BuildingManager departTower;
     public BuildingManager arriveTower;
-    public BuildingManager.TEAMCOLOR playerColor;
+    public TEAMCOLOR playerColor;
 
     public int maxTower;
 
     public Color color;
-    public Dictionary<BuildingManager.TEAMCOLOR, Color> haveColor = new Dictionary<BuildingManager.TEAMCOLOR, Color>();
+    public Dictionary<TEAMCOLOR, Color> haveColor = new Dictionary<TEAMCOLOR, Color>();
   
     
     public void Awake()
     {
         color = Color.white;
-        haveColor.Add(BuildingManager.TEAMCOLOR.NONE, color);
+        haveColor.Add(TEAMCOLOR.NONE, color);
         color = Color.red;
-        haveColor.Add(BuildingManager.TEAMCOLOR.RED, color);
+        haveColor.Add(TEAMCOLOR.RED, color);
         color = Color.yellow;
-        haveColor.Add(BuildingManager.TEAMCOLOR.ORANGE, color);
+        haveColor.Add(TEAMCOLOR.ORANGE, color);
         color = Color.blue;
-        haveColor.Add(BuildingManager.TEAMCOLOR.BLUE, color);
+        haveColor.Add(TEAMCOLOR.BLUE, color);
         color = Color.green;
-        haveColor.Add(BuildingManager.TEAMCOLOR.GREEN, color);
+        haveColor.Add(TEAMCOLOR.GREEN, color);
     }
     public void ResetBothTowers()
     {
@@ -61,9 +61,9 @@ public class TowerData : Singleton<TowerData>
     public Color GetColor(int teamNum)
     {
 
-        return haveColor[(BuildingManager.TEAMCOLOR)teamNum];
+        return haveColor[(TEAMCOLOR)teamNum];
     }
-    public Color GetColor(BuildingManager.TEAMCOLOR teamColor)
+    public Color GetColor(TEAMCOLOR teamColor)
     {
 
         return haveColor[teamColor];

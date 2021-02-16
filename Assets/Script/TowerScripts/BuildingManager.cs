@@ -16,11 +16,6 @@ public class BuildingManager : MonoBehaviour
     public float enemyThinkTime;
     public float rate;
 
-    public enum TEAMCOLOR
-    {
-        NONE, RED, ORANGE, BLUE, GREEN
-    }
-
     public TEAMCOLOR teamColor = TEAMCOLOR.NONE;
 
     public int unitCount
@@ -45,10 +40,7 @@ public class BuildingManager : MonoBehaviour
         //user team이 아닐 때
         if (!isPlayerTeam)
         {
-
-
             EnemyAI();
-
         }
     }
 
@@ -128,8 +120,6 @@ public class BuildingManager : MonoBehaviour
 
                 }
             }
-
-
 
         }
 
