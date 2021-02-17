@@ -66,7 +66,7 @@ public class TownTower : Building
         base.Update();
         time += Time.deltaTime;
 
-        if (teamColor != TEAMCOLOR.NONE
+        if (teamColor != EnumSpace.TEAMCOLOR.NONE
             && unit < maxCapacity)
         {
             if (time > 2f)

@@ -95,7 +95,7 @@ public class SpawnManager : MonoBehaviour
 
         int _playerTeam = Random.Range(1, howManyTeams + 1); //1 2 3 4
 
-        TowerData.Instance.playerColor = (TEAMCOLOR)_playerTeam;
+        TowerData.Instance.playerColor = (EnumSpace.TEAMCOLOR)_playerTeam;
 
         int _child = colorOfTeam[_playerTeam].transform.childCount;
 
