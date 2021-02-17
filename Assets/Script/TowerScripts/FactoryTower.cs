@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactoryTower : BuildingManager
+public class FactoryTower : Building
 {
     //유닛 수용은 가능하지만 생성 불가
     //공격력 방어력 향상

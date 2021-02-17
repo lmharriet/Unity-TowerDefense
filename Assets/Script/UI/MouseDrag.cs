@@ -52,7 +52,7 @@ public class MouseDrag : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Tower"))
                 {
-                    if (hit.transform.GetComponent<BuildingManager>().isPlayerTeam)
+                    if (hit.transform.GetComponent<Building>().isPlayerTeam)
                     {
                         //myTower = hit.transform.gameObject;
                         TowerData.Instance.SetDepartTower(hit);
@@ -103,7 +103,7 @@ public class MouseDrag : MonoBehaviour
 
 
                         int _departId = TowerData.Instance.departTower.myId;
-                        int _arriveId = hit.transform.GetComponent<BuildingManager>().myId;
+                        int _arriveId = hit.transform.GetComponent<Building>().myId;
                         if (_departId != _arriveId)
                         {
                             TowerData.Instance.SetArriveTower(hit);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenseTower : BuildingManager
+public class DefenseTower : Building
 {
     //유효 사정거리에 있는 적을 사격
     //방어력을 높여주지만, 유닛을 생산하지는 않음

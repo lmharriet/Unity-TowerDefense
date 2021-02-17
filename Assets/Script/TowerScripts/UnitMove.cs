@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitMove : MonoBehaviour
 {
-    public TEAMCOLOR unitColor;
+    public EnumSpace.TEAMCOLOR unitColor;
     public Renderer render;
     Transform target;
     int targetId;
@@ -30,11 +30,11 @@ public class UnitMove : MonoBehaviour
 
     }
 
-    public void InitMushroom(Transform targetPos, float moveSpeed, TEAMCOLOR unit_Color)
+    public void InitMushroom(Transform targetPos, float moveSpeed, EnumSpace.TEAMCOLOR unit_Color)
     {
         target = targetPos;
         speed = moveSpeed;
-        targetId = target.transform.GetComponent<BuildingManager>().myId;
+        targetId = target.transform.GetComponent<Building>().myId;
         unitColor = unit_Color;
         render.material.color = TowerData.Instance.GetColor(unitColor);
 
@@ -44,7 +44,7 @@ public class UnitMove : MonoBehaviour
     {
         if (other.CompareTag("Tower"))
         {
-            BuildingManager _tower = other.transform.GetComponent<BuildingManager>();
+            Building _tower = other.transform.GetComponent<Building>();
 
             //충돌한 타워의 id와 도착 타워의 id가 일치할 때
             if (_tower.myId == targetId)

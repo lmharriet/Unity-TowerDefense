@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour
+public class Building : MonoBehaviour
 {
     public bool isPlayerTeam;
     public string kind;
@@ -16,7 +16,7 @@ public class BuildingManager : MonoBehaviour
     public float enemyThinkTime;
     public float rate;
 
-    public TEAMCOLOR teamColor = TEAMCOLOR.NONE;
+    public EnumSpace.TEAMCOLOR teamColor = EnumSpace.TEAMCOLOR.NONE;
 
     public int unitCount
     {
@@ -70,7 +70,7 @@ public class BuildingManager : MonoBehaviour
     public void EnemyAI()
     {
   
-        if (myColor != TEAMCOLOR.NONE)
+        if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
             List<int> num = new List<int>();
             Vector3 _myPos = transform.position;
@@ -96,25 +96,7 @@ public class BuildingManager : MonoBehaviour
                     GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
                     if (_unit != null)
                     {
-                        //***열에 맞춰서 position세팅을 바꿔야함.
-                        //_unit.transform.position = departPos;
-
-                        int _column = 5;
-                        float _unitDistance = 1f;
-
-                        float _x = transform.position.x - (_column / 2) * _unitDistance;
-                        float _z = transform.position.z;
-                        //열 맞춰 생성
-                        _unit.transform.position = new Vector3(_x + (i % _column) * _unitDistance, transform.position.y,
-                                _z - (i / _column) * _unitDistance);
-
-                        _unit.transform.rotation = Quaternion.identity;
-                        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2f, teamColor);
-                        _unit.SetActive(true);
-
-                        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
-                        unit--;
-                        showUnit.text = teamColor + unit.ToString();
+                        SetMushrooms(_target, i, _unit);
 
                     }
 
@@ -125,8 +107,30 @@ public class BuildingManager : MonoBehaviour
 
     }
 
+    protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
+    {
+        //***열에 맞춰서 position세팅을 바꿔야함.
+        //_unit.transform.position = departPos;
 
-    public void CheckAttack(TEAMCOLOR unitColor)
+        int _column = 5;
+        float _unitDistance = 1f;
+
+        float _x = transform.position.x - (_column / 2) * _unitDistance;
+        float _z = transform.position.z;
+        //열 맞춰 생성
+        _unit.transform.position = new Vector3(_x + (i % _column) * _unitDistance, transform.position.y,
+                _z - (i / _column) * _unitDistance);
+
+        _unit.transform.rotation = Quaternion.identity;
+        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2f, teamColor);
+        _unit.SetActive(true);
+
+        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
+        unit--;
+        showUnit.text = teamColor + unit.ToString();
+    }
+
+    public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
     {
         //타워에 부딪힌 유닛 색과 타워 색이 같으면
         if (unitColor == myColor)
@@ -170,7 +174,7 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    public TEAMCOLOR myColor
+    public EnumSpace.TEAMCOLOR myColor
     {
         get { return teamColor; }
         set { teamColor = value; }

@@ -7,31 +7,32 @@ public class TowerData : Singleton<TowerData>
     protected TowerData() { }
     public GameObject team;
     public List<GameObject> allTowers = new List<GameObject>();
-    public List<BuildingManager> allTowerData = new List<BuildingManager>();
+    public List<Building> allTowerData = new List<Building>();
    
-    public BuildingManager departTower;
-    public BuildingManager arriveTower;
-    public TEAMCOLOR playerColor;
+    public Building departTower;
+    public Building arriveTower;
+    public EnumSpace.TEAMCOLOR playerColor;
 
     public int maxTower;
 
     public Color color;
-    public Dictionary<TEAMCOLOR, Color> haveColor = new Dictionary<TEAMCOLOR, Color>();
+    public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
   
     
     public void Awake()
     {
         color = Color.white;
-        haveColor.Add(TEAMCOLOR.NONE, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.NONE, color);
         color = Color.red;
-        haveColor.Add(TEAMCOLOR.RED, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.RED, color);
         color = Color.yellow;
-        haveColor.Add(TEAMCOLOR.ORANGE, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.ORANGE, color);
         color = Color.blue;
-        haveColor.Add(TEAMCOLOR.BLUE, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.BLUE, color);
         color = Color.green;
-        haveColor.Add(TEAMCOLOR.GREEN, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.GREEN, color);
     }
+
     public void ResetBothTowers()
     {
         departTower = null;
@@ -40,12 +41,12 @@ public class TowerData : Singleton<TowerData>
 
     public void SetDepartTower(RaycastHit hitInfo)
     {
-        departTower = hitInfo.transform.GetComponent<BuildingManager>();
+        departTower = hitInfo.transform.GetComponent<Building>();
     }
 
     public void SetArriveTower(RaycastHit hitInfo)
     {
-        arriveTower = hitInfo.transform.GetComponent<BuildingManager>();
+        arriveTower = hitInfo.transform.GetComponent<Building>();
     }
 
     public Vector3 GetDepartPos()
@@ -61,12 +62,12 @@ public class TowerData : Singleton<TowerData>
     public Color GetColor(int teamNum)
     {
 
-        return haveColor[(TEAMCOLOR)teamNum];
+        return colorData[(EnumSpace.TEAMCOLOR)teamNum];
     }
-    public Color GetColor(TEAMCOLOR teamColor)
+    public Color GetColor(EnumSpace.TEAMCOLOR teamColor)
     {
 
-        return haveColor[teamColor];
+        return colorData[teamColor];
     }
 
 }

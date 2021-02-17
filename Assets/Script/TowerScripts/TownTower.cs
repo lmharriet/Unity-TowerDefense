@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownTower : BuildingManager
+public class TownTower : Building
 {
 
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
@@ -67,7 +67,7 @@ public class TownTower : BuildingManager
         time += Time.deltaTime;
 
         if (teamColor != TEAMCOLOR.NONE
-            && unit< maxCapacity)
+            && unit < maxCapacity)
         {
             if (time > 2f)
             {
