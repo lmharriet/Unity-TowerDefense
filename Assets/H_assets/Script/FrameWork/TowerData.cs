@@ -26,7 +26,7 @@ public class TowerData : Singleton<TowerData>
         color = Color.red;
         colorData.Add(EnumSpace.TEAMCOLOR.RED, color);
         color = Color.yellow;
-        colorData.Add(EnumSpace.TEAMCOLOR.ORANGE, color);
+        colorData.Add(EnumSpace.TEAMCOLOR.YELLOW, color);
         color = Color.blue;
         colorData.Add(EnumSpace.TEAMCOLOR.BLUE, color);
         color = Color.green;

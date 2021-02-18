@@ -15,8 +15,7 @@ public class FactoryTower : Building
         base.Awake();
         level = 1;
         //showUnit = transform.GetComponentInChildren<TextMesh>();
-        isPlayerTeam = false;
-      
+       
     }
     protected override void Start()
     {
@@ -44,10 +43,10 @@ public class FactoryTower : Building
                 break;
         }
         unit = Random.Range(5, 16);
-        if (isPlayerTeam)
-            showUnit.text = "P"+unit.ToString();
-        else
-            showUnit.text = teamColor + unit.ToString();
+        //if (isPlayerTeam)
+        //    showUnit.text = "P"+unit.ToString();
+        //else
+        //    showUnit.text = myTeam + unit.ToString();
     }
 
     // Update is called once per frame

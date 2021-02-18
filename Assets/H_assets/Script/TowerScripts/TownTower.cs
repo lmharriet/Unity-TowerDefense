@@ -18,7 +18,6 @@ public class TownTower : Building
     {
         base.Awake();
         //showUnit = transform.GetComponentInChildren<TextMesh>();
-        isPlayerTeam = false;
     }
 
 
@@ -53,10 +52,10 @@ public class TownTower : Building
                 break;
         }
 
-        if (isPlayerTeam)
-            showUnit.text = "P" + unit.ToString();
-        else
-            showUnit.text = teamColor + unit.ToString();
+        //if (isPlayerTeam)
+        //    showUnit.text = "P" + unit.ToString();
+        //else
+        //    showUnit.text = myTeam + unit.ToString();
 
     }
 
@@ -64,19 +63,21 @@ public class TownTower : Building
     protected override void Update()
     {
         base.Update();
-        time += Time.deltaTime;
+      
 
-        if (teamColor != EnumSpace.TEAMCOLOR.NONE
+        if (myTeam != EnumSpace.TEAMCOLOR.NONE
             && unit < maxCapacity)
         {
+            time += Time.deltaTime;
+
             if (time > 2f)
             {
                 time = 0f;
                 unit++;
-                if (isPlayerTeam)
-                    showUnit.text = "P" + unit.ToString();
-                else
-                    showUnit.text = teamColor + unit.ToString();
+                //if (isPlayerTeam)
+                //    showUnit.text = "P" + unit.ToString();
+                //else
+                //    showUnit.text = myTeam + unit.ToString();
             }
         }
 

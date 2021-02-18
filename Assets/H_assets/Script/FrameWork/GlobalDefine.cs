@@ -6,12 +6,12 @@ namespace EnumSpace
 {
     public enum TEAMCOLOR
     {
-        NONE, RED, ORANGE, BLUE, GREEN
+        NONE, RED, YELLOW, BLUE, GREEN
     }
 }
 
 public class GlobalDefine
 {
-    public static Dictionary<EnumSpace.TEAMCOLOR, Color> teamColorDictionary;
+    public static Dictionary<EnumSpace.TEAMCOLOR, Color> colorDictionary;
 
 }

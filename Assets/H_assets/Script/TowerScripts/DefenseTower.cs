@@ -15,8 +15,6 @@ public class DefenseTower : Building
     protected override void Awake()
     {
         base.Awake();
-       // showUnit = transform.GetComponentInChildren<TextMesh>();
-        isPlayerTeam = false;
         upgradeCost = 20;
     }
     protected override void Start()
@@ -42,10 +40,10 @@ public class DefenseTower : Building
                 break;
         }
         unit = Random.Range(10, 20);
-        if (isPlayerTeam)
-            showUnit.text = "P"+unit.ToString();
-        else
-            showUnit.text = teamColor + unit.ToString();
+        //if (isPlayerTeam)
+        //    showUnit.text = "P"+unit.ToString();
+        //else
+        //    showUnit.text = myTeam + unit.ToString();
 
         upgradeCost = 20;
     }

@@ -8,12 +8,11 @@ public class MouseDrag : MonoBehaviour
 {
     private Ray ray;
     private RaycastHit hit;
-    public Image img;
+    public Image img;            //drag 이미지
     private Vector3 startPos;
     private Vector3 departure;
     private Vector3 arrive;
-    //public GameObject myTower;
-    //public GameObject towardTower;
+
 
     public GameObject unitPref;
 
@@ -54,6 +53,8 @@ public class MouseDrag : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<Building>().isPlayerTeam)
                     {
+                        Debug.Log(hit.transform.name);
+
                         //myTower = hit.transform.gameObject;
                         TowerData.Instance.SetDepartTower(hit);
                     }
@@ -166,15 +167,15 @@ public class MouseDrag : MonoBehaviour
                 //열 맞춰 생성
                 _unit.transform.position = new Vector3(_x + (i % column) * unitDistance, departPos.y,
                         _z - (i / column) * unitDistance);
-                
+
                 _unit.transform.rotation = Quaternion.identity;
-                _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2f,TowerData.Instance.departTower.teamColor);
+                _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2f, TowerData.Instance.departTower.myTeam);
                 _unit.SetActive(true);
 
                 //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
                 TowerData.Instance.departTower.unitCount--;
-                TowerData.Instance.departTower.showUnit.text ="P"+
-                   TowerData.Instance.departTower.unitCount.ToString();
+                //TowerData.Instance.departTower.showUnit.text ="P"+
+                //TowerData.Instance.departTower.unitCount.ToString();
 
             }
 

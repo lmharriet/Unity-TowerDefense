@@ -5,6 +5,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public bool isPlayerTeam;
+    public EnumSpace.TEAMCOLOR myTeam;
     public string kind;
     public int myId;
     public int unit;
@@ -13,10 +14,11 @@ public class Building : MonoBehaviour
     public Renderer render;
     public TextMesh showUnit;
 
+
     public float enemyThinkTime;
     public float rate;
 
-    public EnumSpace.TEAMCOLOR teamColor = EnumSpace.TEAMCOLOR.NONE;
+    // public EnumSpace.TEAMCOLOR teamColor = EnumSpace.TEAMCOLOR.NONE;
 
     public int unitCount
     {
@@ -25,8 +27,15 @@ public class Building : MonoBehaviour
     }
     protected virtual void Awake()
     {
-        showUnit = transform.GetComponentInChildren<TextMesh>();
+        if (transform.GetComponentInChildren<TextMesh>() != null)
+        {
+            showUnit = transform.GetComponentInChildren<TextMesh>();
+        }
         render = transform.GetComponent<Renderer>();
+
+
+
+
     }
     protected virtual void Start()
     {
@@ -36,11 +45,12 @@ public class Building : MonoBehaviour
 
     protected virtual void Update()
     {
-        enemyThinkTime += Time.deltaTime;
         //user team이 아닐 때
         if (!isPlayerTeam)
         {
-            EnemyAI();
+            enemyThinkTime += Time.deltaTime;
+
+            //EnemyAI();
         }
     }
 
@@ -69,7 +79,7 @@ public class Building : MonoBehaviour
 
     public void EnemyAI()
     {
-  
+
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
             List<int> num = new List<int>();
@@ -122,12 +132,12 @@ public class Building : MonoBehaviour
                 _z - (i / _column) * _unitDistance);
 
         _unit.transform.rotation = Quaternion.identity;
-        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2f, teamColor);
+        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2f, myTeam);
         _unit.SetActive(true);
 
         //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
         unit--;
-        showUnit.text = teamColor + unit.ToString();
+        //showUnit.text = myTeam + unit.ToString();
     }
 
     public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
@@ -136,10 +146,10 @@ public class Building : MonoBehaviour
         if (unitColor == myColor)
         {
             unit++;
-            if (isPlayerTeam)
-                showUnit.text = "p" + unit.ToString();
-            else
-                showUnit.text = teamColor.ToString() + unit.ToString();
+            //if (isPlayerTeam)
+            //    showUnit.text = "p" + unit.ToString();
+            //else
+            //    showUnit.text = myTeam.ToString() + unit.ToString();
 
         }
         //타워에 부딪힌 유닛 색과 타워 색이 다르면
@@ -153,32 +163,36 @@ public class Building : MonoBehaviour
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
                 render.material.color = TowerData.Instance.GetColor(myColor);
                 //현재 타워의 팀 변경
-                transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
+                //transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
 
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아니고
                 if (isPlayerTeam) isPlayerTeam = false;
                 else
                 {
+                    Debug.Log(myId);
                     //타워가 플레이어팀이 아니었으면 현재 컬러가 플레이어팀과 같은지 체크하고 
                     //플레이어팀과 같을 때 플레이어팀으로 변경
-                    if (myColor == TowerData.Instance.playerColor) isPlayerTeam = true;
+                    if (myColor == TowerData.Instance.playerColor)
+                    {
+                        Debug.Log("플레이어팀");
+                        isPlayerTeam = true;
+                    }
                 }
 
             }
 
 
-            if (isPlayerTeam)
-                showUnit.text = "p" + unit.ToString();
-            else
-                showUnit.text = teamColor.ToString() + unit.ToString();
+            //if (isPlayerTeam)
+            //    showUnit.text = "p" + unit.ToString();
+            //else
+            //    showUnit.text = myTeam.ToString() + unit.ToString();
         }
     }
 
     public EnumSpace.TEAMCOLOR myColor
     {
-        get { return teamColor; }
-        set { teamColor = value; }
+        get { return myTeam; }
+        set { myTeam = value; }
     }
-
 
 }
