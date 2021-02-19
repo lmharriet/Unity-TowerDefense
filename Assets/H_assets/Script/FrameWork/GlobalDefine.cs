@@ -8,6 +8,11 @@ namespace EnumSpace
     {
         NONE, RED, YELLOW, BLUE, GREEN
     }
+
+    public enum TOWERKIND
+    {
+        TOWN, DEFENSE, FACTORY
+    }
 }
 
 public class GlobalDefine

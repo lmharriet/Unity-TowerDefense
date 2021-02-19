@@ -17,6 +17,7 @@ public class TownTower : Building
     protected override void Awake()
     {
         base.Awake();
+        kind = EnumSpace.TOWERKIND.TOWN;
         //showUnit = transform.GetComponentInChildren<TextMesh>();
     }
 
@@ -24,33 +25,7 @@ public class TownTower : Building
     protected override void Start()
     {
         base.Start();
-        switch (level)
-        {
-            case 1:
-                maxCapacity = 20;
-                unit = Random.Range(5, maxCapacity - 6);
-                upgradeCost = 5;
-                break;
-            case 2:
-                maxCapacity = 40;
-                unit = Random.Range(10, maxCapacity - 16);
-                upgradeCost = 10;
-                break;
-            case 3:
-                maxCapacity = 60;
-                unit = Random.Range(15, maxCapacity - 26);
-                upgradeCost = 15;
-                break;
-            case 4:
-                maxCapacity = 80;
-                unit = Random.Range(20, maxCapacity - 36);
-                upgradeCost = 20;
-                break;
-            case 5:
-                maxCapacity = 100;
-                unit = Random.Range(40, maxCapacity - 46);
-                break;
-        }
+
 
         //if (isPlayerTeam)
         //    showUnit.text = "P" + unit.ToString();
@@ -81,5 +56,37 @@ public class TownTower : Building
             }
         }
 
+    }
+
+
+    protected override void SetStatByLevel()
+    {
+        switch (level)
+        {
+            case 1:
+                maxCapacity = 20;
+                unit = Random.Range(5, maxCapacity - 6);
+                upgradeCost = 5;
+                break;
+            case 2:
+                maxCapacity = 40;
+                unit = Random.Range(10, maxCapacity - 16);
+                upgradeCost = 10;
+                break;
+            case 3:
+                maxCapacity = 60;
+                unit = Random.Range(15, maxCapacity - 26);
+                upgradeCost = 15;
+                break;
+            case 4:
+                maxCapacity = 80;
+                unit = Random.Range(20, maxCapacity - 36);
+                upgradeCost = 20;
+                break;
+            case 5:
+                maxCapacity = 100;
+                unit = Random.Range(40, maxCapacity - 46);
+                break;
+        }
     }
 }

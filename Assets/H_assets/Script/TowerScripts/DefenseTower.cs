@@ -16,10 +16,28 @@ public class DefenseTower : Building
     {
         base.Awake();
         upgradeCost = 20;
+        kind = EnumSpace.TOWERKIND.DEFENSE;
     }
     protected override void Start()
     {
         base.Start();
+
+        //if (isPlayerTeam)
+        //    showUnit.text = "P"+unit.ToString();
+        //else
+        //    showUnit.text = myTeam + unit.ToString();
+
+        upgradeCost = 20;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+
+    protected override void SetStatByLevel()
+    {
         switch (level)
         {
             case 1:
@@ -40,16 +58,6 @@ public class DefenseTower : Building
                 break;
         }
         unit = Random.Range(10, 20);
-        //if (isPlayerTeam)
-        //    showUnit.text = "P"+unit.ToString();
-        //else
-        //    showUnit.text = myTeam + unit.ToString();
-
-        upgradeCost = 20;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
     }
 }
+

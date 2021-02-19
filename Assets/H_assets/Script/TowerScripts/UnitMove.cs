@@ -36,7 +36,7 @@ public class UnitMove : MonoBehaviour
         speed = moveSpeed;
         targetId = target.transform.GetComponent<Building>().myId;
         unitColor = unit_Color;
-        render.material.color = TowerData.Instance.GetColor(unitColor);
+        render.material.color = TowerManager.Instance.GetColor(unitColor);
 
     }
 

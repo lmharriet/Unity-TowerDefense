@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerData : Singleton<TowerData>
+public class TowerManager : Singleton<TowerManager>
 {
-    protected TowerData() { }
-    public GameObject team;
-    public List<GameObject> allTowers = new List<GameObject>();
+    protected TowerManager() { }
+    public GameObject team;             //Tower들을 전체적으로 담고 있는 GameObject 
+    public List<GameObject> allTowers = new List<GameObject>(); //전체 Tower GameObject
     public List<Building> allTowerData = new List<Building>();
-   
+
+
+    public int maxTower;                //전체 타워 수
+    public List<Building> departTowers = new List<Building>();
     public Building departTower;
     public Building arriveTower;
-    public EnumSpace.TEAMCOLOR playerColor;
 
-    public int maxTower;
+    public EnumSpace.TEAMCOLOR playerColor; //플레이어팀 컬러지정
+
 
     public Color color;
     public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
@@ -59,15 +62,14 @@ public class TowerData : Singleton<TowerData>
         return arriveTower.transform.position;
     }
 
-    public Color GetColor(int teamNum)
+    public Color GetColor(int myColorNum)
     {
-
-        return colorData[(EnumSpace.TEAMCOLOR)teamNum];
+        return colorData[(EnumSpace.TEAMCOLOR)myColorNum];
     }
-    public Color GetColor(EnumSpace.TEAMCOLOR teamColor)
+    public Color GetColor(EnumSpace.TEAMCOLOR myColor)
     {
 
-        return colorData[teamColor];
+        return colorData[myColor];
     }
 
 }

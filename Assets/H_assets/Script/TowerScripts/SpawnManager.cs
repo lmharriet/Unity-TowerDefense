@@ -19,11 +19,11 @@ public class SpawnManager : MonoBehaviour
         if (isFreeMode)
         {
             howManyTeams = Random.Range(2, 5);
-            TowerData.Instance.team = team;
+            TowerManager.Instance.team = team;
             //color가 None인 obj
             colorOfTeam[0] = team.transform.GetChild(0).gameObject;
             maxTower = colorOfTeam[0].transform.childCount;
-            TowerData.Instance.maxTower = maxTower;
+            TowerManager.Instance.maxTower = maxTower;
             for (int i = 1; i <= 4; i++)
             {
                 colorOfTeam[i] = team.transform.GetChild(i).gameObject;
@@ -44,7 +44,7 @@ public class SpawnManager : MonoBehaviour
             {
                 if (team.transform.GetChild(i).GetComponent<Building>().isPlayerTeam)
                 {
-                    TowerData.Instance.playerColor = team.transform.GetChild(i).transform.GetComponent<Building>().myColor;
+                    TowerManager.Instance.playerColor = team.transform.GetChild(i).transform.GetComponent<Building>().myColor;
 
                 }
             }
@@ -56,6 +56,7 @@ public class SpawnManager : MonoBehaviour
     {
 
     }
+
     public void DivideTeam()
     {
         //List<GameObject> divisionTeam = new List<GameObject>();
@@ -68,8 +69,8 @@ public class SpawnManager : MonoBehaviour
         {
             _team = colorOfTeam[0].transform.GetChild(i).gameObject;
             //colorOfTeam[0] = "NONE"obj
-            TowerData.Instance.allTowers.Add(_team);
-            TowerData.Instance.allTowerData.Add(_team.GetComponent<Building>());
+            TowerManager.Instance.allTowers.Add(_team);
+            TowerManager.Instance.allTowerData.Add(_team.GetComponent<Building>());
             //divisionTeam.Add(colorOfTeam[0].transform.GetChild(i).gameObject);
         }
 
@@ -84,28 +85,28 @@ public class SpawnManager : MonoBehaviour
             int _firstIndex = selectTowers + (i * division);
             int _secondIndex = (selectTowers - 1) + (i * division);
 
-            Transform _firstTransform = TowerData.Instance.allTowers[_firstIndex].transform;
-            Transform _secondTransform = TowerData.Instance.allTowers[_secondIndex].transform;
+            Transform _firstTransform = TowerManager.Instance.allTowers[_firstIndex].transform;
+            Transform _secondTransform = TowerManager.Instance.allTowers[_secondIndex].transform;
 
 
             //팀의 갯수만큼 균등하게 NOME의 차일드 타워를 분배 , color 색 지정
             _firstTransform.parent = colorOfTeam[i + 1].transform;
             _firstTransform.GetComponent<Building>().myTeam = (EnumSpace.TEAMCOLOR)i + 1;
 
-            _firstTransform.GetComponent<Renderer>().material.color = TowerData.Instance.GetColor(i + 1);
+            _firstTransform.GetComponent<Renderer>().material.color = TowerManager.Instance.GetColor(i + 1);
 
 
             _secondTransform.parent = colorOfTeam[i + 1].transform;
             _secondTransform.GetComponent<Building>().myTeam = (EnumSpace.TEAMCOLOR)i + 1;
 
-            _secondTransform.GetComponent<Renderer>().material.color = TowerData.Instance.GetColor(i + 1);
+            _secondTransform.GetComponent<Renderer>().material.color = TowerManager.Instance.GetColor(i + 1);
 
         }
 
 
         int _playerTeam = Random.Range(1, howManyTeams + 1); //1 2 3 4
 
-        TowerData.Instance.playerColor = (EnumSpace.TEAMCOLOR)_playerTeam;
+        TowerManager.Instance.playerColor = (EnumSpace.TEAMCOLOR)_playerTeam;
 
         int _child = colorOfTeam[_playerTeam].transform.childCount;
 

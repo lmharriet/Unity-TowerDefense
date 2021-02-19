@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     public bool isPlayerTeam;
     public EnumSpace.TEAMCOLOR myTeam;
-    public string kind;
+    public EnumSpace.TOWERKIND kind;
+    
     public int myId;
     public int unit;
     public int level = 1;
@@ -34,14 +35,15 @@ public class Building : MonoBehaviour
         render = transform.GetComponent<Renderer>();
 
 
-
-
     }
+
     protected virtual void Start()
     {
-
-
+        SetStatByLevel();
     }
+
+    protected abstract void SetStatByLevel();
+
 
     protected virtual void Update()
     {
@@ -89,15 +91,15 @@ public class Building : MonoBehaviour
             if (enemyThinkTime > _delay)
             {
                 enemyThinkTime = 0f;
-                for (int i = 0; i < TowerData.Instance.maxTower; i++)
+                for (int i = 0; i < TowerManager.Instance.maxTower; i++)
                 {
-                    if (Vector3.Distance(TowerData.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
+                    if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
 
                     num.Add(i);
                 }
 
                 int _rnd = Random.Range(0, num.Count);
-                _target = TowerData.Instance.allTowers[_rnd].transform;
+                _target = TowerManager.Instance.allTowers[_rnd].transform;
 
                 int _size = (int)(unit * CalculateRate());
 
@@ -161,7 +163,7 @@ public class Building : MonoBehaviour
             {
                 unit = 0;
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
-                render.material.color = TowerData.Instance.GetColor(myColor);
+                render.material.color = TowerManager.Instance.GetColor(myColor);
                 //현재 타워의 팀 변경
                 //transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
 
@@ -172,7 +174,7 @@ public class Building : MonoBehaviour
                     Debug.Log(myId);
                     //타워가 플레이어팀이 아니었으면 현재 컬러가 플레이어팀과 같은지 체크하고 
                     //플레이어팀과 같을 때 플레이어팀으로 변경
-                    if (myColor == TowerData.Instance.playerColor)
+                    if (myColor == TowerManager.Instance.playerColor)
                     {
                         Debug.Log("플레이어팀");
                         isPlayerTeam = true;

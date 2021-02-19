@@ -14,12 +14,29 @@ public class FactoryTower : Building
     {
         base.Awake();
         level = 1;
+        kind = EnumSpace.TOWERKIND.FACTORY;
         //showUnit = transform.GetComponentInChildren<TextMesh>();
-       
+
     }
     protected override void Start()
     {
         base.Start();
+
+
+        //if (isPlayerTeam)
+        //    showUnit.text = "P"+unit.ToString();
+        //else
+        //    showUnit.text = myTeam + unit.ToString();
+    }
+
+    // Update is called once per frame
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    protected override void SetStatByLevel()
+    {
         switch (level)
         {
             case 1:
@@ -43,15 +60,6 @@ public class FactoryTower : Building
                 break;
         }
         unit = Random.Range(5, 16);
-        //if (isPlayerTeam)
-        //    showUnit.text = "P"+unit.ToString();
-        //else
-        //    showUnit.text = myTeam + unit.ToString();
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
 }
