@@ -6,18 +6,8 @@ using UnityEditor;
 
 public class SortObjPostion : MonoBehaviour
 {
-    //public GameObject testoObj;
-
-    //public Transform center;
-    //private Vector3 centerVector;
-
-    //private List<GameObject> objs = new List<GameObject>();
-
-    //public int row = 2;
-    //public int maxCount = 10;
-    //public float distance = 2f;
-
-
+    public bool lineSort;
+    public bool roundSort;
     public int column;
     public int size; //생성 갯수
     public float newDistance;
@@ -25,21 +15,25 @@ public class SortObjPostion : MonoBehaviour
     public Vector3 centerVec;
     public GameObject unit;
 
+    public GameObject depart;
+    public GameObject arrive;
+
     // Start is called before the first frame update
     void Start()
     {
         centerVec = centerPos.position;
-
-        //  centerVector = center.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (lineSort && Input.GetMouseButtonDown(0))
         {
-            SortUnits();
+            // SortUnits();
+            SetRotation();
         }
+
+
     }
 
     public void SortUnits()
@@ -56,6 +50,9 @@ public class SortObjPostion : MonoBehaviour
                 _unit.transform.position =
                     new Vector3(x + i * newDistance, centerPos.position.y, z);
                 _unit.transform.rotation = Quaternion.identity;
+
+
+
                 _unit.SetActive(true);
             }
         }
@@ -74,57 +71,38 @@ public class SortObjPostion : MonoBehaviour
 
     }
 
+    public void SetRotation()
+    {
+        Vector3 dir = arrive.transform.position - depart.transform.position;
 
-    //public void CreateTest()
-    //{
-    //    if (objs.Count < maxCount)
-    //    {
-    //        GameObject save = Instantiate(testoObj);
-    //        save.name = Random.Range(1, 100).ToString();
-    //        save.SetActive(true);
-    //        AddItem(save);
-    //    }
-    //}
+        float[] value = { 0f, 5f, -5f, 10f, -10f };
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject _unit = Instantiate(unit);
 
+            _unit.transform.position = depart.transform.position;
+            _unit.transform.rotation = Quaternion.LookRotation(dir);
+            _unit.transform.Rotate(Vector3.up * (i * 2));
+        }
+    }
 
-    //public void AddItem(GameObject item)
-    //{
-    //    if (maxCount > objs.Count && !objs.Contains(item))
-    //    {
-    //        objs.Add(item);
-    //        UpdateSort();
-    //    }
-    //}
-
-    //public void RemoveAll()
-    //{
-    //    objs.Clear();
-    //}
-
-    //public void RemoveItem(GameObject item)
-    //{
-    //    if (objs.Contains(item))
-    //    {
-    //        objs.Remove(item);
-    //        UpdateSort();
-    //    }
-    //}
-
-    ////기준점에서 x,z배열로 정렬
-    //private void UpdateSort()
-    //{
-    //    float xOffset = centerVector.x;
-    //    float zOffset = centerVector.z;
-
-    //    for (int i = 0; i < objs.Count; i++)
-    //    {
-    //        if (i % row == 0 && i != 0)
-    //        {
-    //            xOffset = centerVector.x;
-    //            zOffset += distance;
-    //        }
-    //        objs[i].transform.position = new Vector3(xOffset + distance * (i % row),
-    //            centerVector.y, zOffset);
-    //    }
-    //}
 }
+
+
+/*    
+      //{
+      //    float _x = departPos.x - (column / 2) * unitDistance;
+      //    float _z = departPos.z;
+
+      //    //열 맞춰 생성
+      //    _unit.transform.position = new Vector3(_x + (i % column) * unitDistance, departPos.y,
+      //            _z - (i / column) * unitDistance);
+      _unit.transform.position = TowerManager.Instance.GetDepartPos();
+      _unit.transform.rotation = Quaternion.identity;
+      _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2f, TowerManager.Instance.departTower.myTeam);
+      _unit.SetActive(true);
+
+      //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
+      TowerManager.Instance.departTower.unitCount--;
+    
+*/

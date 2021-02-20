@@ -6,7 +6,10 @@ public class UnitMove : MonoBehaviour
 {
     public EnumSpace.TEAMCOLOR unitColor;
     public Renderer render;
-    Transform target;
+    public Transform target;
+    Vector3 spawnPos;
+    Vector3 turnDir;
+    float halfDistance;
     int targetId;
     float speed;
 
@@ -19,13 +22,26 @@ public class UnitMove : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 _direction = (target.transform.position - transform.position).normalized;
-            float _distance = Vector3.Distance(target.transform.position, transform.position);
+            float _dis = Vector3.Distance(spawnPos, transform.position);
 
-            if (_distance >= 0.5f)
+            //스폰된 위치로부터 타겟위치까지 거리의 절반이 
+            //스폰된 위치에서 현재위치의 거리보다 크거나 같으면 
+            if (_dis <= halfDistance)
             {
-                transform.Translate(_direction * speed * Time.deltaTime);
+                //생성시 부여받은 transform의 로컬 forward방향으로 이동
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+                //tartget까지의 방향을 계속 저장, 첫 스폰위치에서 타겟타워까지 거리의 반에 도달했을 때 
+                //저장되는 방향이 최종 방향이 된다.
+                turnDir = (target.position - transform.position).normalized;
+
             }
+
+            else
+            {
+                transform.Translate(turnDir * speed * Time.deltaTime, Space.World);
+            }
+
         }
 
     }
@@ -38,6 +54,9 @@ public class UnitMove : MonoBehaviour
         unitColor = unit_Color;
         render.material.color = TowerManager.Instance.GetColor(unitColor);
 
+        //타겟타워까지 퍼져서 움직였다가 모아지는 연출을 위함
+        spawnPos = transform.position;
+        halfDistance = Vector3.Distance(target.position, transform.position) * 0.5f;
     }
 
     private void OnTriggerEnter(Collider other)
