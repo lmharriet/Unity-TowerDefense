@@ -19,7 +19,8 @@ public abstract class Building : MonoBehaviour
     public float enemyThinkTime;
     public float rate;
 
-    // public EnumSpace.TEAMCOLOR teamColor = EnumSpace.TEAMCOLOR.NONE;
+
+
 
     public int unitCount
     {
@@ -40,6 +41,12 @@ public abstract class Building : MonoBehaviour
     protected virtual void Start()
     {
         SetStatByLevel();
+        if (myColor != EnumSpace.TEAMCOLOR.NONE)
+        {
+            TowerManager.Instance.teamTowerCount[myColor] = 1;
+        }
+        ChceckWinner();
+
     }
 
     protected abstract void SetStatByLevel();
@@ -89,17 +96,20 @@ public abstract class Building : MonoBehaviour
         {
             enemyThinkTime = 0f;
 
+                Debug.Log("생각끝!");
             for (int i = 0; i < TowerManager.Instance.maxTower; i++)
             {
+                Debug.Log("타워선택");
                 if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
                 //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
                 num.Add(i);
-                Debug.Log(num[i]);
+               // Debug.Log(num[i]);
             }
 
+           
             //나를 제외한 타워 중 한 타워를 지정
             int _rnd = Random.Range(0, num.Count);
-            _target = TowerManager.Instance.allTowers[_rnd].transform;
+            _target = TowerManager.Instance.allTowers[num[_rnd]].transform;
 
             //내 타워에서 보낼 유닛 수
             int _size = (int)(unit * CalculateRate());
@@ -138,7 +148,7 @@ public abstract class Building : MonoBehaviour
 
         //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
         unit--;
-        showUnit.text = myTeam + unit.ToString();
+        showUnit.text = unit.ToString();
     }
 
     public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
@@ -192,4 +202,26 @@ public abstract class Building : MonoBehaviour
         set { myTeam = value; }
     }
 
+    public void ChceckWinner()
+    {
+        if(myColor!=EnumSpace.TEAMCOLOR.NONE)
+        {
+            if (isPlayerTeam)
+            {
+                if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
+                {
+                    Debug.Log("player"+myColor);
+                }               
+            }
+            else
+            {
+                if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
+                {
+                    Debug.Log("enemy"+myColor);
+
+                }
+            }
+
+        }
+    }
 }

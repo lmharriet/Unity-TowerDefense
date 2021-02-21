@@ -20,8 +20,8 @@ public class TowerManager : Singleton<TowerManager>
 
     public Color color;
     public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
-  
-    
+    public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>();
+
     public void Awake()
     {
         color = Color.white;

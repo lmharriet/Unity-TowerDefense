@@ -40,6 +40,7 @@ public class SpawnManager : MonoBehaviour
         else
         {
             maxTower = team.transform.childCount;
+            TowerManager.Instance.maxTower = maxTower;
             for (int i = 0; i < maxTower; i++)
             {
                 TowerManager.Instance.allTowers.Add(team.transform.GetChild(i).gameObject);
