@@ -58,6 +58,11 @@ public class DefenseTower : Building
                 break;
         }
         unit = Random.Range(10, 20);
+
+        if (isPlayerTeam)
+            showUnit.text = "P" + unit.ToString();
+        else
+            showUnit.text = unit.ToString();
     }
 }
 

@@ -42,6 +42,7 @@ public class SpawnManager : MonoBehaviour
             maxTower = team.transform.childCount;
             for (int i = 0; i < maxTower; i++)
             {
+                TowerManager.Instance.allTowers.Add(team.transform.GetChild(i).gameObject);
                 if (team.transform.GetChild(i).GetComponent<Building>().isPlayerTeam)
                 {
                     TowerManager.Instance.playerColor = team.transform.GetChild(i).transform.GetComponent<Building>().myColor;

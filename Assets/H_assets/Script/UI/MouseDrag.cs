@@ -17,19 +17,14 @@ public class MouseDrag : MonoBehaviour
     private Vector3 departure;
     private Vector3 arrive;
 
-
-    public GameObject unitPref;
-
     private Transform sortCenter;
     private Vector3 sortVector;
     public int column;
     public float unitDistance;
     public bool isMultiSelected = false;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public float percentage;          //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
 
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -78,8 +73,8 @@ public class MouseDrag : MonoBehaviour
 
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
-                SendUnit(0.5f);
-                SendUnitFromMultipleTowers(0.5f);
+                SendUnit(percentage);
+                SendUnitFromMultipleTowers(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우고 multiselect ->false
                 TowerManager.Instance.ResetBothTowers();
@@ -88,7 +83,7 @@ public class MouseDrag : MonoBehaviour
             }
             else
             {
-                SendUnit(0.5f);
+                SendUnit(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
                 TowerManager.Instance.ResetBothTowers();
@@ -196,13 +191,14 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
-    public void SendUnit(float percentage)
+    public void SendUnit(float percent)
     {
         //출발하는 타워에 저장된 병사의 수
         int _size = TowerManager.Instance.departTower.unit;
 
+        Debug.Log(percent);
         // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
-        _size = (int)(_size * percentage);
+        _size = (int)(_size * percent);
 
         float[] value = { 0, 3, -3, 6, -6 };
         column = 5;
@@ -227,12 +223,15 @@ public class MouseDrag : MonoBehaviour
 
                 _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2, TowerManager.Instance.departTower.myTeam);
                 _unit.SetActive(true);
+
+                TowerManager.Instance.departTower.unitCount--;
+                TowerManager.Instance.departTower.showUnit.text = "P"+TowerManager.Instance.departTower.unit.ToString();
             }
         }
     }
 
 
-    public void SendUnitFromMultipleTowers(float percentage)
+    public void SendUnitFromMultipleTowers(float percent)
     {
         ////출발하는 타워에 저장된 타워의 수
         //int _size = TowerManager.Instance.departTowers.Count;
@@ -296,4 +295,10 @@ public class MouseDrag : MonoBehaviour
     }
     #endregion
 
+
+    public float SendPercentage
+    {
+        get { return percentage; }
+        set { percentage = value; }
+    }
 }

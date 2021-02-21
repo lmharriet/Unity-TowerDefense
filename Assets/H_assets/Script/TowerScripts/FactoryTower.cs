@@ -60,6 +60,11 @@ public class FactoryTower : Building
                 break;
         }
         unit = Random.Range(5, 16);
+
+        if (isPlayerTeam)
+            showUnit.text = "P" + unit.ToString();
+        else
+            showUnit.text = unit.ToString();
     }
 
 }

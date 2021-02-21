@@ -49,10 +49,10 @@ public class TownTower : Building
             {
                 time = 0f;
                 unit++;
-                //if (isPlayerTeam)
-                //    showUnit.text = "P" + unit.ToString();
-                //else
-                //    showUnit.text = myTeam + unit.ToString();
+                if (isPlayerTeam)
+                    showUnit.text = "P" + unit.ToString();
+                else
+                    showUnit.text =  unit.ToString();
             }
         }
 
@@ -88,5 +88,10 @@ public class TownTower : Building
                 unit = Random.Range(40, maxCapacity - 46);
                 break;
         }
+
+        if (isPlayerTeam)
+            showUnit.text = "P" + unit.ToString();
+        else
+            showUnit.text = unit.ToString();
     }
 }
