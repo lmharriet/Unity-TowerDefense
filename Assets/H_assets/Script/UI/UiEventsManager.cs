@@ -6,12 +6,6 @@ public class UiEventsManager : MonoBehaviour
 {
     public MouseDrag mouseDrag;
 
-    void Awake()
-    {   
-        
-        
-    }
-
 
     public void SetPercentage(float value)
     {

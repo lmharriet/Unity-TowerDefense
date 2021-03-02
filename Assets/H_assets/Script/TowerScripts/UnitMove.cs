@@ -25,6 +25,7 @@ public class UnitMove : MonoBehaviour
     {
         if (target != null)
         {
+
             float _dis = Vector3.Distance(spawnPos, transform.position);
 
             //스폰된 위치로부터 타겟위치까지 거리의 절반이 
@@ -43,6 +44,17 @@ public class UnitMove : MonoBehaviour
             else
             {
                 transform.Translate(turnDir * speed * Time.deltaTime, Space.World);
+            }
+
+            if (target.transform.GetComponent<Building>().kind == EnumSpace.TOWERKIND.DEFENSE)
+            {
+                float _distance = Vector3.Distance(target.position, transform.position);
+               // Debug.Log(target.transform.GetComponent<DefenseTower>().GetRange());
+                if (_distance < target.transform.GetComponent<DefenseTower>().GetRange()*8f)
+                {
+                    target.transform.GetComponent<DefenseTower>().didNotice = true;
+                   // Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
+                }
             }
 
         }
@@ -73,6 +85,12 @@ public class UnitMove : MonoBehaviour
             {
                 //타워 어택
                 _tower.CheckAttack(unitColor);
+
+                if (_tower.kind == EnumSpace.TOWERKIND.DEFENSE)
+                {
+                    target.transform.GetComponent<DefenseTower>().didNotice = false;
+                    //Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
+                }
 
                 gameObject.SetActive(false);
             }

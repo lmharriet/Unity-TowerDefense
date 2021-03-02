@@ -25,8 +25,6 @@ public class MouseDrag : MonoBehaviour
     public float percentage;          //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
 
 
-
-    // Update is called once per frame
     void Update()
     {
         //드래그 시작
@@ -38,7 +36,6 @@ public class MouseDrag : MonoBehaviour
             SaveDepartTower();
 
         }
-
 
         //드래그 중
         if (Input.GetMouseButton(0))
@@ -64,13 +61,14 @@ public class MouseDrag : MonoBehaviour
 
             SaveTargetTower();
 
+            //hit.transform.GetComponent<Building>().SelectState = true;
+
         }
 
 
         //유닛이 도착할 타워가 지정 됐을 때
         if (TowerManager.Instance.arriveTower != null)
         {
-
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
                 SendUnit(percentage);
@@ -118,7 +116,7 @@ public class MouseDrag : MonoBehaviour
 
                     //myTower = hit.transform.gameObject;
                     TowerManager.Instance.SetDepartTower(hit);
-                 
+
                 }
 
             }
@@ -132,6 +130,7 @@ public class MouseDrag : MonoBehaviour
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(rayR, out hitR) && hitR.transform.CompareTag("Tower"))
             {
+                
                 if (hitR.transform.GetComponent<Building>().isPlayerTeam)
                 {
                     //list에 hitR에 저장된 gameobject가 없으면
@@ -196,7 +195,7 @@ public class MouseDrag : MonoBehaviour
         //출발하는 타워에 저장된 병사의 수
         int _size = TowerManager.Instance.departTower.unit;
 
-        Debug.Log(percent);
+        // Debug.Log(percent);
         // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
         _size = (int)(_size * percent);
 
@@ -212,20 +211,19 @@ public class MouseDrag : MonoBehaviour
         for (int i = 0; i < _size; i++)
         {
             GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-            Debug.Log("dsgsgah");
             if (_unit != null)
             {
                 _unit.transform.position = TowerManager.Instance.GetDepartPos();
                 //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
                 //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
-                _unit.transform.rotation = Quaternion.LookRotation(_dir,Vector3.up);
-                _unit.transform.Rotate(Vector3.up * (value[i%column]));
+                _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
+                _unit.transform.Rotate(Vector3.up * (value[i % column]));
 
                 _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2, TowerManager.Instance.departTower.myTeam);
                 _unit.SetActive(true);
 
                 TowerManager.Instance.departTower.unitCount--;
-                TowerManager.Instance.departTower.showUnit.text = "P"+TowerManager.Instance.departTower.unit.ToString();
+                TowerManager.Instance.departTower.showUnit.text = "P" + TowerManager.Instance.departTower.unit.ToString();
             }
         }
     }
@@ -279,7 +277,7 @@ public class MouseDrag : MonoBehaviour
 
     IEnumerator DevideUnitRow()
     {
-        
+
         yield return null;
     }
 
@@ -301,4 +299,6 @@ public class MouseDrag : MonoBehaviour
         get { return percentage; }
         set { percentage = value; }
     }
+
+
 }

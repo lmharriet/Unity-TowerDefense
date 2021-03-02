@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Building : MonoBehaviour
 {
@@ -14,12 +15,12 @@ public abstract class Building : MonoBehaviour
     public int upgradeCost;
     public Renderer render;
     public TextMesh showUnit;
-
+    public Image [] upgradeImg;
 
     public float enemyThinkTime;
     public float rate;
 
-
+    public bool isSelected;
 
 
     public int unitCount
@@ -96,10 +97,10 @@ public abstract class Building : MonoBehaviour
         {
             enemyThinkTime = 0f;
 
-                Debug.Log("생각끝!");
+               // Debug.Log("생각끝!");
             for (int i = 0; i < TowerManager.Instance.maxTower; i++)
             {
-                Debug.Log("타워선택");
+                //Debug.Log("타워선택");
                 if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
                 //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
                 num.Add(i);
@@ -177,12 +178,12 @@ public abstract class Building : MonoBehaviour
                 if (isPlayerTeam) isPlayerTeam = false;
                 else
                 {
-                    Debug.Log(myId);
+                    //Debug.Log(myId);
                     //타워가 플레이어팀이 아니었으면 현재 컬러가 플레이어팀과 같은지 체크하고 
                     //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerManager.Instance.playerColor)
                     {
-                        Debug.Log("플레이어팀");
+                       // Debug.Log("플레이어팀");
                         isPlayerTeam = true;
                     }
                 }
@@ -210,18 +211,23 @@ public abstract class Building : MonoBehaviour
             {
                 if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
                 {
-                    Debug.Log("player"+myColor);
+                    //Debug.Log("player"+myColor);
                 }               
             }
             else
             {
                 if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
                 {
-                    Debug.Log("enemy"+myColor);
+                   // Debug.Log("enemy"+myColor);
 
                 }
             }
 
         }
+    }
+
+    public bool SelectState
+    {
+        set { isSelected = value; }
     }
 }

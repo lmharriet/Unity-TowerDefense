@@ -8,9 +8,9 @@ public class DefenseTower : Building
     //방어력을 높여주지만, 유닛을 생산하지는 않음
     ///private string kind = "Defense";
 
-    public float range;                 //레벨에 따른 공격 범위
+    private float range;                 //레벨에 따른 공격 범위
     public float def;                   //레벨에 따른 방어력
-
+    public bool doNotice;
 
     protected override void Awake()
     {
@@ -22,17 +22,16 @@ public class DefenseTower : Building
     {
         base.Start();
 
-        //if (isPlayerTeam)
-        //    showUnit.text = "P"+unit.ToString();
-        //else
-        //    showUnit.text = myTeam + unit.ToString();
-
         upgradeCost = 20;
     }
 
     protected override void Update()
     {
         base.Update();
+        if (doNotice)
+        {
+            Debug.Log("적이다 공격!");
+        }
     }
 
 
@@ -63,6 +62,20 @@ public class DefenseTower : Building
             showUnit.text = "P" + unit.ToString();
         else
             showUnit.text = unit.ToString();
+    }
+
+    public bool didNotice
+    {
+        get { return doNotice; }
+        set
+        {
+            doNotice = value;
+        }
+    }
+
+    public float GetRange()
+    {
+        return range;
     }
 }
 
