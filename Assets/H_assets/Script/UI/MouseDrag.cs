@@ -61,6 +61,25 @@ public class MouseDrag : MonoBehaviour
 
             SaveTargetTower();
 
+
+            //클릭 했을 때 마우스 위치와 클릭 버튼을 뗐을 때 마우스 위치 거리비교 
+            //거의 제자리 클릭으로 판명나면 upgrade PopUp띄우기
+            if (Vector3.Distance(startPos, Input.mousePosition) <= 0.2f)
+            {
+                Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit _hit;
+
+                if(Physics.Raycast(_ray,out _hit))
+                {
+                    if(_hit.transform.CompareTag("Tower"))
+                    {
+                        //Debug.Log("클릭");
+                        UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
+                        _panel.PopUp(_hit);
+                    }
+                }
+              
+            }
             //hit.transform.GetComponent<Building>().SelectState = true;
 
         }
@@ -103,6 +122,11 @@ public class MouseDrag : MonoBehaviour
         {
             TowerManager.Instance.ResetBothTowers();
         }
+        else
+        {
+            UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
+            _panel.PopDown();
+        }
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -130,7 +154,7 @@ public class MouseDrag : MonoBehaviour
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(rayR, out hitR) && hitR.transform.CompareTag("Tower"))
             {
-                
+
                 if (hitR.transform.GetComponent<Building>().isPlayerTeam)
                 {
                     //list에 hitR에 저장된 gameobject가 없으면
@@ -168,6 +192,8 @@ public class MouseDrag : MonoBehaviour
                     {
                         TowerManager.Instance.SetArriveTower(hit);
                     }
+
+
 
                 }
                 //else
