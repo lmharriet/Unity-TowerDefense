@@ -23,6 +23,8 @@ public abstract class Building : MonoBehaviour
 
 
 
+    //enumy 상태 - > 타워 범위 확장 , 공격 , 내 팀 지원
+
 
     protected virtual void Awake()
     {

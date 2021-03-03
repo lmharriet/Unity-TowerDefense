@@ -59,28 +59,10 @@ public class MouseDrag : MonoBehaviour
             arrive = Input.mousePosition;
             img.gameObject.SetActive(false);
 
+            //팝업 체크
+            Pop_UpgradePanel();
+            //도착 타워 저장
             SaveTargetTower();
-
-
-            //클릭 했을 때 마우스 위치와 클릭 버튼을 뗐을 때 마우스 위치 거리비교 
-            //거의 제자리 클릭으로 판명나면 upgrade PopUp띄우기
-            if (Vector3.Distance(startPos, Input.mousePosition) <= 0.2f)
-            {
-                Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit _hit;
-
-                if(Physics.Raycast(_ray,out _hit))
-                {
-                    if(_hit.transform.CompareTag("Tower"))
-                    {
-                        //Debug.Log("클릭");
-                        UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
-                        _panel.PopUp(_hit);
-                    }
-                }
-              
-            }
-            //hit.transform.GetComponent<Building>().SelectState = true;
 
         }
 
@@ -110,6 +92,36 @@ public class MouseDrag : MonoBehaviour
 
     }
 
+    public void Pop_UpgradePanel()
+    {
+
+        //클릭 했을 때 마우스 위치와 클릭 버튼을 뗐을 때 마우스 위치 거리비교 
+        //거의 제자리 클릭으로 판명나면 upgrade PopUp/ PopDown
+        if (Vector3.Distance(startPos, Input.mousePosition) <= 0.2f)
+        {
+            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit _hit;
+
+            
+            if (Physics.Raycast(_ray, out _hit))
+            {
+                if (_hit.transform.CompareTag("Tower"))
+                {
+                    //Debug.Log("클릭");
+                    UpgradePanel _myPanel = transform.GetComponent<UpgradePanel>();
+                    _myPanel.PopUp(_hit);
+                }
+                else
+                {
+                    // 현재 버그 :다른 타워 눌렀을 때 이전 sprite가 열려있음.
+                    UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
+                    _panel.PopDown();
+                }
+            }
+           
+        }
+
+    }
 
 
     public void SaveDepartTower()
@@ -117,18 +129,12 @@ public class MouseDrag : MonoBehaviour
         //출발 위
         departure = startPos;
         img.transform.position = startPos;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (TowerManager.Instance.departTower != null)
         {
             TowerManager.Instance.ResetBothTowers();
         }
-        else
-        {
-            UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
-            _panel.PopDown();
-        }
-
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -139,8 +145,9 @@ public class MouseDrag : MonoBehaviour
                     //Debug.Log(hit.transform.name);
                     TowerManager.Instance.SetDepartTower(hit);
                 }
-
             }
+
+
         }
     }
 

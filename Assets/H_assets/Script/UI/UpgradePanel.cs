@@ -24,17 +24,17 @@ public class UpgradePanel : MonoBehaviour
         EnumSpace.TOWERKIND _kind = hit.transform.GetComponent<Building>().kind;
         if (_kind == EnumSpace.TOWERKIND.TOWN)
         {
-            upgradePanel[0].transform.position = hitInfo.transform.position;
+            upgradePanel[0].transform.position = hitInfo.transform.position + new Vector3(0, 2.5f, 0);
             upgradePanel[0].SetActive(true);
         }
         else if (_kind == EnumSpace.TOWERKIND.DEFENSE)
         {
-            upgradePanel[1].transform.position = hitInfo.transform.position;
+            upgradePanel[1].transform.position = hitInfo.transform.position + new Vector3(0, 2.5f, 0);
             upgradePanel[1].SetActive(true);
         }
         else if (_kind == EnumSpace.TOWERKIND.FACTORY)
         {
-            upgradePanel[2].transform.position = hitInfo.transform.position;
+            upgradePanel[2].transform.position = hitInfo.transform.position + new Vector3(0, 2.5f, 0);
             upgradePanel[2].SetActive(true);
         }
 
