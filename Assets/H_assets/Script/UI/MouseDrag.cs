@@ -114,7 +114,7 @@ public class MouseDrag : MonoBehaviour
 
     public void SaveDepartTower()
     {
-        //출발 위치
+        //출발 위
         departure = startPos;
         img.transform.position = startPos;
 
@@ -136,11 +136,8 @@ public class MouseDrag : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
-                    Debug.Log(hit.transform.name);
-
-                    //myTower = hit.transform.gameObject;
+                    //Debug.Log(hit.transform.name);
                     TowerManager.Instance.SetDepartTower(hit);
-
                 }
 
             }

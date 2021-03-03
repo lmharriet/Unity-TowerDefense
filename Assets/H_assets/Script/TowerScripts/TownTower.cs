@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TownTower : Building
 {
-
+    TownTower(int Id, int units, int myLevel, bool isPlayer,EnumSpace.TEAMCOLOR col) {}
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
     //max level = 5
     /// private string kind = "Town";
@@ -17,6 +17,7 @@ public class TownTower : Building
     protected override void Awake()
     {
         base.Awake();
+        maxLevel = 5;
         kind = EnumSpace.TOWERKIND.TOWN;
         //showUnit = transform.GetComponentInChildren<TextMesh>();
     }

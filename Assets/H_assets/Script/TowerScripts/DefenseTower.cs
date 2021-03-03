@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DefenseTower : Building
 {
+    public DefenseTower(int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col) { }
     //유효 사정거리에 있는 적을 사격
     //방어력을 높여주지만, 유닛을 생산하지는 않음
     ///private string kind = "Defense";
@@ -16,6 +17,7 @@ public class DefenseTower : Building
     {
         base.Awake();
         upgradeCost = 20;
+        maxLevel = 4;
         kind = EnumSpace.TOWERKIND.DEFENSE;
     }
     protected override void Start()

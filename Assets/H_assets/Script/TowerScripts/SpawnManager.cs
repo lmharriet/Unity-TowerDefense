@@ -9,9 +9,19 @@ public class SpawnManager : MonoBehaviour
     public int howManyTeams;
     public GameObject[] colorOfTeam = new GameObject[5];
 
+
+
     int maxTower;
     public int playerTeamNum;          //player팀으로 셋팅할 인덱스
     public int colorTowerCount;        //player, enemy타워 갯수
+
+    //prefabs 저장소
+    [Space]
+    public List<GameObject> GREENPrefabs = new List<GameObject>();
+    public List<GameObject> YELLOWPrefabs = new List<GameObject>();
+    public List<GameObject> BLUEPrefabs = new List<GameObject>();
+    public List<GameObject> REDPrefabs = new List<GameObject>();
+    public List<GameObject> NonePrefabs = new List<GameObject>();
 
 
     private void Awake()
@@ -121,5 +131,12 @@ public class SpawnManager : MonoBehaviour
 
     }
 
+    public GameObject GetPrefabs(Building currentTower)
+    {
+        //레벨 (int) 에 따라 업그레이드
+        //타워 종류 (Enumspace.TOWERKIND / -> 타운이면 공장 또는 타워가능
 
+
+        return null;
+    }
 }

@@ -12,22 +12,18 @@ public abstract class Building : MonoBehaviour
     public int myId;
     public int unit;
     public int level = 1;
+    protected int maxLevel;
     public int upgradeCost;
     public Renderer render;
     public TextMesh showUnit;
-    public Image [] upgradeImg;
+    public Image[] upgradeImg;
 
     public float enemyThinkTime;
     public float rate;
 
-    public bool isSelected;
 
 
-    public int unitCount
-    {
-        get { return unit; }
-        set { unit = value; }
-    }
+
     protected virtual void Awake()
     {
         if (transform.GetComponentInChildren<TextMesh>() != null)
@@ -97,17 +93,17 @@ public abstract class Building : MonoBehaviour
         {
             enemyThinkTime = 0f;
 
-               // Debug.Log("생각끝!");
+            // Debug.Log("생각끝!");
             for (int i = 0; i < TowerManager.Instance.maxTower; i++)
             {
                 //Debug.Log("타워선택");
                 if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
                 //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
                 num.Add(i);
-               // Debug.Log(num[i]);
+                // Debug.Log(num[i]);
             }
 
-           
+
             //나를 제외한 타워 중 한 타워를 지정
             int _rnd = Random.Range(0, num.Count);
             _target = TowerManager.Instance.allTowers[num[_rnd]].transform;
@@ -183,7 +179,7 @@ public abstract class Building : MonoBehaviour
                     //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerManager.Instance.playerColor)
                     {
-                       // Debug.Log("플레이어팀");
+                        // Debug.Log("플레이어팀");
                         isPlayerTeam = true;
                     }
                 }
@@ -197,28 +193,24 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    public EnumSpace.TEAMCOLOR myColor
-    {
-        get { return myTeam; }
-        set { myTeam = value; }
-    }
+
 
     public void ChceckWinner()
     {
-        if(myColor!=EnumSpace.TEAMCOLOR.NONE)
+        if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
             if (isPlayerTeam)
             {
                 if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
                 {
                     //Debug.Log("player"+myColor);
-                }               
+                }
             }
             else
             {
                 if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
                 {
-                   // Debug.Log("enemy"+myColor);
+                    // Debug.Log("enemy"+myColor);
 
                 }
             }
@@ -226,8 +218,25 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    public bool SelectState
+    public int unitCount
     {
-        set { isSelected = value; }
+        get { return unit; }
+        set { unit = value; }
     }
+    public EnumSpace.TEAMCOLOR myColor
+    {
+        get { return myTeam; }
+        set { myTeam = value; }
+    }
+    public int TowerLever
+    {
+        get { return level; }
+        set
+        {
+            if (level < maxLevel)
+                level = value;
+        }
+    }
+
+
 }

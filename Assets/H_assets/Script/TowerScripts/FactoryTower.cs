@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FactoryTower : Building
 {
+    public FactoryTower(int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col) { }
+
     //유닛 수용은 가능하지만 생성 불가
     //공격력 방어력 향상
     /// private string kind = "Factory";
@@ -13,7 +15,7 @@ public class FactoryTower : Building
     protected override void Awake()
     {
         base.Awake();
-        level = 1;
+        maxLevel = 4;
         kind = EnumSpace.TOWERKIND.FACTORY;
         //showUnit = transform.GetComponentInChildren<TextMesh>();
 
