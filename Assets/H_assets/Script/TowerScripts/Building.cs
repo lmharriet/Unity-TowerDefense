@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public abstract class Building : MonoBehaviour
 {
     public bool isPlayerTeam;
@@ -18,8 +19,8 @@ public abstract class Building : MonoBehaviour
     public TextMesh showUnit;
     public Image[] upgradeImg;
 
-    public float enemyThinkTime;
-    public float rate;
+    EnemyTowerAI enemyAi;
+
     protected bool isSetStartStat = false;
 
 
@@ -35,6 +36,8 @@ public abstract class Building : MonoBehaviour
         render = transform.GetComponent<Renderer>();
         render.material.color = TowerManager.Instance.GetColor(myColor);
 
+        enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
+
     }
 
     protected virtual void Start()
@@ -47,6 +50,8 @@ public abstract class Building : MonoBehaviour
         ChceckWinner();
 
         isSetStartStat = true;
+
+     
     }
 
     protected abstract void SetStatByLevel();
@@ -57,99 +62,80 @@ public abstract class Building : MonoBehaviour
         //user team이 아닐 때
         if (!isPlayerTeam && myColor != EnumSpace.TEAMCOLOR.NONE)
         {
-            enemyThinkTime += Time.deltaTime;
+            //enemyThinkTime += Time.deltaTime;
 
             EnemyAI();
         }
     }
 
-    public float CalculateRate()
-    {
-        int _ranNum = Random.Range(1, 11);
-
-        if (_ranNum > 0 && _ranNum < 3)
-        {
-            rate = 0.25f;
-        }
-        else if (_ranNum >= 3 && _ranNum < 6)
-        {
-            rate = 0.5f;
-        }
-        else if (_ranNum >= 6 && _ranNum < 9)
-        {
-            rate = 0.75f;
-        }
-        else
-        {
-            rate = 1.0f;
-        }
-        return rate;
-    }
-
     public void EnemyAI()
     {
-        List<int> num = new List<int>();
-        Vector3 _myPos = transform.position;
-        Transform _target;
-        float _delay = Random.Range(4f, 11f);
-        if (enemyThinkTime > _delay)
+        if(Input.GetMouseButtonDown(0))
         {
-            enemyThinkTime = 0f;
+            enemyAi.SortTowersByDistance(TowerManager.Instance.allTowers, transform);
+            //enumyAi.SortTowersByDistance();
+        }
+        //List<int> num = new List<int>();
 
-            // Debug.Log("생각끝!");
-            for (int i = 0; i < TowerManager.Instance.maxTower; i++)
-            {
-                //Debug.Log("타워선택");
-                if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
-                //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
-                num.Add(i);
-                // Debug.Log(num[i]);
-            }
+        //Vector3 _myPos = transform.position;
+        //Transform _target;
 
+        //float _delay = Random.Range(4f, 11f);
+        //if (enemyThinkTime > _delay)
+        //{
+        //    enemyThinkTime = 0f;
 
-            //나를 제외한 타워 중 한 타워를 지정
-            int _rnd = Random.Range(0, num.Count);
-            _target = TowerManager.Instance.allTowers[num[_rnd]].transform;
+        //    // Debug.Log("생각끝!");
+        //    for (int i = 0; i < TowerManager.Instance.maxTower; i++)
+        //    {
+        //        //Debug.Log("타워선택");
+        //        if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
+        //        //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
+        //        num.Add(i);
+        //        // Debug.Log(num[i]);
+        //    }
+        //    //num.Sort(delegate (int a,int b )
+        //    //{
+        //    //    return 0;
+        //    //});
 
-            //내 타워에서 보낼 유닛 수
-            int _size = (int)(unit * CalculateRate());
+        //    //나를 제외한 타워 중 한 타워를 지정
+        //    int _rnd = Random.Range(0, num.Count);
+        //    _target = TowerManager.Instance.allTowers[num[_rnd]].transform;
 
-            for (int i = 0; i < _size; i++)
-            {
-                GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-                if (_unit != null)
-                {
-                    SetMushrooms(_target, i, _unit);
+        //    //내 타워에서 보낼 유닛 수
+        //    int _size = (int)(unit * CalculateRate());
 
-                }
+        //    for (int i = 0; i < _size; i++)
+        //    {
+        //        GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+        //        if (_unit != null)
+        //        {
+        //            SetMushrooms(_target, i, _unit);
 
-            }
+        //        }
+
+        //    }
+        //}
+
+    }
+
+    //index, distance, unit
+    public void SortTowerIndexByDistance()
+    {
+        List<float> distances = new List<float>();
+        for (int i = 0; i < TowerManager.Instance.maxTower - 1; i++)
+        {
+            distances.Add( Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, transform.position));
+
         }
 
+
     }
 
-    protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
-    {
-        int _column = 5;
-        float[] _value = { 0, 3, -3, 6, -6 };
-
-        Vector3 _dir = (_target.position - transform.position).normalized;
-        _dir.y = 0;
-
-        _unit.transform.position = transform.position;
-        //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
-        //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
-        _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
-        _unit.transform.Rotate(Vector3.up * (_value[i % _column]));
-
-        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
-        _unit.SetActive(true);
 
 
-        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
-        unit--;
-        showUnit.text = unit.ToString();
-    }
+
 
     public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
     {
@@ -197,6 +183,28 @@ public abstract class Building : MonoBehaviour
     }
 
 
+    protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
+    {
+        int _column = 5;
+        float[] _value = { 0, 3, -3, 6, -6 };
+
+        Vector3 _dir = (_target.position - transform.position).normalized;
+        _dir.y = 0;
+
+        _unit.transform.position = transform.position;
+        //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
+        //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
+        _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
+        _unit.transform.Rotate(Vector3.up * (_value[i % _column]));
+
+        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
+        _unit.SetActive(true);
+
+
+        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
+        unit--;
+        showUnit.text = unit.ToString();
+    }
 
     public void ChceckWinner()
     {

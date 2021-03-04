@@ -489,7 +489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &150089188
 PrefabInstance:
@@ -1026,10 +1026,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &334966312
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1650,10 +1649,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &485855951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1856,10 +1854,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &503966613
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1978,7 +1975,7 @@ Transform:
   - {fileID: 1350496439}
   - {fileID: 503966616}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539323819
 GameObject:
@@ -2227,10 +2224,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &541344067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2799,10 +2795,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &650998231
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2905,10 +2900,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &726328098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3409,7 +3403,7 @@ RectTransform:
   - {fileID: 461903596}
   - {fileID: 1327775351}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3793,7 +3787,7 @@ Transform:
   m_LocalScale: {x: 60, y: 30.000008, z: 1.0000002}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1104038133
 GameObject:
@@ -4344,10 +4338,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1208831149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4907,10 +4900,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1350496436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5064,7 +5056,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1396116612
 GameObject:
@@ -5331,10 +5323,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1416998758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5714,7 +5705,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586550236
 GameObject:
@@ -6008,8 +5999,6 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   def: 0
   doNotice: 0
 --- !u!65 &1620924152
@@ -6335,10 +6324,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1664212762
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6457,10 +6445,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1701002362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6822,7 +6809,7 @@ PrefabInstance:
     - target: {fileID: 6043572698494898840, guid: 3eb36db0bbb25c0448fd7346ac7d3564,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6043572698494898840, guid: 3eb36db0bbb25c0448fd7346ac7d3564,
         type: 3}
@@ -7020,6 +7007,51 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1796100801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796100802}
+  - component: {fileID: 1796100803}
+  m_Layer: 0
+  m_Name: EnemyAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1796100802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796100801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1796100803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796100801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c9ce9ce7df3c14999ca3cf1efdb540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyThinkTime: 0
+  rate: 0
 --- !u!1 &1796205364
 GameObject:
   m_ObjectHideFlags: 0
@@ -7266,10 +7298,9 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   maxCapacity: 0
   time: 0
+  spawnDelay: 0
 --- !u!65 &1851332688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7526,8 +7557,6 @@ MonoBehaviour:
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  enemyThinkTime: 0
-  rate: 0
   def: 0
   atk: 0
 --- !u!1 &2076962814
@@ -7563,7 +7592,7 @@ Transform:
   - {fileID: 556271098}
   - {fileID: 1344235239}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104937986
 GameObject:

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TownTower : Building
 {
+
     TownTower(int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col) { }
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
     //max level = 5
@@ -12,7 +14,7 @@ public class TownTower : Building
 
     public int maxCapacity;  // 20 40 60 80 100 수용 가능
     public float time = 0f;
-
+    public float spawnDelay;
 
     protected override void Awake()
     {
@@ -27,15 +29,8 @@ public class TownTower : Building
     {
         base.Start();
 
-
-        //if (isPlayerTeam)
-        //    showUnit.text = "P" + unit.ToString();
-        //else
-        //    showUnit.text = myTeam + unit.ToString();
-
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
@@ -48,7 +43,7 @@ public class TownTower : Building
 
             time += Time.deltaTime;
 
-            if (time > 2f)
+            if (time > spawnDelay)
             {
                 time = 0f;
                 unit++;
@@ -67,31 +62,36 @@ public class TownTower : Building
         switch (level)
         {
             case 1:
-                maxCapacity = 20;
+                maxCapacity = 20;//capacity[level];
                 upgradeCost = 5;
+                spawnDelay = 2f;
                 if (!isSetStartStat)
                     unit = Random.Range(5, maxCapacity - 6);
                 break;
             case 2:
                 maxCapacity = 40;
                 upgradeCost = 10;
+                spawnDelay = 2f;
                 if (!isSetStartStat)
                     unit = Random.Range(10, maxCapacity - 16);
                 break;
             case 3:
                 maxCapacity = 60;
                 upgradeCost = 15;
+                spawnDelay = 1.7f;
                 if (!isSetStartStat)
                     unit = Random.Range(15, maxCapacity - 26);
                 break;
             case 4:
                 maxCapacity = 80;
                 upgradeCost = 20;
+                spawnDelay = 1.5f;
                 if (!isSetStartStat)
                     unit = Random.Range(20, maxCapacity - 36);
                 break;
             case 5:
                 maxCapacity = 100;
+                spawnDelay = 1.3f;
                 if (!isSetStartStat)
                     unit = Random.Range(40, maxCapacity - 46);
                 break;
