@@ -776,6 +776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265862963}
   - component: {fileID: 265862965}
+  - component: {fileID: 265862964}
   - component: {fileID: 265862966}
   m_Layer: 0
   m_Name: levelUp
@@ -798,6 +799,20 @@ Transform:
   m_Father: {fileID: 351264464}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &265862964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265862962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0465de64a2fb1eb45b0fc75e0ca3c16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade: 0
+  currentBuilding: {fileID: 0}
 --- !u!212 &265862965
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -848,18 +863,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &265862966
-MonoBehaviour:
+--- !u!61 &265862966
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265862962}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e3e6c2c1f37a24d9a6065c3b9e4f69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.78, y: 2.97}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 2.56}
+  m_EdgeRadius: 0
 --- !u!1 &329438739
 GameObject:
   m_ObjectHideFlags: 0
@@ -5162,6 +5191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1403519974}
   - component: {fileID: 1403519976}
+  - component: {fileID: 1403519975}
   m_Layer: 0
   m_Name: ChangeTower
   m_TagString: Untagged
@@ -5183,6 +5213,32 @@ Transform:
   m_Father: {fileID: 351264464}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1403519975
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403519973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.78, y: 2.97}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 2.56}
+  m_EdgeRadius: 0
 --- !u!212 &1403519976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6833,6 +6889,11 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: 35243515}
+    - target: {fileID: 6043572698494898843, guid: 3eb36db0bbb25c0448fd7346ac7d3564,
+        type: 3}
+      propertyPath: percentage
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb36db0bbb25c0448fd7346ac7d3564, type: 3}
 --- !u!1 &1775106156 stripped
@@ -6859,7 +6920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496321620482e5c4d9e0374088ae0d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade: 0
   upgradePanel:
   - {fileID: 1396116612}
   - {fileID: 1649541998}

@@ -4,46 +4,98 @@ using UnityEngine;
 
 public class UpgradeType : MonoBehaviour
 {
-    float width;
-    float heigh;
-    Transform mouse;
-    SpriteRenderer spriteRenderer;
+    public EnumSpace.UPGRADE upgrade;
 
-    private void Awake()
-    {
-        spriteRenderer = transform.GetComponent<SpriteRenderer>();
-        
-    }
-    private void Start()
-    {
-        width = spriteRenderer.sprite.rect.width;
-        mouse = transform;
+    public Building currentBuilding;
 
-
-    }
     private void OnEnable()
     {
-    }
-    private void Update()
-    {
-        Vector3 mousePos = Input.mousePosition;
-       // mouse.position = Input.mousePosition;//Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouse.TransformPoint(new Vector3(mousePos.x, mousePos.y, 0));
-        Transform rectPos = transform;
-        rectPos.TransformPoint(new Vector3(spriteRenderer.sprite.rect.x, spriteRenderer.sprite.rect.y, 0));
-        
-        Debug.Log( "mouse Pos X : " +mouse.position.x);
-        Debug.Log("rect.pos X : " + rectPos.position.x);
+        RaycastHit _hit;
 
-        if (mouse.position.x > rectPos.position.x && mouse.position.x < rectPos.position.x + width)
+        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 5f))
         {
-            Debug.Log("I am here");
+            currentBuilding = _hit.transform.GetComponent<Building>();
+            Debug.Log(currentBuilding.gameObject.name);
+            //if(_hit.transform.CompareTag("Tower"))
+            //{
+            //}
         }
-        //    Debug.Log("");
+    }
+    private void OnMouseOver()
+    {
+        Debug.Log("upgrade open");
+
+        if (Input.GetMouseButtonUp(0))
+        {
+
+            switch (upgrade)
+            {
+                case EnumSpace.UPGRADE.LEVEL_UP:
+                    LevelUp();
+
+                    break;
+                case EnumSpace.UPGRADE.TO_TOWER:
+
+                    break;
+                case EnumSpace.UPGRADE.TO_FACTORY:
+
+                    break;
+            }
+        }
+
     }
 
-    //private void OnMouseOver()
-    //{
-    //    Debug.Log(gameObject.name);
-    //}
+    public void LevelUp()
+    {
+        if (upgrade == EnumSpace.UPGRADE.LEVEL_UP)
+        {
+            if (currentBuilding.unitCount - currentBuilding.Cost >= 0)
+            {
+                currentBuilding.unitCount -= currentBuilding.upgradeCost;
+                currentBuilding.TowerLever++;
+            }
+            else
+            {
+                Debug.Log("유닛 부족으로 레벨업 실패");
+            }
+
+        }
+    }
+
+    public DefenseTower ChangeToTower()
+    {
+
+        if (upgrade == EnumSpace.UPGRADE.TO_TOWER)
+        {
+            //int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col
+
+            DefenseTower _tower = new DefenseTower(currentBuilding.myId, currentBuilding.unitCount, currentBuilding.TowerLever,
+                                                    currentBuilding.isPlayerTeam, currentBuilding.myColor);
+
+            return _tower;
+        }
+
+        return null;
+
+    }
+
+    public FactoryTower ChangeToFactory()
+    {
+        if (upgrade == EnumSpace.UPGRADE.TO_FACTORY)
+        {
+            FactoryTower _factory = new FactoryTower(currentBuilding.myId, currentBuilding.unitCount, currentBuilding.TowerLever,
+                                                    currentBuilding.isPlayerTeam, currentBuilding.myColor);
+
+            return _factory;
+        }
+        return null;
+    }
+
+    public void SetCurrentBuilding(Building myBuilding)
+    {
+        currentBuilding = myBuilding;
+    }
 }
+
+
+

@@ -20,7 +20,7 @@ public abstract class Building : MonoBehaviour
 
     public float enemyThinkTime;
     public float rate;
-
+    protected bool isSetStartStat = false;
 
 
     //enumy 상태 - > 타워 범위 확장 , 공격 , 내 팀 지원
@@ -46,6 +46,7 @@ public abstract class Building : MonoBehaviour
         }
         ChceckWinner();
 
+        isSetStartStat = true;
     }
 
     protected abstract void SetStatByLevel();
@@ -236,9 +237,17 @@ public abstract class Building : MonoBehaviour
         set
         {
             if (level < maxLevel)
+            {
                 level = value;
+                SetStatByLevel();
+
+            }
         }
     }
 
+    public int Cost
+    {
+        get { return upgradeCost; }
+    }
 
 }

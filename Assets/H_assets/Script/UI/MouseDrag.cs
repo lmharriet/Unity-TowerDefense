@@ -22,9 +22,9 @@ public class MouseDrag : MonoBehaviour
     public int column;
     public float unitDistance;
     public bool isMultiSelected = false;
-    public float percentage;          //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
+    public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
 
-
+    private Building prevPopUpTower;
     void Update()
     {
         //드래그 시작
@@ -102,23 +102,31 @@ public class MouseDrag : MonoBehaviour
             Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            
+            UpgradePanel _myPanel = transform.GetComponent<UpgradePanel>();
+
             if (Physics.Raycast(_ray, out _hit))
             {
-                if (_hit.transform.CompareTag("Tower"))
+                if (_hit.transform.CompareTag("Tower") &&
+                    _hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
-                    //Debug.Log("클릭");
-                    UpgradePanel _myPanel = transform.GetComponent<UpgradePanel>();
-                    _myPanel.PopUp(_hit);
+                    if (!_myPanel.isPopUp)
+                    {
+                        _myPanel.PopUp(_hit);
+                    }
+                    else
+                    {
+                        _myPanel.PopDown();
+                        Debug.Log("플레이어 타워");
+                    }
                 }
                 else
                 {
-                    // 현재 버그 :다른 타워 눌렀을 때 이전 sprite가 열려있음.
-                    UpgradePanel _panel = transform.GetComponent<UpgradePanel>();
-                    _panel.PopDown();
+                    Debug.Log("플레이어 타워 아님");
+                    _myPanel.PopDown();
                 }
             }
-           
+
+
         }
 
     }
@@ -140,10 +148,12 @@ public class MouseDrag : MonoBehaviour
         {
             if (hit.transform.CompareTag("Tower"))
             {
+
                 if (hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
                     //Debug.Log(hit.transform.name);
                     TowerManager.Instance.SetDepartTower(hit);
+
                 }
             }
 

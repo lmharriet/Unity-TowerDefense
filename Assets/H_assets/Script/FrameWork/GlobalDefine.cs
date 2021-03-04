@@ -13,6 +13,11 @@ namespace EnumSpace
     {
         TOWN, DEFENSE, FACTORY
     }
+
+    public enum UPGRADE
+    {
+        LEVEL_UP, TO_TOWER, TO_FACTORY
+    }
 }
 
 public class GlobalDefine
