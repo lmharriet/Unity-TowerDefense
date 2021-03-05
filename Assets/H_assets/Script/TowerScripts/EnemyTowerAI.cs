@@ -7,11 +7,24 @@ public class EnemyTowerAI : MonoBehaviour
     public float enemyThinkTime;
     public float rate;
     public List<GameObject> towers = new List<GameObject>();
+    int myIndex;
 
+    /*
+        2.만약 팀색이 다를경우, 내가 점령이 가능한지 체크
+
+        3.팀색이 같을 경우 
+     */
+
+    int compare(KeyValuePair<int, float> a, KeyValuePair<int, float> b)
+    {
+        if (a.Value > b.Value) return 1;
+        else if (a.Value < b.Value) return -1;
+        else return 0;
+    }
     public void SortTowersByDistance(List<GameObject> allTowers, Transform myTower)
     {
         int maxTower = allTowers.Count;
-        int myIndex = 0;
+
         List<KeyValuePair<int, float>> distancesPair = new List<KeyValuePair<int, float>>();
 
         for (int i = 0; i < maxTower; i++)
@@ -43,14 +56,56 @@ public class EnemyTowerAI : MonoBehaviour
         //3.add.() 
 
     }
-
-    int compare(KeyValuePair<int, float> a, KeyValuePair<int, float> b)
+    public GameObject SelectTowerToOccupy()
     {
-        if (a.Value > b.Value) return 1;
-        else if (a.Value < b.Value) return -1;
-        else return 0;
+        //1. 가장 가까운 타워가 점령 가능하면 return tower to send unit;
+        int index = 0;
+
+        while (index < towers.Count)
+        {
+            if (towers[index].transform.GetComponent<Building>().myTeam != EnumSpace.TEAMCOLOR.NONE)
+                index++;
+            else
+            {
+                int calculateUnit = (int)(TowerManager.Instance.allTowerData[myIndex].unitCount * 0.75f);
+                if (towers[index].transform.GetComponent<Building>().unitCount <= calculateUnit)
+                {
+                    return towers[index].gameObject;
+                }
+                else
+                    index++;
+            }
+        }
+        return null;
     }
 
+    public GameObject SelectTowerToAttack()
+    {
+        //만약 내 타워의 유닛수가 가까운 다른팀이 갖고 있는 유닛수 보다 많을 때, 그 타워 공격
+        int size = towers.Count / 2;
+        for (int i = 0; i < size; i++)
+        {
+            if (TowerManager.Instance.allTowerData[myIndex].unitCount >=
+                towers[i].transform.GetComponent<Building>().unitCount)
+            {
+                return towers[i].gameObject;
+            }
+            else if (i == size - 1 && TowerManager.Instance.allTowerData[myIndex].unitCount <=
+                towers[i].transform.GetComponent<Building>().unitCount)
+            {
+                return towers[0].gameObject;
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject SelectTowerToSupport()
+    {
+        //내 팀이 2개 이상일 때 그 카운트의 반 개만 뽑아서 가장 가까운 순서대로 maxcapacity의 25%보다 작으면 그 타워로 send unit
+
+        return null;
+    }
 
     public float CalculateRate()
     {

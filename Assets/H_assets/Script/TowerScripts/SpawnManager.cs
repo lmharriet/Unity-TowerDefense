@@ -58,7 +58,6 @@ public class SpawnManager : MonoBehaviour
                 if (team.transform.GetChild(i).GetComponent<Building>().isPlayerTeam)
                 {
                     TowerManager.Instance.playerColor = team.transform.GetChild(i).transform.GetComponent<Building>().myColor;
-
                 }
             }
         }
@@ -131,6 +130,8 @@ public class SpawnManager : MonoBehaviour
         }
 
     }
+
+   
 
     public GameObject GetPrefabs(Building currentTower)
     {

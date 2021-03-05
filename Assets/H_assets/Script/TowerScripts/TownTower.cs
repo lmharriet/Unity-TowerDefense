@@ -39,8 +39,6 @@ public class TownTower : Building
         if (myTeam != EnumSpace.TEAMCOLOR.NONE
             && unit < maxCapacity)
         {
-
-
             time += Time.deltaTime;
 
             if (time > spawnDelay)
