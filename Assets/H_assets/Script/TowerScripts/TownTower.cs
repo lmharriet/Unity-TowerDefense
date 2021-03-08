@@ -12,7 +12,7 @@ public class TownTower : Building
     /// private string kind = "Town";
 
 
-    public int maxCapacity;  // 20 40 60 80 100 수용 가능
+
     public float time = 0f;
     public float spawnDelay;
 

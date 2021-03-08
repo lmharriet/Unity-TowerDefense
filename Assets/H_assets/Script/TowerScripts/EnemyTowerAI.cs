@@ -7,13 +7,9 @@ public class EnemyTowerAI : MonoBehaviour
     public float enemyThinkTime;
     public float rate;
     public List<GameObject> towers = new List<GameObject>();
+    public GameObject currentTower;
     int myIndex;
 
-    /*
-        2.만약 팀색이 다를경우, 내가 점령이 가능한지 체크
-
-        3.팀색이 같을 경우 
-     */
 
     int compare(KeyValuePair<int, float> a, KeyValuePair<int, float> b)
     {
@@ -31,7 +27,11 @@ public class EnemyTowerAI : MonoBehaviour
         {
             float dis = Vector3.Distance(allTowers[i].transform.position, myTower.position);
 
-            if (dis <= 0.1f) myIndex = i;
+            if (dis <= 0.1f)
+            {
+                myIndex = i;
+                currentTower = allTowers[myIndex].gameObject;
+            }
             else
             {
                 distancesPair.Add(new KeyValuePair<int, float>(i, dis));
@@ -67,7 +67,7 @@ public class EnemyTowerAI : MonoBehaviour
                 index++;
             else
             {
-                int calculateUnit = (int)(TowerManager.Instance.allTowerData[myIndex].unitCount * 0.75f);
+                int calculateUnit = (int)(currentTower.transform.GetComponent<Building>().unitCount * 0.75f);
                 if (towers[index].transform.GetComponent<Building>().unitCount <= calculateUnit)
                 {
                     return towers[index].gameObject;
@@ -85,12 +85,12 @@ public class EnemyTowerAI : MonoBehaviour
         int size = towers.Count / 2;
         for (int i = 0; i < size; i++)
         {
-            if (TowerManager.Instance.allTowerData[myIndex].unitCount >=
+            if (currentTower.transform.GetComponent<Building>().unitCount >=
                 towers[i].transform.GetComponent<Building>().unitCount)
             {
                 return towers[i].gameObject;
             }
-            else if (i == size - 1 && TowerManager.Instance.allTowerData[myIndex].unitCount <=
+            else if (i == size - 1 && currentTower.transform.GetComponent<Building>().unitCount <=
                 towers[i].transform.GetComponent<Building>().unitCount)
             {
                 return towers[0].gameObject;
@@ -103,56 +103,31 @@ public class EnemyTowerAI : MonoBehaviour
     public GameObject SelectTowerToSupport()
     {
         //내 팀이 2개 이상일 때 그 카운트의 반 개만 뽑아서 가장 가까운 순서대로 maxcapacity의 25%보다 작으면 그 타워로 send unit
+        int myTeamCount = 0;
+        for (int i = 0; i < towers.Count; i++)
+        {
+            if (towers[i].transform.GetComponent<Building>().myColor == currentTower.transform.GetComponent<Building>().myColor)
+            {
+                myTeamCount++;
+            }
+        }
 
+        if (myTeamCount > 2)
+        {
+            int _minUnit = 0, _currentUnit = 0;
+
+            for (int i = 0; i < myTeamCount / 2; i++)
+            {
+                _currentUnit = towers[i].transform.GetComponent<Building>().unitCount;
+                _minUnit = (int)(towers[i].transform.GetComponent<Building>().Capacity * 0.25f);
+                if (_currentUnit <= _minUnit && currentTower.transform.GetComponent<Building>().unitCount > 5)
+                {
+                    return towers[i].gameObject;
+                }
+            }
+        }
         return null;
     }
 
-    public float CalculateRate()
-    {
-        int _ranNum = Random.Range(1, 11);
-
-        if (_ranNum > 0 && _ranNum < 3)
-        {
-            rate = 0.25f;
-        }
-        else if (_ranNum >= 3 && _ranNum < 6)
-        {
-            rate = 0.5f;
-        }
-        else if (_ranNum >= 6 && _ranNum < 9)
-        {
-            rate = 0.75f;
-        }
-        else
-        {
-            rate = 1.0f;
-        }
-        return rate;
-    }
-
-
-
-    public void SetMushrooms(Transform _target, int i, GameObject _unit)
-    {
-        //int _column = 5;
-        //float[] _value = { 0, 3, -3, 6, -6 };
-
-        //Vector3 _dir = (_target.position - transform.position).normalized;
-        //_dir.y = 0;
-
-        //_unit.transform.position = transform.position;
-        ////활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
-        ////unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
-        //_unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
-        //_unit.transform.Rotate(Vector3.up * (_value[i % _column]));
-
-        //_unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
-        //_unit.SetActive(true);
-
-
-        ////unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
-        //unit--;
-        //showUnit.text = unit.ToString();
-    }
-
+   
 }

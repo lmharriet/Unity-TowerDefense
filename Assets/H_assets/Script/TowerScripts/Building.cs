@@ -13,6 +13,7 @@ public abstract class Building : MonoBehaviour
     public int myId;
     public int unit;
     public int level = 1;
+    public int maxCapacity;  // 20 40 60 80 100 수용 가능
     protected int maxLevel;
     public int upgradeCost;
     public Renderer render;
@@ -20,7 +21,8 @@ public abstract class Building : MonoBehaviour
     public Image[] upgradeImg;
 
     EnemyTowerAI enemyAi;
-
+    GameObject targetTowerofEnemy;
+    float rate;
     protected bool isSetStartStat = false;
 
 
@@ -51,7 +53,7 @@ public abstract class Building : MonoBehaviour
 
         isSetStartStat = true;
 
-     
+
     }
 
     protected abstract void SetStatByLevel();
@@ -70,10 +72,26 @@ public abstract class Building : MonoBehaviour
 
     public void EnemyAI()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
+            //targetTowerofEnemy = enemyAi.SelectTowerToOccupy();
+            targetTowerofEnemy = enemyAi.SelectTowerToAttack()y();
+
             enemyAi.SortTowersByDistance(TowerManager.Instance.allTowers, transform);
             //enumyAi.SortTowersByDistance();
+
+            int _size = (int)(unit * CalculateRate());
+
+            for (int i = 0; i < _size; i++)
+            {
+                GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+                if (_unit != null && targetTowerofEnemy != null)
+                {
+                    SetMushrooms(targetTowerofEnemy.transform, i, _unit);
+                }
+
+            }
+
         }
         //List<int> num = new List<int>();
 
@@ -120,17 +138,27 @@ public abstract class Building : MonoBehaviour
 
     }
 
-    //index, distance, unit
-    public void SortTowerIndexByDistance()
+    public float CalculateRate()
     {
-        List<float> distances = new List<float>();
-        for (int i = 0; i < TowerManager.Instance.maxTower - 1; i++)
+        int _ranNum = Random.Range(1, 11);
+
+        if (_ranNum > 0 && _ranNum < 3)
         {
-            distances.Add( Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, transform.position));
-
+            rate = 0.25f;
         }
-
-
+        else if (_ranNum >= 3 && _ranNum < 6)
+        {
+            rate = 0.5f;
+        }
+        else if (_ranNum >= 6 && _ranNum < 9)
+        {
+            rate = 0.75f;
+        }
+        else
+        {
+            rate = 1.0f;
+        }
+        return rate;
     }
 
 
@@ -257,5 +285,13 @@ public abstract class Building : MonoBehaviour
     {
         get { return upgradeCost; }
     }
-
+    public int Capacity
+    {
+        get
+        {
+            if (kind == EnumSpace.TOWERKIND.TOWN)
+                return maxCapacity;
+            return 50;
+        }
+    }
 }
