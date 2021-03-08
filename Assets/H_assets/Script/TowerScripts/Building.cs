@@ -74,8 +74,8 @@ public abstract class Building : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //targetTowerofEnemy = enemyAi.SelectTowerToOccupy();
-            targetTowerofEnemy = enemyAi.SelectTowerToAttack()y();
+            targetTowerofEnemy = enemyAi.SelectTowerToOccupy();
+            //targetTowerofEnemy = enemyAi.SelectTowerToAttack();
 
             enemyAi.SortTowersByDistance(TowerManager.Instance.allTowers, transform);
             //enumyAi.SortTowersByDistance();
