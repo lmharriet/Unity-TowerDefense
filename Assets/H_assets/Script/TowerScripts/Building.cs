@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public abstract class Building : MonoBehaviour
 {
     public bool isPlayerTeam;
     public EnumSpace.TEAMCOLOR myTeam;
     public EnumSpace.TOWERKIND kind;
 
+    protected bool isSetStartStat = false;
     public int myId;
     public int unit;
     public int level = 1;
@@ -20,15 +20,16 @@ public abstract class Building : MonoBehaviour
     public TextMesh showUnit;
     public Image[] upgradeImg;
 
+    //enemy AI 
     EnemyTowerAI enemyAi;
     GameObject targetTowerofEnemy;
+    public float enemyThinkTime;
+    public float delay;
     float rate;
-    protected bool isSetStartStat = false;
-
-
     //enumy 상태 - > 타워 범위 확장 , 공격 , 내 팀 지원
 
-
+    List<GameObject> act;
+    GameObject[] objs;
     protected virtual void Awake()
     {
         if (transform.GetComponentInChildren<TextMesh>() != null)
@@ -40,6 +41,8 @@ public abstract class Building : MonoBehaviour
 
         enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
 
+        act = new List<GameObject>();
+        objs = new GameObject[3];
     }
 
     protected virtual void Start()
@@ -49,10 +52,9 @@ public abstract class Building : MonoBehaviour
         {
             TowerManager.Instance.teamTowerCount[myColor] = 1;
         }
-        ChceckWinner();
 
         isSetStartStat = true;
-
+        delay = 3f;
 
     }
 
@@ -70,73 +72,72 @@ public abstract class Building : MonoBehaviour
         }
     }
 
+    public GameObject AddEnemyAction()
+    {
+        act.Clear();
+        objs[0] = enemyAi.SelectTowerToOccupy();
+        objs[1] = enemyAi.SelectTowerToSupport();
+        objs[2] = enemyAi.SelectTowerToAttack();
+
+        //List<int> l = new List<int>(); 디버깅용
+        for (int i = 0; i < 3; i++)
+        {
+            if (objs[i] != null)
+            {
+                act.Add(objs[i]);
+                //l.Add(i); 디버깅용
+            }
+        }
+
+        int idx = Random.Range(0, act.Count);
+
+        //switch (l[idx]) 디버깅용
+        //{
+        //    case 0:
+        //        Debug.Log("점령!");
+        //        break; 
+        //    case 1:
+        //        Debug.Log("지원!");
+        //        break;
+        //    case 2:
+        //        Debug.Log("공격!");
+        //        break;
+        //}
+
+        return act[idx];
+    }
+
     public void EnemyAI()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        enemyThinkTime += Time.deltaTime;
+
+        if (enemyThinkTime > delay)
         {
-            targetTowerofEnemy = enemyAi.SelectTowerToOccupy();
-            //targetTowerofEnemy = enemyAi.SelectTowerToAttack();
+            enemyThinkTime = 0f;
 
             enemyAi.SortTowersByDistance(TowerManager.Instance.allTowers, transform);
-            //enumyAi.SortTowersByDistance();
+            targetTowerofEnemy = AddEnemyAction();
 
             int _size = (int)(unit * CalculateRate());
 
             for (int i = 0; i < _size; i++)
             {
                 GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-                if (_unit != null && targetTowerofEnemy != null)
+                if (_unit != null)
                 {
                     SetMushrooms(targetTowerofEnemy.transform, i, _unit);
                 }
 
             }
 
+            delay = Random.Range(3f, 7f);
         }
-        //List<int> num = new List<int>();
 
-        //Vector3 _myPos = transform.position;
-        //Transform _target;
 
-        //float _delay = Random.Range(4f, 11f);
-        //if (enemyThinkTime > _delay)
-        //{
-        //    enemyThinkTime = 0f;
-
-        //    // Debug.Log("생각끝!");
-        //    for (int i = 0; i < TowerManager.Instance.maxTower; i++)
-        //    {
-        //        //Debug.Log("타워선택");
-        //        if (Vector3.Distance(TowerManager.Instance.allTowers[i].transform.position, _myPos) <= 0.1f) continue;
-        //        //포지션 비교해서 내 타워가 있는 포지션이 아니면 넘버를 저장
-        //        num.Add(i);
-        //        // Debug.Log(num[i]);
-        //    }
-        //    //num.Sort(delegate (int a,int b )
-        //    //{
-        //    //    return 0;
-        //    //});
-
-        //    //나를 제외한 타워 중 한 타워를 지정
-        //    int _rnd = Random.Range(0, num.Count);
-        //    _target = TowerManager.Instance.allTowers[num[_rnd]].transform;
-
-        //    //내 타워에서 보낼 유닛 수
-        //    int _size = (int)(unit * CalculateRate());
-
-        //    for (int i = 0; i < _size; i++)
-        //    {
-        //        GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-        //        if (_unit != null)
-        //        {
-        //            SetMushrooms(_target, i, _unit);
-
-        //        }
-
-        //    }
-        //}
 
     }
+
 
     public float CalculateRate()
     {

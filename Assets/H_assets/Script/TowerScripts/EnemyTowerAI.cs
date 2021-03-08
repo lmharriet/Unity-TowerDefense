@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyTowerAI : MonoBehaviour
 {
-    public float enemyThinkTime;
-    public float rate;
     public List<GameObject> towers = new List<GameObject>();
     public GameObject currentTower;
     int myIndex;
@@ -19,9 +17,11 @@ public class EnemyTowerAI : MonoBehaviour
     }
     public void SortTowersByDistance(List<GameObject> allTowers, Transform myTower)
     {
+
         int maxTower = allTowers.Count;
 
         List<KeyValuePair<int, float>> distancesPair = new List<KeyValuePair<int, float>>();
+
 
         for (int i = 0; i < maxTower; i++)
         {
@@ -45,12 +45,12 @@ public class EnemyTowerAI : MonoBehaviour
         //    //Debug.Log(it.Key);
         //    Debug.Log(it.Value);
         //}
+        towers.Clear();
         for (int i = 0; i < distancesPair.Count; i++)
         {
             towers.Add(allTowers[distancesPair[i].Key]);
         }
 
-        Debug.Log(towers[2].transform.GetComponent<Building>().myId);
         //1.distance between i and other towers //타워 게임오브젝트 필요
         //2.sort from near distance to far distance
         //3.add.() 
@@ -81,8 +81,9 @@ public class EnemyTowerAI : MonoBehaviour
 
     public GameObject SelectTowerToAttack()
     {
+ 
         //만약 내 타워의 유닛수가 가까운 다른팀이 갖고 있는 유닛수 보다 많을 때, 그 타워 공격
-        int size = towers.Count / 2;
+        int size = towers.Count;
         for (int i = 0; i < size; i++)
         {
             if (currentTower.transform.GetComponent<Building>().unitCount >=
@@ -90,14 +91,10 @@ public class EnemyTowerAI : MonoBehaviour
             {
                 return towers[i].gameObject;
             }
-            else if (i == size - 1 && currentTower.transform.GetComponent<Building>().unitCount <=
-                towers[i].transform.GetComponent<Building>().unitCount)
-            {
-                return towers[0].gameObject;
-            }
         }
 
-        return null;
+        return towers[0].gameObject;
+        //return null;
     }
 
     public GameObject SelectTowerToSupport()
