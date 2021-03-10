@@ -17,11 +17,9 @@ public class EnemyTowerAI : MonoBehaviour
     }
     public void SortTowersByDistance(List<GameObject> allTowers, Transform myTower)
     {
-
         int maxTower = allTowers.Count;
 
         List<KeyValuePair<int, float>> distancesPair = new List<KeyValuePair<int, float>>();
-
 
         for (int i = 0; i < maxTower; i++)
         {

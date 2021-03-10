@@ -11,30 +11,17 @@ public class TowerManager : Singleton<TowerManager>
 
 
     public int maxTower;                //전체 타워 수
-    public List<Building> departTowers = new List<Building>();
+    public List<Building> departTowers = new List<Building>(); // multiselect 기능을 위한 리스트
     public Building departTower;
     public Building arriveTower;
 
     public EnumSpace.TEAMCOLOR playerColor; //플레이어팀 컬러지정
 
-
-    public Color color;
-    public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
+    //  public Color color;
+    //  public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
     public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>();
 
-    public void Awake()
-    {
-        color = Color.white;
-        colorData.Add(EnumSpace.TEAMCOLOR.NONE, color);
-        color = Color.red;
-        colorData.Add(EnumSpace.TEAMCOLOR.RED, color);
-        color = Color.yellow;
-        colorData.Add(EnumSpace.TEAMCOLOR.YELLOW, color);
-        color = Color.blue;
-        colorData.Add(EnumSpace.TEAMCOLOR.BLUE, color);
-        color = Color.green;
-        colorData.Add(EnumSpace.TEAMCOLOR.GREEN, color);
-    }
+    public GlobalDefine defineColor;
 
     public void ResetBothTowers()
     {
@@ -64,12 +51,13 @@ public class TowerManager : Singleton<TowerManager>
 
     public Color GetColor(int myColorNum)
     {
-        return colorData[(EnumSpace.TEAMCOLOR)myColorNum];
+        //Debug.Log(GlobalDefine.colorDictionary.Count);
+        return GlobalDefine.colorDictionary[(EnumSpace.TEAMCOLOR)myColorNum];
     }
     public Color GetColor(EnumSpace.TEAMCOLOR myColor)
     {
-
-        return colorData[myColor];
+        //Debug.Log(GlobalDefine.colorDictionary.Count);
+        return GlobalDefine.colorDictionary[myColor];
     }
 
 }

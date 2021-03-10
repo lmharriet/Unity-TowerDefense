@@ -109,7 +109,6 @@ public abstract class Building : MonoBehaviour
 
     public void EnemyAI()
     {
-
         enemyThinkTime += Time.deltaTime;
 
         if (enemyThinkTime > delay)
@@ -133,8 +132,6 @@ public abstract class Building : MonoBehaviour
 
             delay = Random.Range(3f, 7f);
         }
-
-
 
     }
 
@@ -161,10 +158,6 @@ public abstract class Building : MonoBehaviour
         }
         return rate;
     }
-
-
-
-
 
     public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
     {
@@ -210,7 +203,6 @@ public abstract class Building : MonoBehaviour
                 showUnit.text = unit.ToString();
         }
     }
-
 
     protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
     {

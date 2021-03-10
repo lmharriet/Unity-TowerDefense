@@ -15,7 +15,7 @@ public class UpgradeType : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out _hit, 5f))
         {
             currentBuilding = _hit.transform.GetComponent<Building>();
-            Debug.Log(currentBuilding.gameObject.name);
+            //Debug.Log(currentBuilding.gameObject.name);
             //if(_hit.transform.CompareTag("Tower"))
             //{
             //}
@@ -23,11 +23,10 @@ public class UpgradeType : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        Debug.Log("upgrade open");
+       // Debug.Log("upgrade open");
 
         if (Input.GetMouseButtonUp(0))
         {
-
             switch (upgrade)
             {
                 case EnumSpace.UPGRADE.LEVEL_UP:

@@ -1022,11 +1022,13 @@ MonoBehaviour:
   myId: 8
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &334966312
@@ -1645,11 +1647,13 @@ MonoBehaviour:
   myId: 1
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &485855951
@@ -1850,11 +1854,13 @@ MonoBehaviour:
   myId: 11
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &503966613
@@ -2220,11 +2226,13 @@ MonoBehaviour:
   myId: 6
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &541344067
@@ -2791,11 +2799,13 @@ MonoBehaviour:
   myId: 0
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &650998231
@@ -2896,11 +2906,13 @@ MonoBehaviour:
   myId: 4
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &726328098
@@ -4334,11 +4346,13 @@ MonoBehaviour:
   myId: 2
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1208831149
@@ -4896,11 +4910,13 @@ MonoBehaviour:
   myId: 10
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1350496436
@@ -4988,6 +5004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378956417}
+  - component: {fileID: 1378956418}
   - component: {fileID: 1378956416}
   m_Layer: 0
   m_Name: TowerControll
@@ -5008,6 +5025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db4fc2c173d49345bba043a876d77a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalDefine: {fileID: 0}
   isFreeMode: 0
   team: {fileID: 523857945}
   howManyTeams: 0
@@ -5058,6 +5076,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1378956418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378956415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36feb58c60246149a980ea639af1b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1396116612
 GameObject:
   m_ObjectHideFlags: 0
@@ -5319,11 +5350,13 @@ MonoBehaviour:
   myId: 9
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1416998758
@@ -5995,10 +6028,13 @@ MonoBehaviour:
   myId: 12
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
+  enemyThinkTime: 0
+  delay: 0
   def: 0
   doNotice: 0
 --- !u!65 &1620924152
@@ -6320,11 +6356,13 @@ MonoBehaviour:
   myId: 7
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1664212762
@@ -6441,11 +6479,13 @@ MonoBehaviour:
   myId: 5
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1701002362
@@ -7050,8 +7090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c9ce9ce7df3c14999ca3cf1efdb540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyThinkTime: 0
-  rate: 0
+  towers: []
+  currentTower: {fileID: 0}
 --- !u!1 &1796205364
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,11 +7334,13 @@ MonoBehaviour:
   myId: 3
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
-  maxCapacity: 0
+  enemyThinkTime: 0
+  delay: 0
   time: 0
   spawnDelay: 0
 --- !u!65 &1851332688
@@ -7553,10 +7595,13 @@ MonoBehaviour:
   myId: 13
   unit: 0
   level: 1
+  maxCapacity: 0
   upgradeCost: 0
   render: {fileID: 0}
   showUnit: {fileID: 0}
   upgradeImg: []
+  enemyThinkTime: 0
+  delay: 0
   def: 0
   atk: 0
 --- !u!1 &2076962814

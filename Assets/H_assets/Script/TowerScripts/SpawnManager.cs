@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+  
     public bool isFreeMode;
     public GameObject team;            //tower Team을 전체적으로 들고 있는 상위 오브젝트 
     public int howManyTeams;
     public GameObject[] colorOfTeam = new GameObject[5];
-
 
 
     int maxTower;
@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+      
         if (isFreeMode)
         {
             howManyTeams = Random.Range(2, 5);

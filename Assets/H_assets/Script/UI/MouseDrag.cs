@@ -17,10 +17,7 @@ public class MouseDrag : MonoBehaviour
     private Vector3 departure;
     private Vector3 arrive;
 
-    private Transform sortCenter;
-    private Vector3 sortVector;
     public int column;
-    public float unitDistance;
     public bool isMultiSelected = false;
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
 
@@ -70,8 +67,10 @@ public class MouseDrag : MonoBehaviour
         //유닛이 도착할 타워가 지정 됐을 때
         if (TowerManager.Instance.arriveTower != null)
         {
+           // Debug.Log("타겟타워 지정 됐음");
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
+                Debug.Log("멀티타워 : "+percentage);
                 SendUnit(percentage);
                 SendUnitFromMultipleTowers(percentage);
 
@@ -156,8 +155,6 @@ public class MouseDrag : MonoBehaviour
 
                 }
             }
-
-
         }
     }
 
@@ -168,7 +165,6 @@ public class MouseDrag : MonoBehaviour
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(rayR, out hitR) && hitR.transform.CompareTag("Tower"))
             {
-
                 if (hitR.transform.GetComponent<Building>().isPlayerTeam)
                 {
                     //list에 hitR에 저장된 gameobject가 없으면
@@ -176,8 +172,9 @@ public class MouseDrag : MonoBehaviour
                     {
                         //list에 gameobject를 담아준다
                         TowerManager.Instance.departTowers.Add(hitR.transform.GetComponent<Building>());
+                        isMultiSelected = true;
+                        Debug.Log("멀티타워 선택");
                     }
-
                 }
             }
         }
@@ -185,11 +182,11 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-
-        if (TowerManager.Instance.departTowers.Count != 0)
-        {
-            isMultiSelected = true;
-        }
+        //if (TowerManager.Instance.departTowers.Count > 0)
+        //{
+        //    isMultiSelected = true;
+        //    Debug.Log("멀티 타워선택");
+        //}
 
         if (TowerManager.Instance.departTower != null)
         {
@@ -206,21 +203,8 @@ public class MouseDrag : MonoBehaviour
                     {
                         TowerManager.Instance.SetArriveTower(hit);
                     }
-
-
-
                 }
-                //else
-                //{
-                //    myTower = null;
-                //}
-
             }
-            //else
-            //{
-            //raycast 안에 어떤 정보도 없을 때( 하늘? )
-            //    myTower = null; 
-            //}
 
             if (TowerManager.Instance.arriveTower == null)
             {
@@ -241,7 +225,6 @@ public class MouseDrag : MonoBehaviour
 
         float[] value = { 0, 3, -3, 6, -6 };
         column = 5;
-        unitDistance = 1f;
 
         Transform target = TowerManager.Instance.arriveTower.transform;
 
@@ -263,7 +246,7 @@ public class MouseDrag : MonoBehaviour
                 _unit.SetActive(true);
 
                 TowerManager.Instance.departTower.unitCount--;
-                TowerManager.Instance.departTower.showUnit.text = "P" + TowerManager.Instance.departTower.unit.ToString();
+                TowerManager.Instance.departTower.showUnit.text = TowerManager.Instance.departTower.unit.ToString();
             }
         }
     }
@@ -271,19 +254,59 @@ public class MouseDrag : MonoBehaviour
 
     public void SendUnitFromMultipleTowers(float percent)
     {
+        int _towerSize = TowerManager.Instance.departTowers.Count;
+        Transform _target = TowerManager.Instance.arriveTower.transform;
+        float[] value = { 0, 3, -3, 6, -6 };
+        column = 5;
+        
+        for (int i = 0; i < _towerSize; i++)
+        {
+            Vector3 _dir = (_target.position - TowerManager.Instance.departTowers[i].transform.position).normalized;
+           
+            int _unitSize = TowerManager.Instance.departTowers[i].unitCount;
+            _unitSize=(int)(_unitSize * percent);
+
+            for(int j=0;j<_unitSize;j++)
+            {
+                GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+
+                if (_unit != null)
+                {
+                    _unit.transform.position = TowerManager.Instance.departTowers[i].transform.position;
+                    //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
+                    //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
+                    _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
+                    _unit.transform.Rotate(Vector3.up * (value[j % column]));
+
+                    _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, TowerManager.Instance.departTowers[i].myTeam);
+                    _unit.SetActive(true);
+
+                    TowerManager.Instance.departTowers[i].unitCount--;
+                    TowerManager.Instance.departTowers[i].showUnit.text = TowerManager.Instance.departTowers[i].unit.ToString();
+                }
+            }
+           
+        }
+
+
+
+
         ////출발하는 타워에 저장된 타워의 수
         //int _size = TowerManager.Instance.departTowers.Count;
         //Vector3 _arrivePos = TowerManager.Instance.GetArrivePos();
         //Transform target = TowerManager.Instance.arriveTower.transform;
         //column = 5;
-        //unitDistance = 1f;
+
 
         //for (int i = 0; i < _size; i++)
         //{
+
+        //    Vector3 _dir = (_arrivePos - TowerManager.Instance.departTowers[i].transform.position).normalized;
+        //    _dir.y = 0;
         //    int _myUnit = TowerManager.Instance.departTowers[i].unit;
         //    _myUnit = (int)(_myUnit * percentage);
 
-        //    Vector3 departPos = TowerManager.Instance.departTowers[i].transform.position;
+
 
         //    for (int j = 0; j < _myUnit; j++)
         //    {
@@ -293,13 +316,9 @@ public class MouseDrag : MonoBehaviour
         //            //***열에 맞춰서 position세팅을 바꿔야함.
         //            //_unit.transform.position = departPos;
 
-        //            float _x = departPos.x - (column / 2) * unitDistance;
-        //            float _z = departPos.z;
         //            //열 맞춰 생성
-        //            _unit.transform.position = new Vector3(_x + (j % column) * unitDistance, departPos.y,
-        //                    _z - (j / column) * unitDistance);
-
-        //            _unit.transform.rotation = Quaternion.identity;
+        //            _unit.transform.position = TowerManager.Instance.departTowers[i].transform.position;
+        //            _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
         //            _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2f, TowerManager.Instance.departTowers[i].myTeam);
         //            _unit.SetActive(true);
 
@@ -311,7 +330,6 @@ public class MouseDrag : MonoBehaviour
         //        }
         //    }
         //}
-
 
     }
 
