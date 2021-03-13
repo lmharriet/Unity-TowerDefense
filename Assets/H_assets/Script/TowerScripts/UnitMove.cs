@@ -46,16 +46,16 @@ public class UnitMove : MonoBehaviour
                 transform.Translate(turnDir * speed * Time.deltaTime, Space.World);
             }
 
-            if (target.transform.GetComponent<Building>().kind == EnumSpace.TOWERKIND.DEFENSE)
-            {
-                float _distance = Vector3.Distance(target.position, transform.position);
-               // Debug.Log(target.transform.GetComponent<DefenseTower>().GetRange());
-                if (_distance < target.transform.GetComponent<DefenseTower>().GetRange()*8f)
-                {
-                    target.transform.GetComponent<DefenseTower>().didNotice = true;
-                   // Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
-                }
-            }
+            //if (target.transform.GetComponent<Building>().kind == EnumSpace.TOWERKIND.DEFENSE)
+            //{
+            //    float _distance = Vector3.Distance(target.position, transform.position);
+            //   // Debug.Log(target.transform.GetComponent<DefenseTower>().GetRange());
+            //    if (_distance < target.transform.GetComponent<DefenseTower>().GetRange()*10f)
+            //    {
+            //        target.transform.GetComponent<DefenseTower>().didNotice = true;
+            //       // Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
+            //    }
+            //}
 
         }
 
@@ -86,12 +86,11 @@ public class UnitMove : MonoBehaviour
                 //타워 어택
                 _tower.CheckAttack(unitColor);
 
-                if (_tower.kind == EnumSpace.TOWERKIND.DEFENSE)
-                {
-                    target.transform.GetComponent<DefenseTower>().didNotice = false;
-                    //Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
-                }
-
+                //if (_tower.kind == EnumSpace.TOWERKIND.DEFENSE)
+                //{
+                //    target.transform.GetComponent<DefenseTower>().didNotice = false;
+                //    //Debug.Log("notice" + target.transform.GetComponent<DefenseTower>().didNotice);
+                //}
                 gameObject.SetActive(false);
             }
 

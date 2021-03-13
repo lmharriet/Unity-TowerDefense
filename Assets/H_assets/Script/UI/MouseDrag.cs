@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MouseDrag : MonoBehaviour
 {
+    public LayerMask mask;
     private Ray ray;            //좌클릭용
     private RaycastHit hit;     //좌클릭용
     private Ray rayR;           //우클릭용
@@ -22,7 +23,7 @@ public class MouseDrag : MonoBehaviour
 
     private Building prevPopUpTower;
     //effect
-    public GameObject selectEft;
+    public ParticleSystem selectEft;
     void Update()
     {
         //드래그 시작
@@ -68,10 +69,10 @@ public class MouseDrag : MonoBehaviour
         //유닛이 도착할 타워가 지정 됐을 때
         if (TowerManager.Instance.arriveTower != null)
         {
-           // Debug.Log("타겟타워 지정 됐음");
+            // Debug.Log("타겟타워 지정 됐음");
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
-                Debug.Log("멀티타워 : "+percentage);
+                Debug.Log("멀티타워 : " + percentage);
                 SendUnit(percentage);
                 SendUnitFromMultipleTowers(percentage);
 
@@ -126,7 +127,6 @@ public class MouseDrag : MonoBehaviour
                 }
             }
 
-
         }
 
     }
@@ -150,8 +150,9 @@ public class MouseDrag : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
-                    selectEft.transform.position = hit.transform.position;
-                    selectEft.SetActive(true);
+                    selectEft.transform.position = hit.transform.position + (Vector3.up *0.5f);
+                    var em = selectEft.emission;
+                    em.enabled = true;
                     //Debug.Log(hit.transform.name);
                     TowerManager.Instance.SetDepartTower(hit);
 
@@ -165,7 +166,7 @@ public class MouseDrag : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(rayR, out hitR) && hitR.transform.CompareTag("Tower"))
+            if (Physics.Raycast(rayR, out hitR, 100, mask) && hitR.transform.CompareTag("Tower"))
             {
                 if (hitR.transform.GetComponent<Building>().isPlayerTeam)
                 {
@@ -175,7 +176,7 @@ public class MouseDrag : MonoBehaviour
                         //list에 gameobject를 담아준다
                         TowerManager.Instance.departTowers.Add(hitR.transform.GetComponent<Building>());
                         isMultiSelected = true;
-                       // Debug.Log("멀티타워 선택");
+                        // Debug.Log("멀티타워 선택");
                     }
                 }
             }
@@ -184,12 +185,16 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-        selectEft.SetActive(false);
+        //선택 된 타워 이펙트
+        var em = selectEft.emission;
+        em.enabled = false;
+
         if (TowerManager.Instance.departTower != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100, mask))
             {
+                Debug.Log(hit.transform.name);
                 //raycast 안에 정보가 하나라도 있으면 if안에 들어온다( any object ).
 
                 if (hit.transform.CompareTag("Tower"))
@@ -255,15 +260,15 @@ public class MouseDrag : MonoBehaviour
         Transform _target = TowerManager.Instance.arriveTower.transform;
         float[] value = { 0, 3, -3, 6, -6 };
         column = 5;
-        
+
         for (int i = 0; i < _towerSize; i++)
         {
             Vector3 _dir = (_target.position - TowerManager.Instance.departTowers[i].transform.position).normalized;
-           
-            int _unitSize = TowerManager.Instance.departTowers[i].unitCount;
-            _unitSize=(int)(_unitSize * percent);
 
-            for(int j=0;j<_unitSize;j++)
+            int _unitSize = TowerManager.Instance.departTowers[i].unitCount;
+            _unitSize = (int)(_unitSize * percent);
+
+            for (int j = 0; j < _unitSize; j++)
             {
                 GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
 
@@ -282,7 +287,7 @@ public class MouseDrag : MonoBehaviour
                     TowerManager.Instance.departTowers[i].showUnit.text = TowerManager.Instance.departTowers[i].unit.ToString();
                 }
             }
-           
+
         }
     }
 

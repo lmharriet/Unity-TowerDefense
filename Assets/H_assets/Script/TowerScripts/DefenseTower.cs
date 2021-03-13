@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 public class DefenseTower : Building
 {
     public DefenseTower(int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col) { }
@@ -12,7 +12,7 @@ public class DefenseTower : Building
     private float range;                 //레벨에 따른 공격 범위
     public float def;                   //레벨에 따른 방어력
     public bool doNotice;
-
+    public TurretAttack turret;
     protected override void Awake()
     {
         base.Awake();
@@ -30,11 +30,7 @@ public class DefenseTower : Building
     protected override void Update()
     {
         base.Update();
-        if (doNotice)
-        {
-
-            Debug.Log("적이다 공격!");
-        }
+       
     }
 
 
@@ -79,6 +75,12 @@ public class DefenseTower : Building
     public float GetRange()
     {
         return range;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(transform.position, transform.up, 10f);
     }
 }
 
