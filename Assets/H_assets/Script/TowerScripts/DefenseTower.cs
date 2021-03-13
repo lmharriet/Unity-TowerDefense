@@ -32,6 +32,7 @@ public class DefenseTower : Building
         base.Update();
         if (doNotice)
         {
+
             Debug.Log("적이다 공격!");
         }
     }

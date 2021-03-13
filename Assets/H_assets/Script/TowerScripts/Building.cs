@@ -37,7 +37,7 @@ public abstract class Building : MonoBehaviour
             showUnit = transform.GetComponentInChildren<TextMesh>();
         }
         render = transform.GetComponent<Renderer>();
-        render.material.color = TowerManager.Instance.GetColor(myColor);
+
 
         enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
 
@@ -47,6 +47,7 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Start()
     {
+        render.material.color = TowerManager.Instance.GetColor(myColor);
         SetStatByLevel();
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {

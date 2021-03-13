@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class MouseDrag : MonoBehaviour
 {
     private Ray ray;            //좌클릭용
@@ -22,6 +21,8 @@ public class MouseDrag : MonoBehaviour
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
 
     private Building prevPopUpTower;
+    //effect
+    public GameObject selectEft;
     void Update()
     {
         //드래그 시작
@@ -147,9 +148,10 @@ public class MouseDrag : MonoBehaviour
         {
             if (hit.transform.CompareTag("Tower"))
             {
-
                 if (hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
+                    selectEft.transform.position = hit.transform.position;
+                    selectEft.SetActive(true);
                     //Debug.Log(hit.transform.name);
                     TowerManager.Instance.SetDepartTower(hit);
 
@@ -173,7 +175,7 @@ public class MouseDrag : MonoBehaviour
                         //list에 gameobject를 담아준다
                         TowerManager.Instance.departTowers.Add(hitR.transform.GetComponent<Building>());
                         isMultiSelected = true;
-                        Debug.Log("멀티타워 선택");
+                       // Debug.Log("멀티타워 선택");
                     }
                 }
             }
@@ -182,12 +184,7 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-        //if (TowerManager.Instance.departTowers.Count > 0)
-        //{
-        //    isMultiSelected = true;
-        //    Debug.Log("멀티 타워선택");
-        //}
-
+        selectEft.SetActive(false);
         if (TowerManager.Instance.departTower != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -287,50 +284,6 @@ public class MouseDrag : MonoBehaviour
             }
            
         }
-
-
-
-
-        ////출발하는 타워에 저장된 타워의 수
-        //int _size = TowerManager.Instance.departTowers.Count;
-        //Vector3 _arrivePos = TowerManager.Instance.GetArrivePos();
-        //Transform target = TowerManager.Instance.arriveTower.transform;
-        //column = 5;
-
-
-        //for (int i = 0; i < _size; i++)
-        //{
-
-        //    Vector3 _dir = (_arrivePos - TowerManager.Instance.departTowers[i].transform.position).normalized;
-        //    _dir.y = 0;
-        //    int _myUnit = TowerManager.Instance.departTowers[i].unit;
-        //    _myUnit = (int)(_myUnit * percentage);
-
-
-
-        //    for (int j = 0; j < _myUnit; j++)
-        //    {
-        //        GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-        //        if (_unit != null)
-        //        {
-        //            //***열에 맞춰서 position세팅을 바꿔야함.
-        //            //_unit.transform.position = departPos;
-
-        //            //열 맞춰 생성
-        //            _unit.transform.position = TowerManager.Instance.departTowers[i].transform.position;
-        //            _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
-        //            _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2f, TowerManager.Instance.departTowers[i].myTeam);
-        //            _unit.SetActive(true);
-
-        //            //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
-        //            TowerManager.Instance.departTowers[i].unitCount--;
-        //            //TowerData.Instance.departTower.showUnit.text ="P"+
-        //            //TowerData.Instance.departTower.unitCount.ToString();
-
-        //        }
-        //    }
-        //}
-
     }
 
     IEnumerator DevideUnitRow()

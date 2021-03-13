@@ -43,6 +43,8 @@ public class EnemyTowerAI : MonoBehaviour
         //    //Debug.Log(it.Key);
         //    Debug.Log(it.Value);
         //}
+
+
         towers.Clear();
         for (int i = 0; i < distancesPair.Count; i++)
         {
@@ -79,7 +81,6 @@ public class EnemyTowerAI : MonoBehaviour
 
     public GameObject SelectTowerToAttack()
     {
- 
         //만약 내 타워의 유닛수가 가까운 다른팀이 갖고 있는 유닛수 보다 많을 때, 그 타워 공격
         int size = towers.Count;
         for (int i = 0; i < size; i++)

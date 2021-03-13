@@ -23,7 +23,7 @@ namespace EnumSpace
 public class GlobalDefine : MonoBehaviour
 {
     public Color color;
-    
+
     public static Dictionary<EnumSpace.TEAMCOLOR, Color> colorDictionary = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class GlobalDefine : MonoBehaviour
     }
     public void SetColor()
     {
+
         color = Color.white;
         colorDictionary.Add(EnumSpace.TEAMCOLOR.NONE, color);
         color = Color.red;

@@ -16,12 +16,12 @@ public class SpawnManager : MonoBehaviour
     public int colorTowerCount;        //player, enemy타워 갯수
 
     //prefabs 저장소
-    [Space]
-    public List<GameObject> GREENPrefabs = new List<GameObject>();
-    public List<GameObject> YELLOWPrefabs = new List<GameObject>();
-    public List<GameObject> BLUEPrefabs = new List<GameObject>();
-    public List<GameObject> REDPrefabs = new List<GameObject>();
-    public List<GameObject> NonePrefabs = new List<GameObject>();
+    //[Space]
+    //public List<GameObject> GREENPrefabs = new List<GameObject>();
+    //public List<GameObject> YELLOWPrefabs = new List<GameObject>();
+    //public List<GameObject> BLUEPrefabs = new List<GameObject>();
+    //public List<GameObject> REDPrefabs = new List<GameObject>();
+    //public List<GameObject> NonePrefabs = new List<GameObject>();
 
 
     private void Awake()
