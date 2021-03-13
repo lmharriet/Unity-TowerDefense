@@ -7,7 +7,13 @@ public class TurretAttack : MonoBehaviour
     public GameObject target;
     public Transform firePoint;
     public GameObject bomb;
+    public EnumSpace.TEAMCOLOR towerColor;
+    public EnumSpace.TEAMCOLOR unitColor;
     public bool isAttack;
+
+    Ray ray;
+    RaycastHit hit;
+
 
     public Vector3 direction;
 
@@ -25,14 +31,31 @@ public class TurretAttack : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(transform.position + Vector3.down, 6);
 
         bool check = false;
-        for(int i = 0; i < cols.Length; i++)
+        for (int i = 0; i < cols.Length; i++)
         {
             Collider col = cols[i];
-
             if (col.CompareTag("Unit"))
             {
-                check = true;
-                break;
+                unitColor = col.transform.GetComponent<UnitMove>().GetUnitColor();
+                
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, 3f))
+                {
+                    if (hit.transform.CompareTag("Tower"))
+                    {
+                        towerColor = hit.transform.GetComponent<Building>().myColor;
+                    }
+                }
+
+                if (unitColor != towerColor)
+                {
+                    Debug.Log("유닛 색: " + unitColor);
+                    Debug.Log("현재 타워 색 :" + towerColor);
+
+                    target = col.transform.GetComponent<UnitMove>().gameObject;
+                    check = true;
+                    break;
+                }
+
             }
         }
         //하나의 유닛도 발견되지 않으면
@@ -49,7 +72,7 @@ public class TurretAttack : MonoBehaviour
 
             Vector3 _vel = CalculateVelocity(target.transform.position, firePoint.position, .5f);
 
-            if (t > 2f)
+            if (t > 1.5f)
             {
                 t = 0;
                 GameObject obj = Instantiate(bomb, firePoint.position, Quaternion.identity);
@@ -59,7 +82,7 @@ public class TurretAttack : MonoBehaviour
                 rigid.velocity = _vel;
             }
         }
-       
+
     }
 
     public void Attack()
@@ -67,9 +90,9 @@ public class TurretAttack : MonoBehaviour
 
     }
 
-    private Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
+    private Vector3 CalculateVelocity(Vector3 targetPos, Vector3 origin, float time)
     {
-        Vector3 vec = target - origin; // 크기와 방향
+        Vector3 vec = targetPos - origin; // 크기와 방향
 
         Vector3 vecXZ = vec;
         vecXZ.y = 0;
