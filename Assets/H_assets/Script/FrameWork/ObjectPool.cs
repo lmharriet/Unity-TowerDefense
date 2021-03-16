@@ -53,16 +53,6 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetObjectFromPooler(string tag)
     {
-        int _size = pooledObject.Count;
-        for (int i = 0; i < _size; i++)
-        {
-            if (!pooledObject[i].activeInHierarchy)
-            {
-                return pooledObject[i];
-            }
-        }
-
-
         foreach (ObjectPoolItem item in itemToPool)
         {
             if (item.prefToPool.CompareTag(tag))

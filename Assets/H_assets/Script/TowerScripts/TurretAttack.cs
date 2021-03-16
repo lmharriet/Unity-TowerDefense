@@ -48,8 +48,8 @@ public class TurretAttack : MonoBehaviour
 
                 if (unitColor != towerColor)
                 {
-                    Debug.Log("유닛 색: " + unitColor);
-                    Debug.Log("현재 타워 색 :" + towerColor);
+                    //Debug.Log("유닛 색: " + unitColor);
+                    //Debug.Log("현재 타워 색 :" + towerColor);
 
                     target = col.transform.GetComponent<UnitMove>().gameObject;
                     check = true;

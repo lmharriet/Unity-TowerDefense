@@ -8,6 +8,8 @@ public abstract class Building : MonoBehaviour
     public bool isPlayerTeam;
     public EnumSpace.TEAMCOLOR myTeam;
     public EnumSpace.TOWERKIND kind;
+    public GameObject flagPreb;
+    public Transform flagPos;
 
     protected bool isSetStartStat = false;
     public int myId;
@@ -56,7 +58,10 @@ public abstract class Building : MonoBehaviour
 
         isSetStartStat = true;
         delay = 3f;
-
+        if (isPlayerTeam)
+        {
+            ActiveFlag();
+        }
     }
 
     protected abstract void SetStatByLevel();
@@ -183,7 +188,11 @@ public abstract class Building : MonoBehaviour
                 //transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
 
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아니고
-                if (isPlayerTeam) isPlayerTeam = false;
+                if (isPlayerTeam)
+                {
+                    DeactiveFlag();
+                    isPlayerTeam = false;
+                }
                 else
                 {
                     //Debug.Log(myId);
@@ -192,6 +201,7 @@ public abstract class Building : MonoBehaviour
                     if (myColor == TowerManager.Instance.playerColor)
                     {
                         // Debug.Log("플레이어팀");
+                        ActiveFlag();
                         isPlayerTeam = true;
                     }
                 }
@@ -228,6 +238,28 @@ public abstract class Building : MonoBehaviour
         showUnit.text = unit.ToString();
     }
 
+    public void ActiveFlag()
+    {
+        flagPreb = ObjectPool.instance.GetObjectFromPooler("Flag");
+        if (flagPreb != null)
+        {
+            flagPreb.transform.position = flagPos.position;
+            flagPreb.transform.localScale = new Vector3(1.7f, 1.25f, 1.7f);
+            flagPreb.transform.GetComponent<FlagState>().flagID = myId;
+            flagPreb.SetActive(true);
+            Debug.Log(flagPreb.transform.GetComponent<FlagState>().flagID);
+        }
+
+    }
+
+    public void DeactiveFlag()
+    {
+        //수정 필요
+        if (flagPreb.transform.GetComponent<FlagState>().flagID == myId)
+        {
+            flagPreb.transform.GetComponent<FlagState>().DeActive();
+        }
+    }
     public void ChceckWinner()
     {
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
