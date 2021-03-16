@@ -30,7 +30,7 @@ public class DefenseTower : Building
     protected override void Update()
     {
         base.Update();
-       
+
     }
 
 
@@ -57,20 +57,13 @@ public class DefenseTower : Building
         }
         unit = Random.Range(10, 20);
 
-        if (isPlayerTeam)
-            showUnit.text = "P" + unit.ToString();
-        else
-            showUnit.text = unit.ToString();
-    }
-
-    public bool didNotice
-    {
-        get { return doNotice; }
-        set
+        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
         {
-            doNotice = value;
+            showUnit.gameObject.SetActive(true);
+            showUnit.text = unit.ToString();
         }
     }
+
 
     public float GetRange()
     {

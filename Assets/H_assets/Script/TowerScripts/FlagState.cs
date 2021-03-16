@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class FlagState : MonoBehaviour
 {
-    public int flagID { get; set; }
+    public int flagID;
     // Start is called before the first frame update
-    void Start()
+    public void ActiveFlag(int towerId)
     {
-        flagID = -1;
+        flagID = towerId;
     }
 
-    public void DeActive()
+    public void DeActiveFlag()
     {
         flagID = -1;
         gameObject.SetActive(false);

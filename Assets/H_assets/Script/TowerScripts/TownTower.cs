@@ -47,9 +47,11 @@ public class TownTower : Building
                 unit++;
                 if (isPlayerTeam)
                     showUnit.text = "P" + unit.ToString();
-                else
-                    showUnit.text = unit.ToString();
             }
+        }
+        else if (myTeam == EnumSpace.TEAMCOLOR.NONE)
+        {
+            showUnit.text = unit.ToString();
         }
 
     }
@@ -95,9 +97,11 @@ public class TownTower : Building
                 break;
         }
 
-        if (isPlayerTeam)
-            showUnit.text = "P" + unit.ToString();
-        else
+        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
+        {
+            showUnit.gameObject.SetActive(true);
             showUnit.text = unit.ToString();
+        }
+
     }
 }

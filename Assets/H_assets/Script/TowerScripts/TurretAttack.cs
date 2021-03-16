@@ -6,7 +6,6 @@ public class TurretAttack : MonoBehaviour
 {
     public GameObject target;
     public Transform firePoint;
-    public GameObject bomb;
     public EnumSpace.TEAMCOLOR towerColor;
     public EnumSpace.TEAMCOLOR unitColor;
     public bool isAttack;
@@ -28,7 +27,7 @@ public class TurretAttack : MonoBehaviour
     void Update()
     {
         //collider
-        Collider[] cols = Physics.OverlapSphere(transform.position + Vector3.down, 6);
+        Collider[] cols = Physics.OverlapSphere(transform.position + Vector3.down, 8f);
 
         bool check = false;
         for (int i = 0; i < cols.Length; i++)
@@ -37,7 +36,7 @@ public class TurretAttack : MonoBehaviour
             if (col.CompareTag("Unit"))
             {
                 unitColor = col.transform.GetComponent<UnitMove>().GetUnitColor();
-                
+
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, 3f))
                 {
                     if (hit.transform.CompareTag("Tower"))
@@ -70,16 +69,10 @@ public class TurretAttack : MonoBehaviour
             direction.y = 0;
             transform.rotation = Quaternion.LookRotation(direction);
 
-            Vector3 _vel = CalculateVelocity(target.transform.position, firePoint.position, .5f);
-
-            if (t > 1.5f)
+            if (t > 0.8f)
             {
                 t = 0;
-                GameObject obj = Instantiate(bomb, firePoint.position, Quaternion.identity);
-                obj.SetActive(true);
-                Rigidbody rigid = obj.GetComponent<Rigidbody>();
-
-                rigid.velocity = _vel;
+                Attack();
             }
         }
 
@@ -87,7 +80,13 @@ public class TurretAttack : MonoBehaviour
 
     public void Attack()
     {
+        GameObject _bomb = ObjectPool.instance.GetObjectFromPooler("Bomb");
+        _bomb.transform.position = firePoint.position;
+        _bomb.SetActive(true);
+        Rigidbody rigid = _bomb.GetComponent<Rigidbody>();
 
+        rigid.velocity = CalculateVelocity(target.transform.position, firePoint.position, .5f);
+        
     }
 
     private Vector3 CalculateVelocity(Vector3 targetPos, Vector3 origin, float time)

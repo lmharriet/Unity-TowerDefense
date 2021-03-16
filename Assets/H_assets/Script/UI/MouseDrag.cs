@@ -72,7 +72,7 @@ public class MouseDrag : MonoBehaviour
             // Debug.Log("타겟타워 지정 됐음");
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
-                Debug.Log("멀티타워 : " + percentage);
+               // Debug.Log("멀티타워 : " + percentage);
                 SendUnit(percentage);
                 SendUnitFromMultipleTowers(percentage);
 
@@ -117,12 +117,12 @@ public class MouseDrag : MonoBehaviour
                     else
                     {
                         _myPanel.PopDown();
-                        Debug.Log("플레이어 타워");
+                     //   Debug.Log("플레이어 타워");
                     }
                 }
                 else
                 {
-                    Debug.Log("플레이어 타워 아님");
+                   // Debug.Log("플레이어 타워 아님");
                     _myPanel.PopDown();
                 }
             }
@@ -194,7 +194,7 @@ public class MouseDrag : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100, mask))
             {
-                Debug.Log(hit.transform.name);
+                //Debug.Log(hit.transform.name);
                 //raycast 안에 정보가 하나라도 있으면 if안에 들어온다( any object ).
 
                 if (hit.transform.CompareTag("Tower"))
@@ -293,7 +293,7 @@ public class MouseDrag : MonoBehaviour
 
     IEnumerator DevideUnitRow()
     {
-
+       
         yield return null;
     }
 

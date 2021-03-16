@@ -50,7 +50,9 @@ public abstract class Building : MonoBehaviour
     protected virtual void Start()
     {
         render.material.color = TowerManager.Instance.GetColor(myColor);
+
         SetStatByLevel();
+        
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
             TowerManager.Instance.teamTowerCount[myColor] = 1;
@@ -171,7 +173,7 @@ public abstract class Building : MonoBehaviour
         if (unitColor == myColor)
         {
             unit++;
-            showUnit.text = "p" + unit.ToString();
+            showUnit.text = unit.ToString();
 
         }
         //타워에 부딪힌 유닛 색과 타워 색이 다르면
@@ -208,10 +210,9 @@ public abstract class Building : MonoBehaviour
 
             }
 
-            if (isPlayerTeam)
-                showUnit.text = "P" + unit.ToString();
-            else
+            if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
                 showUnit.text = unit.ToString();
+
         }
     }
 
@@ -235,7 +236,8 @@ public abstract class Building : MonoBehaviour
 
         //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
         unit--;
-        showUnit.text = unit.ToString();
+        if (isPlayerTeam)
+            showUnit.text = unit.ToString();
     }
 
     public void ActiveFlag()
@@ -245,19 +247,17 @@ public abstract class Building : MonoBehaviour
         {
             flagPreb.transform.position = flagPos.position;
             flagPreb.transform.localScale = new Vector3(1.7f, 1.25f, 1.7f);
-            flagPreb.transform.GetComponent<FlagState>().flagID = myId;
+            flagPreb.transform.GetComponent<FlagState>().ActiveFlag(myId);
             flagPreb.SetActive(true);
-            Debug.Log(flagPreb.transform.GetComponent<FlagState>().flagID);
         }
 
     }
 
     public void DeactiveFlag()
     {
-        //수정 필요
         if (flagPreb.transform.GetComponent<FlagState>().flagID == myId)
         {
-            flagPreb.transform.GetComponent<FlagState>().DeActive();
+            flagPreb.transform.GetComponent<FlagState>().DeActiveFlag();
         }
     }
     public void ChceckWinner()
@@ -288,11 +288,13 @@ public abstract class Building : MonoBehaviour
         get { return unit; }
         set { unit = value; }
     }
+
     public EnumSpace.TEAMCOLOR myColor
     {
         get { return myTeam; }
         set { myTeam = value; }
     }
+
     public int TowerLever
     {
         get { return level; }

@@ -24,11 +24,6 @@ public class FactoryTower : Building
     {
         base.Start();
 
-
-        //if (isPlayerTeam)
-        //    showUnit.text = "P"+unit.ToString();
-        //else
-        //    showUnit.text = myTeam + unit.ToString();
     }
 
     // Update is called once per frame
@@ -63,10 +58,12 @@ public class FactoryTower : Building
         }
         unit = Random.Range(5, 16);
 
-        if (isPlayerTeam)
-            showUnit.text = "P" + unit.ToString();
-        else
+        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
+        {
+            showUnit.gameObject.SetActive(true);
             showUnit.text = unit.ToString();
+        }
+
     }
 
 }
