@@ -61,35 +61,6 @@ public class UpgradeType : MonoBehaviour
         }
     }
 
-    public DefenseTower ChangeToTower()
-    {
-
-        if (upgrade == EnumSpace.UPGRADE.TO_TOWER)
-        {
-            //int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col
-
-            DefenseTower _tower = new DefenseTower(currentBuilding.myId, currentBuilding.unitCount, currentBuilding.TowerLever,
-                                                    currentBuilding.isPlayerTeam, currentBuilding.myColor);
-
-            return _tower;
-        }
-
-        return null;
-
-    }
-
-    public FactoryTower ChangeToFactory()
-    {
-        if (upgrade == EnumSpace.UPGRADE.TO_FACTORY)
-        {
-            FactoryTower _factory = new FactoryTower(currentBuilding.myId, currentBuilding.unitCount, currentBuilding.TowerLever,
-                                                    currentBuilding.isPlayerTeam, currentBuilding.myColor);
-
-            return _factory;
-        }
-        return null;
-    }
-
     public void SetCurrentBuilding(Building myBuilding)
     {
         currentBuilding = myBuilding;
