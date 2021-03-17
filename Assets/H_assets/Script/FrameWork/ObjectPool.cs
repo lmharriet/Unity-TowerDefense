@@ -11,7 +11,6 @@ public class ObjectPoolItem
 }
 public class ObjectPool : MonoBehaviour
 {
-
     public List<ObjectPoolItem> itemToPool;
 
     public static ObjectPool instance;
@@ -20,10 +19,7 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+
         pooledObject = new List<GameObject>();
 
         foreach (ObjectPoolItem item in itemToPool)
@@ -37,7 +33,7 @@ public class ObjectPool : MonoBehaviour
         }
 
     }
-
+   
     public GameObject GetObjectFromPooler()
     {
         int _size = pooledObject.Count;
@@ -53,13 +49,25 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetObjectFromPooler(string tag)
     {
+        int _size = pooledObject.Count;
+        for (int i = 0; i < _size; i++)
+        {
+
+            if (!pooledObject[i].activeInHierarchy)
+            {
+                if (pooledObject[i].CompareTag(tag))
+                    return pooledObject[i];
+            }
+
+        }
+
         foreach (ObjectPoolItem item in itemToPool)
         {
             if (item.prefToPool.CompareTag(tag))
             {
                 if (item.shouldExpend)
                 {
-                    GameObject _obj = (GameObject)Instantiate(item.prefToPool);
+                    GameObject _obj = Instantiate(item.prefToPool);
                     _obj.SetActive(false);
                     pooledObject.Add(_obj);
                     return _obj;

@@ -62,6 +62,7 @@ public abstract class Building : MonoBehaviour
         delay = 3f;
         if (isPlayerTeam)
         {
+            Debug.Log(gameObject.name);
             ActiveFlag();
         }
     }
@@ -243,6 +244,7 @@ public abstract class Building : MonoBehaviour
     public void ActiveFlag()
     {
         flagPreb = ObjectPool.instance.GetObjectFromPooler("Flag");
+        
         if (flagPreb != null)
         {
             flagPreb.transform.position = flagPos.position;
