@@ -9,14 +9,20 @@ public class UpgradePanel : MonoBehaviour
     public bool isPopUp;
     RaycastHit hitInfo;
     Building currentBuilding;
+
     public void PopUp(RaycastHit hit)
     {
         PopDown();
         isPopUp = true;
         hitInfo = hit;
-
-        upgradePanel.transform.position = hitInfo.transform.position + new Vector3(0, 2.5f, 0);
+        currentBuilding = hit.transform.GetComponent<Building>();
+        upgradePanel.transform.position = hitInfo.transform.position + new Vector3(-0.5f, 4f, -2f);
         upgradePanel.SetActive(true);
+
+        upgradePanel.transform.GetChild(0).GetComponent<UpgradeType>().SetCurrentBuilding(currentBuilding);
+       // upgradePanel.transform.GetChild(1).GetComponent<UpgradeType>().SetCurrentBuilding(currentBuilding);
+
+
     }
 
     public void PopDown()
@@ -25,11 +31,13 @@ public class UpgradePanel : MonoBehaviour
 
         if (upgradePanel.activeSelf)
         {
+            currentBuilding = null;
+
+            upgradePanel.transform.GetChild(0).GetComponent<UpgradeType>().SetCurrentBuilding(currentBuilding);
+           // upgradePanel.transform.GetChild(1).GetComponent<UpgradeType>().SetCurrentBuilding(currentBuilding);
             upgradePanel.SetActive(false);
         }
     }
-
-
 
 }
 

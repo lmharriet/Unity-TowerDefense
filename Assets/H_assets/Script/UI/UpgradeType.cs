@@ -12,7 +12,7 @@ public class UpgradeType : MonoBehaviour
     {
         RaycastHit _hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 5f))
+        if (Physics.Raycast(transform.position, (Vector3.down*2 + Vector3.forward*2), out _hit, 10f))
         {
             currentBuilding = _hit.transform.GetComponent<Building>();
             //Debug.Log(currentBuilding.gameObject.name);

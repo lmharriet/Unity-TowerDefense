@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitMove : MonoBehaviour
 {
     public EnumSpace.TEAMCOLOR unitColor;
-    public Renderer render;
+    //public Renderer render;
     public Transform target;
     Vector3 spawnPos;
     Vector3 turnDir;
@@ -15,7 +15,7 @@ public class UnitMove : MonoBehaviour
 
     private void Awake()
     {
-        render = transform.GetComponent<Renderer>();
+        // render = transform.GetComponent<Renderer>();
     }
 
     void Update()
@@ -47,11 +47,13 @@ public class UnitMove : MonoBehaviour
 
     public void InitMushroom(Transform targetPos, float moveSpeed, EnumSpace.TEAMCOLOR unit_Color)
     {
+        DeActivePref();
         target = targetPos;
         speed = moveSpeed;
         targetId = target.transform.GetComponent<Building>().myId;
         unitColor = unit_Color;
-        render.material.color = TowerManager.Instance.GetColor(unitColor);
+        transform.GetChild((int)unitColor - 1).gameObject.SetActive(true);
+        //render.material.color = TowerManager.Instance.GetColor(unitColor);
 
         //타겟타워까지 퍼져서 움직였다가 모아지는 연출을 위함
         spawnPos = transform.position;
@@ -74,7 +76,7 @@ public class UnitMove : MonoBehaviour
                 //타워 어택
                 _tower.CheckAttack(unitColor);
 
-               
+                DeActivePref();
                 gameObject.SetActive(false);
             }
 
@@ -82,4 +84,12 @@ public class UnitMove : MonoBehaviour
 
     }
 
+    public void DeActivePref()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var _child = transform.GetChild(i).gameObject;
+            if (_child.activeSelf) _child.SetActive(false);
+        }
+    }
 }

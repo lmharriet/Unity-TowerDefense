@@ -6,7 +6,7 @@ namespace EnumSpace
 {
     public enum TEAMCOLOR
     {
-        NONE, RED, YELLOW, BLUE, GREEN
+        NONE, RED,  YELLOW, BLUE, GREEN
     }
 
     public enum TOWERKIND
