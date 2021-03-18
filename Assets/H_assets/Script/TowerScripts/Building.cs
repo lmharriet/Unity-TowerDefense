@@ -8,6 +8,7 @@ public abstract class Building : MonoBehaviour
     public bool isPlayerTeam;
     public EnumSpace.TEAMCOLOR myTeam;
     public EnumSpace.TOWERKIND kind;
+    public EnumSpace.TEAMCOLOR factoryColor;
     public GameObject flagPreb;
     public Transform flagPos;
 
@@ -40,7 +41,6 @@ public abstract class Building : MonoBehaviour
         }
         render = transform.GetComponent<Renderer>();
 
-
         enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
 
         act = new List<GameObject>();
@@ -52,7 +52,7 @@ public abstract class Building : MonoBehaviour
         render.material.color = TowerManager.Instance.GetColor(myColor);
 
         SetStatByLevel();
-        
+
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
             TowerManager.Instance.teamTowerCount[myColor] = 1;
@@ -171,7 +171,7 @@ public abstract class Building : MonoBehaviour
     public void CheckAttack(EnumSpace.TEAMCOLOR unitColor)
     {
         //타워에 부딪힌 유닛 색과 타워 색이 같으면
-        if (unitColor == myColor)
+        if (unitColor == myColor) //support
         {
             unit++;
             showUnit.text = unit.ToString();
@@ -180,17 +180,36 @@ public abstract class Building : MonoBehaviour
         //타워에 부딪힌 유닛 색과 타워 색이 다르면
         else
         {
-            unit--;
+           unit-= TowerManager.Instance.DamageAmount(myColor);
+
+            //if (TowerManager.Instance.factoryColor != EnumSpace.TEAMCOLOR.NONE)
+            //{
+            //    if (factoryColor == myColor) //내 타워에 공격오는 유닛을 방어 가능
+            //    {
+            //        Debug.Log(factoryColor + "factoryTower 보유중!");
+            //        unit -= 1;// 1 or 0
+            //    }
+            //    else if (factoryColor == unitColor) // 팩토리 타워가 어떤 팀에 속해 있으면 내가 공격 당할 확률 up
+            //    {
+            //        Debug.Log(unitColor + "factoryTower 보유중!");
+            //        unit -= 1;// 1 or 2
+            //    }
+            //}
+                
+            //else 
+            //{
+            //    Debug.Log("factory tower: "+ factoryColor);
+            //    unit -= 1;
+            //}
+
+
             //만약 타워가 가진 유닛의 개체수가 0보다 작아지면
             if (unit <= 0)
             {
                 unit = 0;
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
-                render.material.color = TowerManager.Instance.GetColor(myColor);
-                //현재 타워의 팀 변경
-                //transform.parent = TowerData.Instance.team.transform.GetChild((int)myColor);
-
-                //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아니고
+                
+                //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
                 {
                     DeactiveFlag();
@@ -198,12 +217,10 @@ public abstract class Building : MonoBehaviour
                 }
                 else
                 {
-                    //Debug.Log(myId);
                     //타워가 플레이어팀이 아니었으면 현재 컬러가 플레이어팀과 같은지 체크하고 
                     //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerManager.Instance.playerColor)
                     {
-                        // Debug.Log("플레이어팀");
                         ActiveFlag();
                         isPlayerTeam = true;
                     }
@@ -217,6 +234,16 @@ public abstract class Building : MonoBehaviour
         }
     }
 
+    public int DamageAmount()
+    {
+        
+        //attack
+        //damage
+        //die
+
+        return 0;
+    }
+    //유닛 전달
     protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
     {
         int _column = 5;
@@ -244,7 +271,7 @@ public abstract class Building : MonoBehaviour
     public void ActiveFlag()
     {
         flagPreb = ObjectPool.instance.GetObjectFromPooler("Flag");
-        
+
         if (flagPreb != null)
         {
             flagPreb.transform.position = flagPos.position;
@@ -324,4 +351,6 @@ public abstract class Building : MonoBehaviour
             return 50;
         }
     }
+
+    
 }

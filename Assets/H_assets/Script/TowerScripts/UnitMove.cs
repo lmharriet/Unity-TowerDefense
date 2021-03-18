@@ -5,18 +5,12 @@ using UnityEngine;
 public class UnitMove : MonoBehaviour
 {
     public EnumSpace.TEAMCOLOR unitColor;
-    //public Renderer render;
     public Transform target;
     Vector3 spawnPos;
     Vector3 turnDir;
     float halfDistance;
     int targetId;
     float speed;
-
-    private void Awake()
-    {
-        // render = transform.GetComponent<Renderer>();
-    }
 
     void Update()
     {
@@ -53,7 +47,6 @@ public class UnitMove : MonoBehaviour
         targetId = target.transform.GetComponent<Building>().myId;
         unitColor = unit_Color;
         transform.GetChild((int)unitColor - 1).gameObject.SetActive(true);
-        //render.material.color = TowerManager.Instance.GetColor(unitColor);
 
         //타겟타워까지 퍼져서 움직였다가 모아지는 연출을 위함
         spawnPos = transform.position;

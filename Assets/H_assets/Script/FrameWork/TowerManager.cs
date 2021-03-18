@@ -16,9 +16,10 @@ public class TowerManager : Singleton<TowerManager>
     public Building arriveTower;
 
     public EnumSpace.TEAMCOLOR playerColor; //플레이어팀 컬러지정
+    public EnumSpace.TEAMCOLOR factoryColor; //factory 타워 지정
 
-    //  public Color color;
-    //  public Dictionary<EnumSpace.TEAMCOLOR, Color> colorData = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
+    public float def, atk;
+
     public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>();
 
     public GlobalDefine defineColor;
@@ -49,6 +50,24 @@ public class TowerManager : Singleton<TowerManager>
         return arriveTower.transform.position;
     }
 
+    public int DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
+    {
+        if (factoryColor != EnumSpace.TEAMCOLOR.NONE)
+        {
+            return 1;
+        }
+        else if (factoryColor == damagedTeam)
+        {
+            int rate = Random.Range(1, 10);
+
+            if (rate)
+                return (int)1 * 1;
+        }
+        else
+
+            return 0;
+    }
+
     public Color GetColor(int myColorNum)
     {
         //Debug.Log(GlobalDefine.colorDictionary.Count);
@@ -58,6 +77,17 @@ public class TowerManager : Singleton<TowerManager>
     {
         //Debug.Log(GlobalDefine.colorDictionary.Count);
         return GlobalDefine.colorDictionary[myColor];
+    }
+
+    public float TowerATK
+    {
+        get { return atk; }
+        set { atk = value; }
+    }
+    public float TowerDef
+    {
+        get { return def; }
+        set { def = value; }
     }
 
 }

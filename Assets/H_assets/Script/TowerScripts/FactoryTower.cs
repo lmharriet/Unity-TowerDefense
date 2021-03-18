@@ -30,6 +30,8 @@ public class FactoryTower : Building
     protected override void Update()
     {
         base.Update();
+        
+        TowerManager.Instance.factoryColor = myColor;
     }
 
     protected override void SetStatByLevel()
@@ -56,6 +58,8 @@ public class FactoryTower : Building
                 atk = 2.0f;
                 break;
         }
+        TowerManager.Instance.TowerATK = atk;
+        TowerManager.Instance.TowerDef = def;
         unit = Random.Range(5, 16);
 
         if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
