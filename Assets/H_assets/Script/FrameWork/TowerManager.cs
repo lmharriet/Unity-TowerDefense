@@ -60,11 +60,14 @@ public class TowerManager : Singleton<TowerManager>
         {
             int rate = Random.Range(1, 10);
 
-            if (rate)
-                return (int)1 * 1;
+            //if (rate)
+            //    return (int)1 * 1;
+            return 1;
         }
         else
-
+        {
+            return 1;
+        }
             return 0;
     }
 
