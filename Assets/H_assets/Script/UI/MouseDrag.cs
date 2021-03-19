@@ -144,7 +144,7 @@ public class MouseDrag : MonoBehaviour
             TowerManager.Instance.ResetBothTowers();
         }
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,100,mask))
         {
             if (hit.transform.CompareTag("Tower"))
             {

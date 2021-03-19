@@ -12,7 +12,6 @@ public abstract class Building : MonoBehaviour
     public GameObject flagPreb;
     public Transform flagPos;
 
-
     protected bool isSetStartStat = false;
     public int myId;
     public int unit;
@@ -25,7 +24,12 @@ public abstract class Building : MonoBehaviour
     protected float defTime;
     protected float boostTime;
     protected int amount;
+   
+    //test
     public ParticleSystem dummypar;
+    public ParticleSystem dummypar2;
+    //test
+
 
     public TextMesh showUnit;
     public Image[] upgradeImg;
@@ -58,7 +62,8 @@ public abstract class Building : MonoBehaviour
 
         act = new List<GameObject>();
         objs = new GameObject[3];
-        dummypar = GameObject.Find("dummyparticle").GetComponent<ParticleSystem>();
+        dummypar = GameObject.Find("dummydefPar").GetComponent<ParticleSystem>();
+        dummypar2 = GameObject.Find("dummyatkPar").GetComponent<ParticleSystem>();
     }
 
     protected virtual void Start()
@@ -401,9 +406,11 @@ public abstract class Building : MonoBehaviour
     }
     IEnumerator ActiveCritical(float boosterTime)
     {
+        var particle2 = Instantiate(dummypar2, transform.position, Quaternion.identity);
         Debug.Log("cri attack!");
         yield return new WaitForSeconds(boosterTime);
         Debug.Log("cri finish");
+        Destroy(particle2);
         critical = null;
     }
 
