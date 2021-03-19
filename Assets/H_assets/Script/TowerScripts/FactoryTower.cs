@@ -41,22 +41,26 @@ public class FactoryTower : Building
             case 1:
                 def = 1.25f;
                 atk = 1.5f;
+                //0.25
                 upgradeCost = 5;
                 break;
             case 2:
                 def = 1.35f;
                 atk = 1.75f;
+                //0.4
                 upgradeCost = 10;
                 break;
             case 3:
                 def = 1.45f;
                 atk = 1.9f;
+                //0.45
                 upgradeCost = 15;
                 break;
             case 4:
                 def = 1.50f;
                 atk = 2.0f;
                 break;
+                //0.5
         }
         TowerManager.Instance.TowerATK = atk;
         TowerManager.Instance.TowerDef = def;

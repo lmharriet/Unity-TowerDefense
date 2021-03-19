@@ -50,26 +50,7 @@ public class TowerManager : Singleton<TowerManager>
         return arriveTower.transform.position;
     }
 
-    public int DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
-    {
-        if (factoryColor != EnumSpace.TEAMCOLOR.NONE)
-        {
-            return 1;
-        }
-        else if (factoryColor == damagedTeam)
-        {
-            int rate = Random.Range(1, 10);
-
-            //if (rate)
-            //    return (int)1 * 1;
-            return 1;
-        }
-        else
-        {
-            return 1;
-        }
-            return 0;
-    }
+   
 
     public Color GetColor(int myColorNum)
     {

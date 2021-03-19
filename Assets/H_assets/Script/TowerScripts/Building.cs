@@ -19,7 +19,7 @@ public abstract class Building : MonoBehaviour
     public int maxCapacity;  // 20 40 60 80 100 수용 가능
     protected int maxLevel;
     public int upgradeCost;
-    public Renderer render;
+    //public Renderer render;
     public TextMesh showUnit;
     public Image[] upgradeImg;
 
@@ -35,11 +35,11 @@ public abstract class Building : MonoBehaviour
     GameObject[] objs;
     protected virtual void Awake()
     {
-        if (transform.GetComponentInChildren<TextMesh>() != null)
-        {
-            showUnit = transform.GetComponentInChildren<TextMesh>();
-        }
-        render = transform.GetComponent<Renderer>();
+        //if (transform.GetComponentInChildren<TextMesh>() != null)
+        //{
+        //    showUnit = transform.GetComponentInChildren<TextMesh>();
+        //}
+        //render = transform.GetComponent<Renderer>();
 
         enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
 
@@ -49,8 +49,12 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Start()
     {
-        render.material.color = TowerManager.Instance.GetColor(myColor);
+        //render.material.color = TowerManager.Instance.GetColor(myColor);
 
+        if (isPlayerTeam)
+        {
+            ActiveFlag();
+        }
         SetStatByLevel();
 
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
@@ -60,11 +64,7 @@ public abstract class Building : MonoBehaviour
 
         isSetStartStat = true;
         delay = 3f;
-        if (isPlayerTeam)
-        {
-            Debug.Log(gameObject.name);
-            ActiveFlag();
-        }
+
     }
 
     protected abstract void SetStatByLevel();
@@ -144,7 +144,6 @@ public abstract class Building : MonoBehaviour
 
     }
 
-
     public float CalculateRate()
     {
         int _ranNum = Random.Range(1, 11);
@@ -180,27 +179,12 @@ public abstract class Building : MonoBehaviour
         //타워에 부딪힌 유닛 색과 타워 색이 다르면
         else
         {
-           unit-= TowerManager.Instance.DamageAmount(myColor);
+            //수정 필요
+            //unit -= DamageAmount(myColor);
 
-            //if (TowerManager.Instance.factoryColor != EnumSpace.TEAMCOLOR.NONE)
-            //{
-            //    if (factoryColor == myColor) //내 타워에 공격오는 유닛을 방어 가능
-            //    {
-            //        Debug.Log(factoryColor + "factoryTower 보유중!");
-            //        unit -= 1;// 1 or 0
-            //    }
-            //    else if (factoryColor == unitColor) // 팩토리 타워가 어떤 팀에 속해 있으면 내가 공격 당할 확률 up
-            //    {
-            //        Debug.Log(unitColor + "factoryTower 보유중!");
-            //        unit -= 1;// 1 or 2
-            //    }
-            //}
-                
-            //else 
-            //{
-            //    Debug.Log("factory tower: "+ factoryColor);
-            //    unit -= 1;
-            //}
+            //temp
+            unit--;
+            //
 
 
             //만약 타워가 가진 유닛의 개체수가 0보다 작아지면
@@ -208,7 +192,7 @@ public abstract class Building : MonoBehaviour
             {
                 unit = 0;
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
-                
+
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
                 {
@@ -234,15 +218,30 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    public int DamageAmount()
-    {
-        
-        //attack
-        //damage
-        //die
 
-        return 0;
+    public int DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
+    {//수정 필요
+        int amount = 0;
+        int damageCal = (int)(TowerManager.Instance.atk - TowerManager.Instance.def) / 2;
+        if (factoryColor != EnumSpace.TEAMCOLOR.NONE)
+        {
+            //normal
+            amount = 1;
+        }
+        else if (factoryColor == damagedTeam)
+        {
+            //defense
+            amount = damageCal * Random.Range(10, 15);
+
+        }
+        else
+        {
+            //attack
+           // amount =
+        }
+        return amount;
     }
+
     //유닛 전달
     protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
     {
@@ -352,5 +351,5 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    
+
 }
