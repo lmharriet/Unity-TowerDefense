@@ -57,14 +57,11 @@ public class DefenseTower : Building
         }
         unit = Random.Range(10, 20);
 
-        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
-        {
-            showUnit.gameObject.SetActive(true);
-            showUnit.text = unit.ToString();
-        }
+        SetTextMesh();
+
     }
 
-
+ 
     public float GetRange()
     {
         return range;

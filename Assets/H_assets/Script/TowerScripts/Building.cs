@@ -12,6 +12,7 @@ public abstract class Building : MonoBehaviour
     public GameObject flagPreb;
     public Transform flagPos;
 
+
     protected bool isSetStartStat = false;
     public int myId;
     public int unit;
@@ -19,9 +20,17 @@ public abstract class Building : MonoBehaviour
     public int maxCapacity;  // 20 40 60 80 100 수용 가능
     protected int maxLevel;
     public int upgradeCost;
-    //public Renderer render;
+
+    //factory tower가 내 팀에있을 경우 없을 경우 방어, 공격
+    protected float defTime;
+    protected float boostTime;
+    protected int amount;
+    public ParticleSystem dummypar;
+
     public TextMesh showUnit;
     public Image[] upgradeImg;
+
+    //public Renderer render;
 
     //enemy AI 
     EnemyTowerAI enemyAi;
@@ -33,6 +42,10 @@ public abstract class Building : MonoBehaviour
 
     List<GameObject> act;
     GameObject[] objs;
+
+    Coroutine shield;
+    Coroutine critical;
+
     protected virtual void Awake()
     {
         //if (transform.GetComponentInChildren<TextMesh>() != null)
@@ -45,6 +58,7 @@ public abstract class Building : MonoBehaviour
 
         act = new List<GameObject>();
         objs = new GameObject[3];
+        dummypar = GameObject.Find("dummyparticle").GetComponent<ParticleSystem>();
     }
 
     protected virtual void Start()
@@ -70,6 +84,7 @@ public abstract class Building : MonoBehaviour
     protected abstract void SetStatByLevel();
 
 
+
     protected virtual void Update()
     {
         //user team이 아닐 때
@@ -80,6 +95,29 @@ public abstract class Building : MonoBehaviour
             EnemyAI();
         }
     }
+
+    protected void SetTextMesh()
+    {
+        if (isPlayerTeam)
+        {
+            showUnit.gameObject.SetActive(true);
+            showUnit.transform.GetChild(0).gameObject.SetActive(false);
+            showUnit.transform.GetChild(1).gameObject.SetActive(true);
+            showUnit.text = unit.ToString();
+        }
+        else if (myTeam == EnumSpace.TEAMCOLOR.NONE)
+        {
+            showUnit.gameObject.SetActive(true);
+            showUnit.transform.GetChild(0).gameObject.SetActive(true);
+            showUnit.transform.GetChild(1).gameObject.SetActive(false);
+            showUnit.text = unit.ToString();
+        }
+        else
+        {
+            showUnit.gameObject.SetActive(false);
+        }
+    }
+
 
     public GameObject AddEnemyAction()
     {
@@ -183,6 +221,7 @@ public abstract class Building : MonoBehaviour
             //unit -= DamageAmount(myColor);
 
             //temp
+            DamageAmount(myTeam);
             unit--;
             //
 
@@ -212,34 +251,47 @@ public abstract class Building : MonoBehaviour
 
             }
 
-            if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
-                showUnit.text = unit.ToString();
+            SetTextMesh();
 
         }
     }
 
 
-    public int DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
+    public void DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
     {//수정 필요
-        int amount = 0;
+
+        factoryColor = TowerManager.Instance.factoryColor;
         int damageCal = (int)(TowerManager.Instance.atk - TowerManager.Instance.def) / 2;
-        if (factoryColor != EnumSpace.TEAMCOLOR.NONE)
+        if (factoryColor == EnumSpace.TEAMCOLOR.NONE)
         {
             //normal
+            Debug.Log("factory tower가 NoneColor");
             amount = 1;
         }
-        else if (factoryColor == damagedTeam)
+        else if (damagedTeam != EnumSpace.TEAMCOLOR.NONE)
         {
-            //defense
-            amount = damageCal * Random.Range(10, 15);
+
+            if (factoryColor == damagedTeam)
+            {
+                //defense
+                // defTime = damageCal * Random.Range(10, 15);
+                defTime = 2f;
+                if (shield == null)
+                {
+                    shield = StartCoroutine(ActiveShield(defTime));
+                }
+            }
+            else
+            {
+                //attack
+                boostTime = 2f;
+                if (critical == null)
+                {
+                    critical = StartCoroutine(ActiveCritical(boostTime));
+                }
+            }
 
         }
-        else
-        {
-            //attack
-           // amount =
-        }
-        return amount;
     }
 
     //유닛 전달
@@ -336,6 +388,25 @@ public abstract class Building : MonoBehaviour
             }
         }
     }
+
+    IEnumerator ActiveShield(float maintainTime)
+    {
+        var particle = Instantiate(dummypar, transform.position, Quaternion.identity);
+        Debug.Log("shield!");
+
+        yield return new WaitForSeconds(maintainTime);
+        Debug.Log("stopShield");
+        Destroy(particle);
+        shield = null;
+    }
+    IEnumerator ActiveCritical(float boosterTime)
+    {
+        Debug.Log("cri attack!");
+        yield return new WaitForSeconds(boosterTime);
+        Debug.Log("cri finish");
+        critical = null;
+    }
+
 
     public int Cost
     {

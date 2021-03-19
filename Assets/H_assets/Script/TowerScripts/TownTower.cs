@@ -97,11 +97,6 @@ public class TownTower : Building
                 break;
         }
 
-        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
-        {
-            showUnit.gameObject.SetActive(true);
-            showUnit.text = unit.ToString();
-        }
-
+        SetTextMesh();
     }
 }

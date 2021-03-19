@@ -66,11 +66,7 @@ public class FactoryTower : Building
         TowerManager.Instance.TowerDef = def;
         unit = Random.Range(5, 16);
 
-        if (isPlayerTeam || myTeam == EnumSpace.TEAMCOLOR.NONE)
-        {
-            showUnit.gameObject.SetActive(true);
-            showUnit.text = unit.ToString();
-        }
+        SetTextMesh();
 
     }
 
