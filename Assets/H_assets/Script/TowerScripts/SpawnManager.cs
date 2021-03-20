@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-  
+
     public bool isFreeMode;
     public GameObject team;            //tower Team을 전체적으로 들고 있는 상위 오브젝트 
     public int howManyTeams;
@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-      
+
         if (isFreeMode)
         {
             howManyTeams = Random.Range(2, 5);
@@ -52,6 +52,7 @@ public class SpawnManager : MonoBehaviour
         {
             maxTower = team.transform.childCount;
             TowerManager.Instance.maxTower = maxTower;
+
             for (int i = 0; i < maxTower; i++)
             {
                 TowerManager.Instance.allTowers.Add(team.transform.GetChild(i).gameObject);
@@ -60,7 +61,28 @@ public class SpawnManager : MonoBehaviour
                 {
                     TowerManager.Instance.playerColor = team.transform.GetChild(i).transform.GetComponent<Building>().myColor;
                 }
+
+                //팀별 타워 소유 갯수 저장
+                if (TowerManager.Instance.teamTowerCount.ContainsKey(TowerManager.Instance.allTowerData[i].myColor) == false)
+                {
+                    //Debug.Log("값이 없음");
+
+                    TowerManager.Instance.teamTowerCount.Add(TowerManager.Instance.allTowerData[i].myColor, 1);
+                    TowerManager.Instance.arriveTeam.Add(TowerManager.Instance.allTowerData[i].myColor, 1);
+                }
+                else
+                {
+                    //Debug.Log("값이 있음");
+                    TowerManager.Instance.teamTowerCount[TowerManager.Instance.allTowerData[i].myColor]++;
+                }
+
             }
+
+
+            //Debug.Log("None 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.NONE]);
+            //Debug.Log("Blue 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.BLUE]);
+            //Debug.Log("Red 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.RED]);
+            
         }
     }
 
@@ -132,7 +154,7 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-   
+
 
     public GameObject GetPrefabs(Building currentTower)
     {

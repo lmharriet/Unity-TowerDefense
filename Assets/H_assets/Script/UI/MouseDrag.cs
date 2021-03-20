@@ -105,7 +105,7 @@ public class MouseDrag : MonoBehaviour
 
             UpgradePanel _myPanel = transform.GetComponent<UpgradePanel>();
 
-            if (Physics.Raycast(_ray, out _hit))
+            if (Physics.Raycast(_ray, out _hit,100,mask))
             {
                 if (_hit.transform.CompareTag("Tower") &&
                     _hit.transform.GetComponent<Building>().isPlayerTeam)

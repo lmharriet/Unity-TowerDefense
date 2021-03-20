@@ -10,6 +10,8 @@ public class TowerManager : Singleton<TowerManager>
     public List<Building> allTowerData = new List<Building>();
 
 
+    public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>(); //각 팀이 보유한 타워
+    public Dictionary<EnumSpace.TEAMCOLOR, int> arriveTeam = new Dictionary<EnumSpace.TEAMCOLOR, int>(); //살아 있는 팀
     public int maxTower;                //전체 타워 수
     public List<Building> departTowers = new List<Building>(); // multiselect 기능을 위한 리스트
     public Building departTower;
@@ -19,8 +21,6 @@ public class TowerManager : Singleton<TowerManager>
     public EnumSpace.TEAMCOLOR factoryColor; //factory 타워 지정
 
     public float def, atk;
-
-    public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>();
 
     public GlobalDefine defineColor;
 
@@ -50,13 +50,13 @@ public class TowerManager : Singleton<TowerManager>
         return arriveTower.transform.position;
     }
 
-   
 
     public Color GetColor(int myColorNum)
     {
         //Debug.Log(GlobalDefine.colorDictionary.Count);
         return GlobalDefine.colorDictionary[(EnumSpace.TEAMCOLOR)myColorNum];
     }
+
     public Color GetColor(EnumSpace.TEAMCOLOR myColor)
     {
         //Debug.Log(GlobalDefine.colorDictionary.Count);

@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public abstract class Building : MonoBehaviour
 {
+    public bool isGameOver;
     public bool isPlayerTeam;
     public EnumSpace.TEAMCOLOR myTeam;
     public EnumSpace.TOWERKIND kind;
     public EnumSpace.TEAMCOLOR factoryColor;
+    public EnumSpace.TEAMCOLOR winner;
+    public List<EnumSpace.TEAMCOLOR> LoserTeams;
     public GameObject flagPreb;
     public Transform flagPos;
 
@@ -24,11 +27,12 @@ public abstract class Building : MonoBehaviour
     protected float defTime;
     protected float boostTime;
     protected int amount;
-   
+
     //test
     public ParticleSystem dummypar;
     public ParticleSystem dummypar2;
     //test
+
 
 
     public TextMesh showUnit;
@@ -62,6 +66,7 @@ public abstract class Building : MonoBehaviour
 
         act = new List<GameObject>();
         objs = new GameObject[3];
+        LoserTeams = new List<EnumSpace.TEAMCOLOR>();
         dummypar = GameObject.Find("dummydefPar").GetComponent<ParticleSystem>();
         dummypar2 = GameObject.Find("dummyatkPar").GetComponent<ParticleSystem>();
     }
@@ -92,13 +97,21 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Update()
     {
-        //user team이 아닐 때
-        if (!isPlayerTeam && myColor != EnumSpace.TEAMCOLOR.NONE)
+        if (isGameOver)
         {
-            //enemyThinkTime += Time.deltaTime;
-
-            EnemyAI();
+            this.enabled = true;
         }
+        else
+        {
+            //user team이 아닐 때
+            if (!isPlayerTeam && myColor != EnumSpace.TEAMCOLOR.NONE)
+            {
+                //enemyThinkTime += Time.deltaTime;
+
+                EnemyAI();
+            }
+        }
+
     }
 
     protected void SetTextMesh()
@@ -235,7 +248,14 @@ public abstract class Building : MonoBehaviour
             if (unit <= 0)
             {
                 unit = 0;
+                //점령 당한 현재 타워의 갯수를 -- 하고 현재 타워의 개수가 0개인지 체크
+                TowerManager.Instance.teamTowerCount[myColor]--;
+                ChceckLoserTeam(myColor);
+
+                //위에서 Winner가 판별 나지 않으면 계속 진행.
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
+                TowerManager.Instance.teamTowerCount[myColor]++;
+
 
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
@@ -270,7 +290,7 @@ public abstract class Building : MonoBehaviour
         if (factoryColor == EnumSpace.TEAMCOLOR.NONE)
         {
             //normal
-            Debug.Log("factory tower가 NoneColor");
+            // Debug.Log("factory tower가 NoneColor");
             amount = 1;
         }
         else if (damagedTeam != EnumSpace.TEAMCOLOR.NONE)
@@ -279,7 +299,7 @@ public abstract class Building : MonoBehaviour
             if (factoryColor == damagedTeam)
             {
                 //defense
-                // defTime = damageCal * Random.Range(10, 15);
+                //defTime = damageCal * Random.Range(10, 15);
                 defTime = 2f;
                 if (shield == null)
                 {
@@ -345,28 +365,22 @@ public abstract class Building : MonoBehaviour
             flagPreb.transform.GetComponent<FlagState>().DeActiveFlag();
         }
     }
-    public void ChceckWinner()
+
+    public void ChceckLoserTeam(EnumSpace.TEAMCOLOR towerColor)
     {
-        if (myColor != EnumSpace.TEAMCOLOR.NONE)
+        //수정 필요
+        if (towerColor == EnumSpace.TEAMCOLOR.NONE) return;
+
+
+        if (TowerManager.Instance.teamTowerCount[towerColor] == 0)
         {
-            if (isPlayerTeam)
-            {
-                if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
-                {
-                    //Debug.Log("player"+myColor);
-                }
-            }
-            else
-            {
-                if (TowerManager.Instance.teamTowerCount.ContainsKey(myColor))
-                {
-                    // Debug.Log("enemy"+myColor);
-
-                }
-            }
-
+            Debug.Log(towerColor + "는 죽었다");
+            TowerManager.Instance.arriveTeam[towerColor]--;
+            LoserTeams.Add(towerColor);
         }
+
     }
+
 
     public int unitCount
     {
