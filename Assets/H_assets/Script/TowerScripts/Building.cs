@@ -243,7 +243,6 @@ public abstract class Building : MonoBehaviour
             unit--;
             //
 
-
             //만약 타워가 가진 유닛의 개체수가 0보다 작아지면
             if (unit <= 0)
             {
@@ -394,7 +393,7 @@ public abstract class Building : MonoBehaviour
         set { myTeam = value; }
     }
 
-    public int TowerLever
+    public int TowerLevel
     {
         get { return level; }
         set

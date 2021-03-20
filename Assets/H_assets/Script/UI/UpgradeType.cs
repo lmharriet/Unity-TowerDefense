@@ -51,7 +51,7 @@ public class UpgradeType : MonoBehaviour
             if (currentBuilding.unitCount - currentBuilding.Cost >= 0)
             {
                 currentBuilding.unitCount -= currentBuilding.upgradeCost;
-                currentBuilding.TowerLever++;
+                currentBuilding.TowerLevel++;
             }
             else
             {

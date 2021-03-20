@@ -2104,10 +2104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 2065580598}
   myId: 8
@@ -3016,10 +3019,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 625307079}
   myId: 1
@@ -3127,10 +3133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 786319543}
   myId: 11
@@ -3503,10 +3512,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1057790321}
   myId: 6
@@ -4075,10 +4087,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1381325615}
   myId: 0
@@ -4348,10 +4363,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 1
   myTeam: 1
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1553615700}
   myId: 4
@@ -11531,10 +11549,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1155280363}
   myId: 2
@@ -12628,10 +12649,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 2138328273}
   myId: 10
@@ -13061,10 +13085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1312711660}
   myId: 9
@@ -13295,8 +13322,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -18847,10 +18874,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef10304580dbcff43bfd5666cc8b3822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 1
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1697519864}
   myId: 12
@@ -19402,10 +19432,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 473366300}
   myId: 7
@@ -19560,10 +19593,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 3
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1648020090}
   myId: 5
@@ -25088,10 +25124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c6ba0b5a433c4fac3f9c0b9d6ebc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 0
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 983295904}
   myId: 3
@@ -25801,10 +25840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5510cf50fd2e70b409a31274ad4f9232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   isPlayerTeam: 0
   myTeam: 0
   kind: 2
   factoryColor: 0
+  winner: 0
+  LoserTeams: 
   flagPreb: {fileID: 0}
   flagPos: {fileID: 1484480652}
   myId: 13
