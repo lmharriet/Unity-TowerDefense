@@ -144,30 +144,15 @@ public abstract class Building : MonoBehaviour
         objs[1] = enemyAi.SelectTowerToSupport();
         objs[2] = enemyAi.SelectTowerToAttack();
 
-        //List<int> l = new List<int>(); 디버깅용
         for (int i = 0; i < 3; i++)
         {
             if (objs[i] != null)
             {
                 act.Add(objs[i]);
-                //l.Add(i); 디버깅용
             }
         }
 
         int idx = Random.Range(0, act.Count);
-
-        //switch (l[idx]) 디버깅용
-        //{
-        //    case 0:
-        //        Debug.Log("점령!");
-        //        break; 
-        //    case 1:
-        //        Debug.Log("지원!");
-        //        break;
-        //    case 2:
-        //        Debug.Log("공격!");
-        //        break;
-        //}
 
         return act[idx];
     }

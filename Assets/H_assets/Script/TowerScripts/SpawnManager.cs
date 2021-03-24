@@ -15,14 +15,6 @@ public class SpawnManager : MonoBehaviour
     public int playerTeamNum;          //player팀으로 셋팅할 인덱스
     public int colorTowerCount;        //player, enemy타워 갯수
 
-    //prefabs 저장소
-    //[Space]
-    //public List<GameObject> GREENPrefabs = new List<GameObject>();
-    //public List<GameObject> YELLOWPrefabs = new List<GameObject>();
-    //public List<GameObject> BLUEPrefabs = new List<GameObject>();
-    //public List<GameObject> REDPrefabs = new List<GameObject>();
-    //public List<GameObject> NonePrefabs = new List<GameObject>();
-
 
     private void Awake()
     {
@@ -65,31 +57,17 @@ public class SpawnManager : MonoBehaviour
                 //팀별 타워 소유 갯수 저장
                 if (TowerManager.Instance.teamTowerCount.ContainsKey(TowerManager.Instance.allTowerData[i].myColor) == false)
                 {
-                    //Debug.Log("값이 없음");
-
                     TowerManager.Instance.teamTowerCount.Add(TowerManager.Instance.allTowerData[i].myColor, 1);
                     TowerManager.Instance.arriveTeam.Add(TowerManager.Instance.allTowerData[i].myColor, 1);
                 }
                 else
                 {
-                    //Debug.Log("값이 있음");
                     TowerManager.Instance.teamTowerCount[TowerManager.Instance.allTowerData[i].myColor]++;
                 }
 
             }
 
-
-            //Debug.Log("None 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.NONE]);
-            //Debug.Log("Blue 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.BLUE]);
-            //Debug.Log("Red 컬러:"+TowerManager.Instance.teamTowerCount[EnumSpace.TEAMCOLOR.RED]);
-            
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void DivideTeam()
@@ -154,14 +132,4 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-
-
-    public GameObject GetPrefabs(Building currentTower)
-    {
-        //레벨 (int) 에 따라 업그레이드
-        //타워 종류 (Enumspace.TOWERKIND / -> 타운이면 공장 또는 타워가능
-
-
-        return null;
-    }
 }
