@@ -18,9 +18,9 @@ public class ReactObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isActive)
+        if (isActive)
         {
-            circle.transform.localScale = Vector3.Lerp(circle.transform.localScale, 
+            circle.transform.localScale = Vector3.Lerp(circle.transform.localScale,
                 new Vector3(0.14f, 0.14f, 0.14f), Time.deltaTime * 5f);
 
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -28,7 +28,7 @@ public class ReactObj : MonoBehaviour
         }
         else
         {
-            circle.transform.localScale = Vector3.Lerp(circle.transform.localScale, 
+            circle.transform.localScale = Vector3.Lerp(circle.transform.localScale,
                 Vector3.zero, Time.deltaTime * 7f);
         }
     }
@@ -42,4 +42,6 @@ public class ReactObj : MonoBehaviour
     {
         isActive = false;
     }
+
+  
 }

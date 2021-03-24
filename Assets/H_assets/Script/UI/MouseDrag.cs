@@ -20,7 +20,6 @@ public class MouseDrag : MonoBehaviour
     public int column;
     public bool isMultiSelected = false;
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
-
     private Building prevPopUpTower;
     //effect
     public ParticleSystem selectEft;
@@ -150,10 +149,7 @@ public class MouseDrag : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Building>().isPlayerTeam)
                 {
-                    selectEft.transform.position = hit.transform.position + (Vector3.up *0.5f);
-                    var em = selectEft.emission;
-                    em.enabled = true;
-                    //Debug.Log(hit.transform.name);
+                  
                     TowerManager.Instance.SetDepartTower(hit);
 
                 }
@@ -165,6 +161,7 @@ public class MouseDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(rayR, out hitR, 100, mask) && hitR.transform.CompareTag("Tower"))
             {
@@ -177,6 +174,7 @@ public class MouseDrag : MonoBehaviour
                         TowerManager.Instance.departTowers.Add(hitR.transform.GetComponent<Building>());
                         isMultiSelected = true;
                         // Debug.Log("멀티타워 선택");
+
                     }
                 }
             }
@@ -185,10 +183,10 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-        //선택 된 타워 이펙트
-        var em = selectEft.emission;
-        em.enabled = false;
-        
+        ////선택 된 타워 이펙트
+        //var em = selectEft.emission;
+        //em.enabled = false;
+       
         if (TowerManager.Instance.departTower != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -291,6 +289,16 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
+    //public void ReactCircle(Vector3 circleScale, float speed)
+    //{
+    //    circle.transform.localScale = Vector3.Lerp(circle.transform.localScale,
+    //           circleScale, Time.deltaTime * speed);
+    //}
+    //public void DeActiveReactCircle(float speed)
+    //{
+    //    circle.transform.localScale = Vector3.Lerp(circle.transform.localScale,
+    //            Vector3.zero, Time.deltaTime * speed);
+    //}
     IEnumerator DevideUnitRow()
     {
        
