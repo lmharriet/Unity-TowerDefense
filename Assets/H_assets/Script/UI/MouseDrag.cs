@@ -21,8 +21,8 @@ public class MouseDrag : MonoBehaviour
     public bool isMultiSelected = false;
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
     private Building prevPopUpTower;
-    //effect
-    public ParticleSystem selectEft;
+
+    public GameObject circle;
     void Update()
     {
         //드래그 시작
@@ -147,11 +147,15 @@ public class MouseDrag : MonoBehaviour
         {
             if (hit.transform.CompareTag("Tower"))
             {
-                if (hit.transform.GetComponent<Building>().isPlayerTeam)
+                Building _selectedTower = hit.transform.GetComponent<Building>();
+                if (_selectedTower.isPlayerTeam)
                 {
                   
                     TowerManager.Instance.SetDepartTower(hit);
 
+                    circle = _selectedTower.effectCircle;
+                    circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
+                    circle.SetActive(true);
                 }
             }
         }
@@ -165,7 +169,9 @@ public class MouseDrag : MonoBehaviour
             rayR = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(rayR, out hitR, 100, mask) && hitR.transform.CompareTag("Tower"))
             {
-                if (hitR.transform.GetComponent<Building>().isPlayerTeam)
+                Building _selectedTower = hitR.transform.GetComponent<Building>();
+
+                if (_selectedTower.isPlayerTeam)
                 {
                     //list에 hitR에 저장된 gameobject가 없으면
                     if (!TowerManager.Instance.departTowers.Contains(hitR.transform.GetComponent<Building>()))
@@ -175,6 +181,11 @@ public class MouseDrag : MonoBehaviour
                         isMultiSelected = true;
                         // Debug.Log("멀티타워 선택");
 
+                        #region SelectedTower CircleEffect
+                        circle = _selectedTower.effectCircle;
+                        circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
+                        circle.SetActive(true);
+                        #endregion
                     }
                 }
             }
@@ -183,9 +194,6 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-        ////선택 된 타워 이펙트
-        //var em = selectEft.emission;
-        //em.enabled = false;
        
         if (TowerManager.Instance.departTower != null)
         {

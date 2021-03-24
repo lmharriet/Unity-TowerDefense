@@ -34,7 +34,7 @@ public abstract class Building : MonoBehaviour
     //test
 
 
-
+    public GameObject effectCircle;
     public TextMesh showUnit;
     public Image[] upgradeImg;
 

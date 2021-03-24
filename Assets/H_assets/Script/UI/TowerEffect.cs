@@ -6,30 +6,44 @@ public class TowerEffect : MonoBehaviour
 {
 
     public Color circleColor;
-    public GameObject circleObj;
+    private Vector3 circleScale;
     public int circleId;
+    public bool isActive;
+    public float speed;
 
-    public void ReactCircle(Vector3 circleScale, float speed, EnumSpace.TEAMCOLOR playerColor, int id)
+    private void Update()
     {
-        circleId = id;
-        circleObj.transform.GetComponent<SpriteRenderer>().color = TowerManager.Instance.GetColor(playerColor);
-        circleObj.transform.localScale = Vector3.Lerp(Vector3.zero, circleScale, Time.deltaTime * speed);
-    }
-
-    public void DeActiveReactCircle(float speed)
-    {
-        circleId = 0;
-        circleObj.transform.localScale = Vector3.Lerp(circleObj.transform.localScale,
-                Vector3.zero, Time.deltaTime * speed);
-
-        if(circleObj.transform.localScale == Vector3.zero)
+        if (isActive)
         {
-            gameObject.SetActive(false);
+            transform.localScale = circleScale;//Vector3.Lerp(Vector3.zero, circleScale, Time.deltaTime * speed);
         }
+        else
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
+
+            if (transform.localScale == Vector3.zero)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+    public void ActiveCircle(float lerpSpeed, EnumSpace.TEAMCOLOR playerColor, int id)
+    {
+        circleScale = transform.localScale;
+        isActive = true;
+        circleId = id;
+        circleColor = TowerManager.Instance.GetColor(playerColor);
+        transform.GetComponent<SpriteRenderer>().color = circleColor;
+        speed = lerpSpeed;
 
     }
 
+    public void DeActiveCircle(float lerpSpeed)
+    {
+        isActive = false;
+        circleId = -1;
+        speed = lerpSpeed;
 
-
+    }
 
 }
