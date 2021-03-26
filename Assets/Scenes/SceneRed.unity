@@ -1117,9 +1117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &172587471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1631,9 +1631,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.2, y: 0.2, z: 0.2}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &300213647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2192,9 +2192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &330582162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2308,7 +2308,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 842723314}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1741406563}
   upgradeImg: []
   enemyThinkTime: 0
@@ -3227,7 +3226,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 749740962}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1268339039}
   upgradeImg: []
   enemyThinkTime: 0
@@ -3343,7 +3341,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1427554921}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 248574090}
   upgradeImg: []
   enemyThinkTime: 0
@@ -3709,8 +3706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameOver: 0
-  isPlayerTeam: 0
-  myTeam: 0
+  isPlayerTeam: 1
+  myTeam: 1
   kind: 0
   factoryColor: 0
   winner: 0
@@ -3725,7 +3722,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1352627143}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1778865143}
   upgradeImg: []
   enemyThinkTime: 0
@@ -4349,7 +4345,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1254287659}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1796205366}
   upgradeImg: []
   enemyThinkTime: 0
@@ -4627,7 +4622,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 330582160}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1647582934}
   upgradeImg: []
   enemyThinkTime: 0
@@ -4818,9 +4812,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.233, y: 0.233, z: 0.233}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &749740964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5630,9 +5624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &842723316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12051,7 +12045,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1852859900}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1123996147}
   upgradeImg: []
   enemyThinkTime: 0
@@ -12512,9 +12505,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.233, y: 0.233, z: 0.233}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1254287661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13314,8 +13307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameOver: 0
-  isPlayerTeam: 0
-  myTeam: 0
+  isPlayerTeam: 1
+  myTeam: 1
   kind: 0
   factoryColor: 0
   winner: 0
@@ -13330,7 +13323,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 2046561205}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 554236404}
   upgradeImg: []
   enemyThinkTime: 0
@@ -13446,9 +13438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1352627145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13867,7 +13859,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 172587469}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1622045186}
   upgradeImg: []
   enemyThinkTime: 0
@@ -13983,9 +13974,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1427554923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19561,7 +19552,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1671179454}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 1010986393}
   upgradeImg: []
   enemyThinkTime: 0
@@ -20121,7 +20111,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1760524296}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 28873623}
   upgradeImg: []
   enemyThinkTime: 0
@@ -20301,9 +20290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.233, y: 0.233, z: 0.233}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!1 &1697519863
 GameObject:
   m_ObjectHideFlags: 0
@@ -20383,7 +20372,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 1823573306}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 329438741}
   upgradeImg: []
   enemyThinkTime: 0
@@ -25350,9 +25338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1760524298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25900,9 +25888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1823573308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26109,7 +26097,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 300213645}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 52601597}
   upgradeImg: []
   enemyThinkTime: 0
@@ -26207,9 +26194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.2, y: 0.2, z: 0.2}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &1852859902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27000,7 +26987,6 @@ MonoBehaviour:
   dummypar: {fileID: 0}
   dummypar2: {fileID: 0}
   effectCircle: {fileID: 2071144107}
-  circleScale: {x: 0, y: 0, z: 0}
   showUnit: {fileID: 800290839}
   upgradeImg: []
   enemyThinkTime: 0
@@ -27167,9 +27153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.227, y: 0.227, z: 0.227}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &2046561207
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27418,9 +27404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleColor: {r: 0, g: 0, b: 0, a: 0}
-  circleObj: {fileID: 0}
-  circleScale: {x: 0.233, y: 0.233, z: 0.233}
   circleId: 0
+  isActive: 0
+  speed: 0
 --- !u!212 &2071144109
 SpriteRenderer:
   m_ObjectHideFlags: 0

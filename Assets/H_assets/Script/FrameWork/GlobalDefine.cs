@@ -18,6 +18,11 @@ namespace EnumSpace
     {
         LEVEL_UP, TO_TOWER, TO_FACTORY
     }
+
+    public enum GAMESTATE
+    {
+        START,INGAME,QUITE
+    }
 }
 
 public class GlobalDefine : MonoBehaviour
