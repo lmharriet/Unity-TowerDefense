@@ -75,14 +75,15 @@ public abstract class Building : MonoBehaviour
     {
         //render.material.color = TowerManager.Instance.GetColor(myColor);
 
-        if (isPlayerTeam)
-        {
-            ActiveFlag();
-        }
+        //if (isPlayerTeam)
+        //{
+
+        //}
         SetStatByLevel();
 
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
+            ActiveFlag();
             TowerManager.Instance.teamTowerCount[myColor] = 1;
         }
 
@@ -335,8 +336,8 @@ public abstract class Building : MonoBehaviour
         if (flagPreb != null)
         {
             flagPreb.transform.position = flagPos.position;
-            flagPreb.transform.localScale = new Vector3(1.7f, 1.25f, 1.7f);
-            flagPreb.transform.GetComponent<FlagState>().ActiveFlag(myId);
+            flagPreb.transform.localScale = new Vector3(1.7f, 1.55f, 1.7f);
+            flagPreb.transform.GetComponent<FlagState>().ActiveFlag(myId,myColor);
             flagPreb.SetActive(true);
         }
 

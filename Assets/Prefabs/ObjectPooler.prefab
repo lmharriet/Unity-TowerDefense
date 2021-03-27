@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToPool:
   - amount: 20
-    prefToPool: {fileID: 3222124898815981041, guid: 4287c3036d4164a4a86228fe3cc6fadf,
+    prefToPool: {fileID: 1994561439575019718, guid: 3434ba8ff9d2c7a40b6142e284ff3030,
       type: 3}
     shouldExpend: 1
   - amount: 50
