@@ -29205,12 +29205,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1633518080885734305, guid: 0d4f864a8f3048542929402b07cd5767,
-        type: 3}
-      propertyPath: itemToPool.Array.data[0].prefToPool
-      value: 
-      objectReference: {fileID: 1994561439575019718, guid: 3434ba8ff9d2c7a40b6142e284ff3030,
-        type: 3}
     - target: {fileID: 2949228252256057257, guid: 0d4f864a8f3048542929402b07cd5767,
         type: 3}
       propertyPath: loadingImage
@@ -29286,10 +29280,5 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: 35243515}
-    - target: {fileID: 8877393254814052876, guid: 0d4f864a8f3048542929402b07cd5767,
-        type: 3}
-      propertyPath: selectEft
-      value: 
-      objectReference: {fileID: 1004098482}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4f864a8f3048542929402b07cd5767, type: 3}

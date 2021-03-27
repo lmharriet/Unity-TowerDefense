@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e38ff2d1f09fd444881f54026686744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagID: 0
+  flagID: -1
   flagColor: 0
 --- !u!1 &3970295297098860241
 GameObject:
@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 3970295297965727528}
   m_Layer: 0
   m_Name: GREEN
-  m_TagString: Flag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 3970295298544389760}
   m_Layer: 0
   m_Name: YELLOW
-  m_TagString: Flag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1518,7 +1518,7 @@ GameObject:
   - component: {fileID: 3970295298842669856}
   m_Layer: 0
   m_Name: BLUE
-  m_TagString: Flag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1598,7 +1598,7 @@ GameObject:
   - component: {fileID: 3970295299033646371}
   m_Layer: 0
   m_Name: RED
-  m_TagString: Flag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -83,7 +83,7 @@ public abstract class Building : MonoBehaviour
 
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
         {
-            ActiveFlag();
+            ActiveFlag(myId, myColor);
             TowerManager.Instance.teamTowerCount[myColor] = 1;
         }
 
@@ -233,6 +233,7 @@ public abstract class Building : MonoBehaviour
             if (unit <= 0)
             {
                 unit = 0;
+
                 //점령 당한 현재 타워의 갯수를 -- 하고 현재 타워의 개수가 0개인지 체크
                 TowerManager.Instance.teamTowerCount[myColor]--;
                 ChceckLoserTeam(myColor);
@@ -241,12 +242,13 @@ public abstract class Building : MonoBehaviour
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
                 TowerManager.Instance.teamTowerCount[myColor]++;
 
-
+                DeactiveFlag();
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
                 {
-                    DeactiveFlag();
+                    //DeactiveFlag();
                     isPlayerTeam = false;
+                    ActiveFlag(myId, myColor);
                 }
                 else
                 {
@@ -254,7 +256,7 @@ public abstract class Building : MonoBehaviour
                     //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerManager.Instance.playerColor)
                     {
-                        ActiveFlag();
+                        ActiveFlag(myId, myColor);
                         isPlayerTeam = true;
                     }
                 }
@@ -329,15 +331,16 @@ public abstract class Building : MonoBehaviour
             showUnit.text = unit.ToString();
     }
 
-    public void ActiveFlag()
+    public void ActiveFlag(int id, EnumSpace.TEAMCOLOR color)
     {
         flagPreb = ObjectPool.instance.GetObjectFromPooler("Flag");
 
+        //Debug.Log("activeFlag");
         if (flagPreb != null)
         {
             flagPreb.transform.position = flagPos.position;
             flagPreb.transform.localScale = new Vector3(1.7f, 1.55f, 1.7f);
-            flagPreb.transform.GetComponent<FlagState>().ActiveFlag(myId,myColor);
+            flagPreb.transform.GetComponent<FlagState>().ActiveFlag(id, color);
             flagPreb.SetActive(true);
         }
 
@@ -345,9 +348,12 @@ public abstract class Building : MonoBehaviour
 
     public void DeactiveFlag()
     {
-        if (flagPreb.transform.GetComponent<FlagState>().flagID == myId)
+        if(flagPreb!=null)
         {
-            flagPreb.transform.GetComponent<FlagState>().DeActiveFlag();
+            if (flagPreb.transform.GetComponent<FlagState>().flagID == myId)
+            {
+                flagPreb.transform.GetComponent<FlagState>().DeActiveFlag();
+            }
         }
     }
 

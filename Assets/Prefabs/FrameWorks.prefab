@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530935098910ce148888d5bbc0120fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingImgGroup: {fileID: 0}
   loadingImage: {fileID: 0}
   progressBar: {fileID: 0}
 --- !u!1 &2949228252701547130
