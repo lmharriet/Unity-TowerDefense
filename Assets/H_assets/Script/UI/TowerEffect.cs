@@ -13,19 +13,19 @@ public class TowerEffect : MonoBehaviour
 
     private void Update()
     {
-        if (isActive)
-        {
-            transform.localScale = circleScale;//Vector3.Lerp(Vector3.zero, circleScale, Time.deltaTime * speed);
-        }
-        else
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
+        //if (isActive)
+        //{
+        //    transform.localScale = circleScale;//Vector3.Lerp(Vector3.zero, circleScale, Time.deltaTime * speed);
+        //}
+        //else
+        //{
+        //    transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
 
-            if (transform.localScale == Vector3.zero)
-            {
-                gameObject.SetActive(false);
-            }
-        }
+        //    if (transform.localScale == Vector3.zero)
+        //    {
+        //        gameObject.SetActive(false);
+        //    }
+        //}
     }
     public void ActiveCircle(float lerpSpeed, EnumSpace.TEAMCOLOR playerColor, int id)
     {

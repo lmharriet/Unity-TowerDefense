@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 public class TownTower : Building
@@ -29,6 +31,13 @@ public class TownTower : Building
     {
         base.Start();
 
+    }
+    async Task SpawnUnits()
+    {
+        await Task.Run(() =>
+        {
+            Debug.Log("작업 했음");
+        });
     }
 
     protected override void Update()

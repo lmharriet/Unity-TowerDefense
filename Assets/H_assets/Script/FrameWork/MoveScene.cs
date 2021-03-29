@@ -45,4 +45,11 @@ public class MoveScene : Singleton<MoveScene>
         Time.timeScale = 0;
         gameObject.SetActive(true);
     }
+
+
+    //IEnumerator loading()
+    //{
+    //    AsyncOperation 
+    //    while(!)
+    //}
 }

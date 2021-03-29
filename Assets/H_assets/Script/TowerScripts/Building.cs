@@ -56,12 +56,6 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Awake()
     {
-        //if (transform.GetComponentInChildren<TextMesh>() != null)
-        //{
-        //    showUnit = transform.GetComponentInChildren<TextMesh>();
-        //}
-        //render = transform.GetComponent<Renderer>();
-
         enemyAi = GameObject.Find("EnemyAI").GetComponent<EnemyTowerAI>();
 
         act = new List<GameObject>();
@@ -73,12 +67,7 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Start()
     {
-        //render.material.color = TowerManager.Instance.GetColor(myColor);
-
-        //if (isPlayerTeam)
-        //{
-
-        //}
+       
         SetStatByLevel();
 
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
@@ -243,12 +232,11 @@ public abstract class Building : MonoBehaviour
                 TowerManager.Instance.teamTowerCount[myColor]++;
 
                 DeactiveFlag();
+                ActiveFlag(myId, myColor);
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
                 {
-                    //DeactiveFlag();
                     isPlayerTeam = false;
-                    ActiveFlag(myId, myColor);
                 }
                 else
                 {
@@ -256,13 +244,10 @@ public abstract class Building : MonoBehaviour
                     //플레이어팀과 같을 때 플레이어팀으로 변경
                     if (myColor == TowerManager.Instance.playerColor)
                     {
-                        ActiveFlag(myId, myColor);
                         isPlayerTeam = true;
                     }
                 }
-
             }
-
             SetTextMesh();
 
         }
