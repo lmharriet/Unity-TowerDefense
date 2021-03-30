@@ -17,46 +17,36 @@ public class testScript : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        unitcount = 1;
         //Debug.LogFormat("현재 쓰레드 : {0}", Thread.CurrentThread.ManagedThreadId);
         //Debug.LogFormat("현재 프레임 : {0}", Time.frameCount);
 
-        unitcount+= await testAsync();
-        Debug.LogFormat("현재 unitCount : {0}", unitcount);
+        Debug.Log("run() invoke in start()");
+        await testAsync();
+        Debug.Log("Run() returns");
+
+        //Debug.LogFormat("현재 unitCount : {0}", unitcount);
     }
     private void Update()
     {
         Debug.Log("update() 실행 중");
     }
 
-    async Task<int> testAsync()
+    async Task testAsync()
     {
-        //Debug.Log("현재 testAsync");
-        //await Task.Delay(3000);
-        //Debug.Log("3초 기다림");
-
-        //return 7;
-
-        //await Task.Run(() =>
-        //{
-
-        //    Debug.LogFormat("현재 unitCount : {0}", unitcount);
-        //    // Debug.LogFormat("현재 쓰레드 : {0}", Thread.CurrentThread.ManagedThreadId);
-        //});
-
-        int units = 0;
+        int result = 0;
         await Task.Run(() =>
         {
+
             for (int i = 0; i < count; i++)
             {
-                units += i;
-                Thread.Sleep(1000);
+                Debug.Log(i);
+                result += i;
+               // Thread.Sleep(1000);
+              
             }
         });
 
-        Debug.Log("units : " + units);
-        return units;
-
+        Debug.Log("result : " + result);
     }
 
     //// Update is called once per frame

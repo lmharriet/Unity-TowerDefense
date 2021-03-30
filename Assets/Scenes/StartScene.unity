@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 556943203}
   - component: {fileID: 556943202}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: async Test Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251eb7ee12fd454ba05c1c0f1b78f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitcount: 0
+  count: 50
 --- !u!65 &556943203
 BoxCollider:
   m_ObjectHideFlags: 0

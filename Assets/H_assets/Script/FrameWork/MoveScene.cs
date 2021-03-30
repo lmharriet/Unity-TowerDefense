@@ -9,7 +9,7 @@ public class MoveScene : Singleton<MoveScene>
     protected MoveScene() { }
     public GameObject loadingImgGroup;
     public Image loadingImage;
-    public Image progressBar;
+    public Slider progressBar;
 
     private string loadSceneName;
 
@@ -30,7 +30,8 @@ public class MoveScene : Singleton<MoveScene>
     {
         loadSceneName = sceneName;
         loadingImage.gameObject.SetActive(true);
-        StartCoroutine(loadingBar());
+        //StartCoroutine(loadingBar());
+        StartCoroutine(loading(sceneName));
 
     }
 
@@ -47,9 +48,26 @@ public class MoveScene : Singleton<MoveScene>
     }
 
 
-    //IEnumerator loading()
-    //{
-    //    AsyncOperation 
-    //    while(!)
-    //}
+    IEnumerator loading(string sceneName)
+    {
+        Time.timeScale = 1;
+
+        AsyncOperation _operation = SceneManager.LoadSceneAsync(sceneName);
+        loadingImage.gameObject.SetActive(true);
+        progressBar.gameObject.SetActive(true);
+        while (!_operation.isDone)
+        {
+
+            float _progress = Mathf.Clamp01(_operation.progress / 0.9f);
+
+            progressBar.value = _progress;
+
+            if (_operation.isDone)
+            {
+                Time.timeScale = 0;
+            }
+            yield return null;
+        }
+
+    }
 }

@@ -292,6 +292,7 @@ public abstract class Building : MonoBehaviour
     }
 
     //유닛 전달
+    //async로 고치기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
     {
         int _column = 5;

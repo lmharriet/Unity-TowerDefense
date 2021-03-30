@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
-using System.Threading.Tasks;
 
 
 public class TownTower : Building
 {
-
     TownTower(int Id, int units, int myLevel, bool isPlayer, EnumSpace.TEAMCOLOR col) { }
     //마을 레벨이 높을 수록 전사가 더 빨리 생산됨
     //max level = 5
     /// private string kind = "Town";
-
 
 
     public float time = 0f;
@@ -30,16 +26,8 @@ public class TownTower : Building
     protected override void Start()
     {
         base.Start();
-
     }
-    async Task SpawnUnits()
-    {
-        await Task.Run(() =>
-        {
-            Debug.Log("작업 했음");
-        });
-    }
-
+   
     protected override void Update()
     {
         base.Update();
