@@ -57,7 +57,6 @@ public class MoveScene : Singleton<MoveScene>
         progressBar.gameObject.SetActive(true);
         while (!_operation.isDone)
         {
-
             float _progress = Mathf.Clamp01(_operation.progress / 0.9f);
 
             progressBar.value = _progress;

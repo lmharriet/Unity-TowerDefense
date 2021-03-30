@@ -26,14 +26,6 @@ public class FactoryTower : Building
 
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-        
-        TowerManager.Instance.factoryColor = myColor;
-    }
-
     protected override void SetStatByLevel()
     {
         switch (level)

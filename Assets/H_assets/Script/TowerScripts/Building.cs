@@ -26,6 +26,7 @@ public abstract class Building : MonoBehaviour
     protected int maxLevel;
     public int upgradeCost;
 
+    public int column;
     //factory tower가 내 팀에있을 경우 없을 경우 방어, 공격
     protected float defTime;
     protected float boostTime;
@@ -79,6 +80,11 @@ public abstract class Building : MonoBehaviour
             TowerManager.Instance.teamTowerCount[myColor] = 1;
         }
 
+        if (kind == EnumSpace.TOWERKIND.FACTORY)
+        {
+            TowerManager.Instance.factoryColor = myColor;
+           // Debug.Log(TowerManager.Instance.factoryColor);
+        }
         isSetStartStat = true;
         delay = 3f;
 
@@ -174,7 +180,7 @@ public abstract class Building : MonoBehaviour
 
     public void SetMushrooms(Transform _target, int i, GameObject _unit)
     {
-        int _column = 5;
+        column = 5;
         float[] _value = { 0, 3, -3, 6, -6 };
 
         Vector3 _dir = (_target.position - transform.position).normalized;
@@ -184,7 +190,7 @@ public abstract class Building : MonoBehaviour
         //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
         //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
         _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
-        _unit.transform.Rotate(Vector3.up * (_value[i % _column]));
+        _unit.transform.Rotate(Vector3.up * (_value[i % column]));
 
         _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
         _unit.SetActive(true);
@@ -198,7 +204,6 @@ public abstract class Building : MonoBehaviour
 
     IEnumerator SendUnits(int size)
     {
-        Debug.Log("hey i sent units");
         for (int i = 0; i < size; i++)
         {
             GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
@@ -207,13 +212,12 @@ public abstract class Building : MonoBehaviour
                 SetMushrooms(targetTowerofEnemy.transform, i, _unit);
             }
             
-            if(i % 5==4)
+            if(i % column == column-1)
             {
                 yield return new WaitForSeconds(1f);
             }
         }
 
-    
     }
     public float CalculateRate()
     {
@@ -273,6 +277,13 @@ public abstract class Building : MonoBehaviour
 
                 DeactiveFlag();
                 ActiveFlag(myId, myColor);
+                if (kind == EnumSpace.TOWERKIND.FACTORY)
+                {
+                    factoryColor = myColor;
+                    TowerManager.Instance.factoryColor = myColor;
+                   // Debug.Log(TowerManager.Instance.factoryColor);
+                }
+
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님
                 if (isPlayerTeam)
                 {
@@ -287,6 +298,7 @@ public abstract class Building : MonoBehaviour
                         isPlayerTeam = true;
                     }
                 }
+
             }
             SetTextMesh();
 
@@ -297,7 +309,6 @@ public abstract class Building : MonoBehaviour
     public void DamageAmount(EnumSpace.TEAMCOLOR damagedTeam)
     {//수정 필요
 
-        factoryColor = TowerManager.Instance.factoryColor;
         int damageCal = (int)(TowerManager.Instance.atk - TowerManager.Instance.def) / 2;
         if (factoryColor == EnumSpace.TEAMCOLOR.NONE)
         {

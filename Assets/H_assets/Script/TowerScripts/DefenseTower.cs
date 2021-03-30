@@ -27,13 +27,6 @@ public class DefenseTower : Building
         upgradeCost = 20;
     }
 
-    protected override void Update()
-    {
-        base.Update();
-
-    }
-
-
     protected override void SetStatByLevel()
     {
         switch (level)
