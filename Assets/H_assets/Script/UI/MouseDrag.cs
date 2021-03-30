@@ -73,8 +73,8 @@ public class MouseDrag : MonoBehaviour
             {
                 // Debug.Log("멀티타워 : " + percentage);
 
-                SendUnit(percentage);
-                //StartCoroutine(SendUnits(percentage));
+                //SendUnit(percentage);
+                StartCoroutine(SetUnits(percentage));
                 SendUnitFromMultipleTowers(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우고 multiselect ->false
@@ -84,8 +84,8 @@ public class MouseDrag : MonoBehaviour
             }
             else
             {
-                //StartCoroutine(SendUnits(percentage));
-                SendUnit(percentage);
+                StartCoroutine(SetUnits(percentage));
+                //SendUnit(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
                 TowerManager.Instance.ResetBothTowers();
@@ -163,6 +163,7 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
+
     private void SaveMultipleTowers()
     {
         if (Input.GetMouseButtonDown(1))
@@ -196,7 +197,6 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-
         if (TowerManager.Instance.departTower != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -241,6 +241,10 @@ public class MouseDrag : MonoBehaviour
         Vector3 _dir = (target.position - TowerManager.Instance.GetDepartPos()).normalized;
         _dir.y = 0;
         //_size만큼의 병력을 미리 생성된 unit중 활성화하기
+
+
+        //Transform _depart_T = TowerManager.Instance.departTower.transform;
+        //Transform _arrive_T = TowerManager.Instance.arriveTower.transform;
         for (int i = 0; i < _size; i++)
         {
             GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
@@ -261,7 +265,51 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
+    IEnumerator SetUnits(float percent)
+    {
 
+        //출발하는 타워에 저장된 병사의 수
+        int _size = TowerManager.Instance.departTower.unit;
+
+        // Debug.Log(percent);
+        // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
+        _size = (int)(_size * percent);
+
+        float[] value = { 0, 3, -3, 6, -6 };
+        column = 5;
+
+        //코루틴 실행하는 동안 사라질 정보들을 대비해서 저장
+        Building _depart = TowerManager.Instance.departTower;
+        Transform target = TowerManager.Instance.arriveTower.transform;
+
+        Vector3 _dir = (target.position - TowerManager.Instance.GetDepartPos()).normalized;
+        _dir.y = 0;
+        //_size만큼의 병력을 미리 생성된 unit중 활성화하기
+
+        for (int i = 0; i < _size; i++)
+        {
+            GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+            if (_unit != null)
+            {
+                _unit.transform.position = _depart.transform.position;
+                //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
+                //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
+                _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
+                _unit.transform.Rotate(Vector3.up * (value[i % column]));
+
+                _unit.transform.GetComponent<UnitMove>().InitMushroom(target, 2, _depart.myTeam);
+                _unit.SetActive(true);
+
+                _depart.unitCount--;
+                _depart.showUnit.text = _depart.unit.ToString();
+            }
+            if (i % column == column-1)
+            {
+                yield return new WaitForSeconds(0.7f);
+            }
+        }
+    }
+     
     public void SendUnitFromMultipleTowers(float percent)
     {
         int _towerSize = TowerManager.Instance.departTowers.Count;
