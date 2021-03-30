@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 public abstract class Building : MonoBehaviour
 {
@@ -67,7 +70,7 @@ public abstract class Building : MonoBehaviour
 
     protected virtual void Start()
     {
-       
+
         SetStatByLevel();
 
         if (myColor != EnumSpace.TEAMCOLOR.NONE)
@@ -160,21 +163,58 @@ public abstract class Building : MonoBehaviour
 
             int _size = (int)(unit * CalculateRate());
 
-            for (int i = 0; i < _size; i++)
-            {
-                GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
-                if (_unit != null)
-                {
-                    SetMushrooms(targetTowerofEnemy.transform, i, _unit);
-                }
-
-            }
-
+            //열 맞춰서 보내기 위한 용도 ex) unit이 10마리면 5마리씩 2줄로 나감
+            StartCoroutine(SendUnits(_size));
+   
             delay = Random.Range(3f, 7f);
         }
 
     }
 
+
+    public void SetMushrooms(Transform _target, int i, GameObject _unit)
+    {
+        int _column = 5;
+        float[] _value = { 0, 3, -3, 6, -6 };
+
+        Vector3 _dir = (_target.position - transform.position).normalized;
+        _dir.y = 0;
+
+        _unit.transform.position = transform.position;
+        //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
+        //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
+        _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
+        _unit.transform.Rotate(Vector3.up * (_value[i % _column]));
+
+        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
+        _unit.SetActive(true);
+
+
+        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
+        unit--;
+        if (isPlayerTeam)
+            showUnit.text = unit.ToString();
+    }
+
+    IEnumerator SendUnits(int size)
+    {
+        Debug.Log("hey i sent units");
+        for (int i = 0; i < size; i++)
+        {
+            GameObject _unit = ObjectPool.instance.GetObjectFromPooler("Unit");
+            if (_unit != null)
+            {
+                SetMushrooms(targetTowerofEnemy.transform, i, _unit);
+            }
+            
+            if(i % 5==4)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+        }
+
+    
+    }
     public float CalculateRate()
     {
         int _ranNum = Random.Range(1, 11);
@@ -291,31 +331,6 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    //유닛 전달
-    //async로 고치기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    protected virtual void SetMushrooms(Transform _target, int i, GameObject _unit)
-    {
-        int _column = 5;
-        float[] _value = { 0, 3, -3, 6, -6 };
-
-        Vector3 _dir = (_target.position - transform.position).normalized;
-        _dir.y = 0;
-
-        _unit.transform.position = transform.position;
-        //활성화시 방향을 타겟방향을 바라보고 , 그 방향에서 왼쪽 오른쪽으로 조금씩 각도를 더 틀어준다.
-        //unit이 움직일 때 transform.forward 방향으로 가면서 퍼져나가는 모양을 보여줌
-        _unit.transform.rotation = Quaternion.LookRotation(_dir, Vector3.up);
-        _unit.transform.Rotate(Vector3.up * (_value[i % _column]));
-
-        _unit.transform.GetComponent<UnitMove>().InitMushroom(_target, 2, myTeam);
-        _unit.SetActive(true);
-
-
-        //unit이 생성되는 tower의 unit 숫자는 감소 시켜준다.
-        unit--;
-        if (isPlayerTeam)
-            showUnit.text = unit.ToString();
-    }
 
     public void ActiveFlag(int id, EnumSpace.TEAMCOLOR color)
     {
@@ -334,7 +349,7 @@ public abstract class Building : MonoBehaviour
 
     public void DeactiveFlag()
     {
-        if(flagPreb!=null)
+        if (flagPreb != null)
         {
             if (flagPreb.transform.GetComponent<FlagState>().flagID == myId)
             {

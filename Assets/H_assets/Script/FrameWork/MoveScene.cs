@@ -22,7 +22,7 @@ public class MoveScene : Singleton<MoveScene>
         }
 
     }
-    private void OnDisable()
+    private void OnDisable() 
     {
         StopCoroutine(loadingBar());
     }

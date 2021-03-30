@@ -71,8 +71,10 @@ public class MouseDrag : MonoBehaviour
             // Debug.Log("타겟타워 지정 됐음");
             if (isMultiSelected) //타워가 멀티로 선택 되었으면?
             {
-               // Debug.Log("멀티타워 : " + percentage);
+                // Debug.Log("멀티타워 : " + percentage);
+
                 SendUnit(percentage);
+                //StartCoroutine(SendUnits(percentage));
                 SendUnitFromMultipleTowers(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우고 multiselect ->false
@@ -82,6 +84,7 @@ public class MouseDrag : MonoBehaviour
             }
             else
             {
+                //StartCoroutine(SendUnits(percentage));
                 SendUnit(percentage);
 
                 //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
@@ -94,7 +97,6 @@ public class MouseDrag : MonoBehaviour
 
     public void Pop_UpgradePanel()
     {
-
         //클릭 했을 때 마우스 위치와 클릭 버튼을 뗐을 때 마우스 위치 거리비교 
         //거의 제자리 클릭으로 판명나면 upgrade PopUp/ PopDown
         if (Vector3.Distance(startPos, Input.mousePosition) <= 0.2f)
@@ -104,7 +106,7 @@ public class MouseDrag : MonoBehaviour
 
             UpgradePanel _myPanel = transform.GetComponent<UpgradePanel>();
 
-            if (Physics.Raycast(_ray, out _hit,100,mask))
+            if (Physics.Raycast(_ray, out _hit, 100, mask))
             {
                 if (_hit.transform.CompareTag("Tower") &&
                     _hit.transform.GetComponent<Building>().isPlayerTeam)
@@ -116,12 +118,12 @@ public class MouseDrag : MonoBehaviour
                     else
                     {
                         _myPanel.PopDown();
-                     //   Debug.Log("플레이어 타워");
+                        //   Debug.Log("플레이어 타워");
                     }
                 }
                 else
                 {
-                   // Debug.Log("플레이어 타워 아님");
+                    // Debug.Log("플레이어 타워 아님");
                     _myPanel.PopDown();
                 }
             }
@@ -143,14 +145,14 @@ public class MouseDrag : MonoBehaviour
             TowerManager.Instance.ResetBothTowers();
         }
 
-        if (Physics.Raycast(ray, out hit,100,mask))
+        if (Physics.Raycast(ray, out hit, 100, mask))
         {
             if (hit.transform.CompareTag("Tower"))
             {
                 Building _selectedTower = hit.transform.GetComponent<Building>();
                 if (_selectedTower.isPlayerTeam)
                 {
-                  
+
                     TowerManager.Instance.SetDepartTower(hit);
 
                     circle = _selectedTower.effectCircle;
@@ -194,7 +196,7 @@ public class MouseDrag : MonoBehaviour
 
     private void SaveTargetTower()
     {
-       
+
         if (TowerManager.Instance.departTower != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -309,7 +311,7 @@ public class MouseDrag : MonoBehaviour
     //}
     IEnumerator DevideUnitRow()
     {
-       
+
         yield return null;
     }
 
