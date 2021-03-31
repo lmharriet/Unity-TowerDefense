@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 public abstract class Building : MonoBehaviour
 {
     public bool isGameOver;
