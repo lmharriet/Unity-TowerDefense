@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &71571961 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6672312626475856072, guid: bc6bba000f66b324d8aad35d7ac34230,
+  m_CorrespondingSourceObject: {fileID: 7151493202684131110, guid: bc6bba000f66b324d8aad35d7ac34230,
     type: 3}
   m_PrefabInstance: {fileID: 71571958}
   m_PrefabAsset: {fileID: 0}
@@ -611,6 +611,11 @@ PrefabInstance:
       propertyPath: loadingImgGroup
       value: 
       objectReference: {fileID: 71571962}
+    - target: {fileID: 2949228252256057263, guid: 0d4f864a8f3048542929402b07cd5767,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2949228252701547130, guid: 0d4f864a8f3048542929402b07cd5767,
         type: 3}
       propertyPath: m_Name
@@ -671,6 +676,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8877393254814052876, guid: 0d4f864a8f3048542929402b07cd5767,
+        type: 3}
+      propertyPath: img
+      value: 
+      objectReference: {fileID: 6053831579658327956, guid: be3cf058bc3ec6046b0211797a9f31de,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4f864a8f3048542929402b07cd5767, type: 3}
 --- !u!114 &605591659 stripped

@@ -15,6 +15,7 @@ public class MoveScene : Singleton<MoveScene>
 
     private void Awake()
     {
+        SceneTest.Instance.print();
         if (loadingImgGroup != null)
         {
             int imgNum = loadingImgGroup.transform.childCount;
