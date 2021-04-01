@@ -18,22 +18,33 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-
-        pooledObject = new List<GameObject>();
-
-        foreach (ObjectPoolItem item in itemToPool)
+        if (ObjectPool.instance == null)
         {
-            for (int i = 0; i < item.amount; i++)
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            pooledObject = new List<GameObject>();
+
+            foreach (ObjectPoolItem item in itemToPool)
             {
-                GameObject _obj = Instantiate(item.prefToPool);
-                _obj.SetActive(false);
-                pooledObject.Add(_obj);
+                for (int i = 0; i < item.amount; i++)
+                {
+                    GameObject _obj = Instantiate(item.prefToPool);
+                    _obj.SetActive(false);
+                    _obj.transform.parent = transform;
+                    pooledObject.Add(_obj);
+                }
             }
+            Debug.Log("obejct pool is here");
+
+        }
+        else
+        {
+            Debug.Log("opjectPool null아님");
         }
 
     }
-   
+
     public GameObject GetObjectFromPooler()
     {
         int _size = pooledObject.Count;
@@ -79,6 +90,13 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
+    public void DeActiveAllPref()
+    {
+        for(int i=0;i< pooledObject.Count;i++)
+        {
+            pooledObject[i].SetActive(false);
+        }
+    }
 }
 
 

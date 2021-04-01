@@ -15,6 +15,7 @@ public class LobbyPlayerMove : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
+       // ObjectPool.instance.SetObjectPoolContaier();
     }
 
     // Update is called once per frame
@@ -22,8 +23,7 @@ public class LobbyPlayerMove : MonoBehaviour
     {
         
     }
-
-    public string GetSceneName() { return sceneName; }
+    
     
    
 }

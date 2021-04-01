@@ -24,6 +24,13 @@ public class TowerManager : Singleton<TowerManager>
 
     public GlobalDefine defineColor;
 
+    public void ResetAllData()
+    {
+        allTowers.Clear();
+        allTowerData.Clear();
+        teamTowerCount.Clear();
+        arriveTeam.Clear();
+    }
     public void ResetBothTowers()
     {
         departTower = null;
@@ -74,4 +81,8 @@ public class TowerManager : Singleton<TowerManager>
         set { def = value; }
     }
 
+    public void callScripts()
+    {
+        Debug.Log("towerManager is here");
+    }
 }

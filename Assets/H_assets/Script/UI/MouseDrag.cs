@@ -22,7 +22,7 @@ public class MouseDrag : MonoBehaviour
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
     private Building prevPopUpTower;
 
-    public GameObject circle;
+  //  public GameObject circle;
     void Update()
     {
         //드래그 시작
@@ -155,9 +155,9 @@ public class MouseDrag : MonoBehaviour
 
                     TowerManager.Instance.SetDepartTower(hit);
 
-                    circle = _selectedTower.effectCircle;
-                    circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
-                    circle.SetActive(true);
+                    //circle = _selectedTower.effectCircle;
+                    //circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
+                    //circle.SetActive(true);
                 }
             }
         }
@@ -184,11 +184,11 @@ public class MouseDrag : MonoBehaviour
                         isMultiSelected = true;
                         // Debug.Log("멀티타워 선택");
 
-                        #region SelectedTower CircleEffect
-                        circle = _selectedTower.effectCircle;
-                        circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
-                        circle.SetActive(true);
-                        #endregion
+                        //#region SelectedTower CircleEffect
+                        //circle = _selectedTower.effectCircle;
+                        //circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
+                        //circle.SetActive(true);
+                        //#endregion
                     }
                 }
             }

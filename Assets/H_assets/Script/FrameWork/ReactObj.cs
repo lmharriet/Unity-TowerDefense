@@ -7,6 +7,7 @@ public class ReactObj : MonoBehaviour
     public EnumSpace.GAMESTATE game;
     public GameObject circle;
     public LobbyPlayerMove lobbyPlyer;
+    public SceneUIcontainer SceneMove;
     public int objId;
     bool isActive;
     Ray ray;
@@ -31,11 +32,13 @@ public class ReactObj : MonoBehaviour
             {
                 if(game==EnumSpace.GAMESTATE.START)
                 {
-                    MoveScene.Instance.LoadScene(lobbyPlyer.GetSceneName());
+                    SceneMove.LoadScene(MoveSceneData.Instance.GetRandomBattleScene());
+                   // SceneUIControl.Instance.LoadScene(lobbyPlyer.GetSceneName());
                 }
                 else if (game == EnumSpace.GAMESTATE.QUITE)
                 {
-                    MoveScene.Instance.LoadScene("StartScene");
+                    //SceneUIControl.Instance.LoadScene("StartScene");
+                    SceneMove.LoadScene("StartScene");
                 }
             }
           

@@ -6,7 +6,7 @@ namespace EnumSpace
 {
     public enum TEAMCOLOR
     {
-        NONE, RED,  YELLOW, BLUE, GREEN
+        NONE, RED, YELLOW, BLUE, GREEN
     }
 
     public enum TOWERKIND
@@ -21,7 +21,7 @@ namespace EnumSpace
 
     public enum GAMESTATE
     {
-        START,INGAME,QUITE
+        START, INGAME, QUITE
     }
 }
 
@@ -30,9 +30,12 @@ public class GlobalDefine : MonoBehaviour
     public Color color;
 
     public static Dictionary<EnumSpace.TEAMCOLOR, Color> colorDictionary = new Dictionary<EnumSpace.TEAMCOLOR, Color>();
-    private void Awake()
+    private void awake()
     {
-        SetColor();
+        if (colorDictionary == null)
+        {
+            SetColor();
+        }
     }
     public void SetColor()
     {
