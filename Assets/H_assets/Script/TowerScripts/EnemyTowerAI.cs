@@ -38,13 +38,6 @@ public class EnemyTowerAI : MonoBehaviour
 
         distancesPair.Sort(compare);
 
-        //foreach (var it in distancesPair)
-        //{
-        //    //Debug.Log(it.Key);
-        //    Debug.Log(it.Value);
-        //}
-
-
         towers.Clear();
         for (int i = 0; i < distancesPair.Count; i++)
         {
@@ -85,6 +78,9 @@ public class EnemyTowerAI : MonoBehaviour
         int size = towers.Count;
         for (int i = 0; i < size; i++)
         {
+            if (towers[i].transform.GetComponent<Building>().myTeam == EnumSpace.TEAMCOLOR.NONE ||
+                currentTower.transform.GetComponent<Building>().myTeam == currentTower.transform.GetComponent<Building>().myTeam) continue;
+
             if (currentTower.transform.GetComponent<Building>().unitCount >=
                 towers[i].transform.GetComponent<Building>().unitCount)
             {
@@ -125,5 +121,4 @@ public class EnemyTowerAI : MonoBehaviour
         return null;
     }
 
-   
 }

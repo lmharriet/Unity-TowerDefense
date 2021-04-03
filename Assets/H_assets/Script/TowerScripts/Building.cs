@@ -82,7 +82,7 @@ public abstract class Building : MonoBehaviour
         if (kind == EnumSpace.TOWERKIND.FACTORY)
         {
             TowerManager.Instance.factoryColor = myColor;
-           // Debug.Log(TowerManager.Instance.factoryColor);
+            // Debug.Log(TowerManager.Instance.factoryColor);
         }
         isSetStartStat = true;
         delay = 3f;
@@ -170,7 +170,7 @@ public abstract class Building : MonoBehaviour
 
             //열 맞춰서 보내기 위한 용도 ex) unit이 10마리면 5마리씩 2줄로 나감
             StartCoroutine(SendUnits(_size));
-   
+
             delay = Random.Range(3f, 7f);
         }
 
@@ -210,8 +210,8 @@ public abstract class Building : MonoBehaviour
             {
                 SetMushrooms(targetTowerofEnemy.transform, i, _unit);
             }
-            
-            if(i % column == column-1)
+
+            if (i % column == column - 1)
             {
                 yield return new WaitForSeconds(1f);
             }
@@ -280,7 +280,7 @@ public abstract class Building : MonoBehaviour
                 {
                     factoryColor = myColor;
                     TowerManager.Instance.factoryColor = myColor;
-                   // Debug.Log(TowerManager.Instance.factoryColor);
+                    // Debug.Log(TowerManager.Instance.factoryColor);
                 }
 
                 //만약 타워가 플레이어팀이었으면 현재는 점령당했으므로 플레이어팀이 아님

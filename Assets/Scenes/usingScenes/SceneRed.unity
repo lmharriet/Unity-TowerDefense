@@ -3036,7 +3036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8837c173ea96c4089a08882478f9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseDrag: {fileID: 0}
+  mouseDrag: {fileID: 737691432}
 --- !u!1 &473366299
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,6 +4776,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530935098910ce148888d5bbc0120fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &737691432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6580936649412514156, guid: b0210d46659445942ae0a1cbc9669a0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 737691429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e32d08627ac1b4e8afc5d79ab9ed3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &737825397
