@@ -11,7 +11,7 @@ public class TowerManager : Singleton<TowerManager>
 
 
     public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>(); //각 팀이 보유한 타워
-    public Dictionary<EnumSpace.TEAMCOLOR, int> arriveTeam = new Dictionary<EnumSpace.TEAMCOLOR, int>(); //살아 있는 팀
+    public Dictionary<EnumSpace.TEAMCOLOR, bool> aliveTeam = new Dictionary<EnumSpace.TEAMCOLOR, bool>(); //살아 있는 팀
     public int maxTower;                //전체 타워 수
     public List<Building> departTowers = new List<Building>(); // multiselect 기능을 위한 리스트
     public Building departTower;
@@ -29,7 +29,7 @@ public class TowerManager : Singleton<TowerManager>
         allTowers.Clear();
         allTowerData.Clear();
         teamTowerCount.Clear();
-        arriveTeam.Clear();
+        aliveTeam.Clear();
     }
     public void ResetBothTowers()
     {

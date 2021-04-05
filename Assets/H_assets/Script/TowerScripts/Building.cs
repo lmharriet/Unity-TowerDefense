@@ -268,7 +268,7 @@ public abstract class Building : MonoBehaviour
 
                 //점령 당한 현재 타워의 갯수를 -- 하고 현재 타워의 개수가 0개인지 체크
                 TowerManager.Instance.teamTowerCount[myColor]--;
-                ChceckLoserTeam(myColor);
+                ChceckWinnerTeam(myColor);
 
                 //위에서 Winner가 판별 나지 않으면 계속 진행.
                 myColor = unitColor;    //현재 타워의 팀을 마지막으로 공격한 unit 팀으로 변경
@@ -368,7 +368,7 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    public void ChceckLoserTeam(EnumSpace.TEAMCOLOR towerColor)
+    public void ChceckWinnerTeam(EnumSpace.TEAMCOLOR towerColor)
     {
         //수정 필요
         if (towerColor == EnumSpace.TEAMCOLOR.NONE) return;
@@ -377,9 +377,16 @@ public abstract class Building : MonoBehaviour
         if (TowerManager.Instance.teamTowerCount[towerColor] == 0)
         {
             Debug.Log(towerColor + "는 죽었다");
-            TowerManager.Instance.arriveTeam[towerColor]--;
+            TowerManager.Instance.aliveTeam[towerColor]=false;
             LoserTeams.Add(towerColor);
         }
+
+        //if ()
+        //{
+          
+        //}
+
+
 
     }
 
