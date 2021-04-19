@@ -9,7 +9,6 @@ public class TowerManager : Singleton<TowerManager>
     public List<GameObject> allTowers = new List<GameObject>(); //전체 Tower GameObject
     public List<Building> allTowerData = new List<Building>();
 
-
     public Dictionary<EnumSpace.TEAMCOLOR, int> teamTowerCount = new Dictionary<EnumSpace.TEAMCOLOR, int>(); //각 팀이 보유한 타워
     public Dictionary<EnumSpace.TEAMCOLOR, bool> aliveTeam = new Dictionary<EnumSpace.TEAMCOLOR, bool>(); //살아 있는 팀
     public int maxTower;                //전체 타워 수
@@ -21,6 +20,7 @@ public class TowerManager : Singleton<TowerManager>
     public EnumSpace.TEAMCOLOR factoryColor; //factory 타워 지정
 
     public float def, atk;
+    public bool isClickable=true;
 
     public GlobalDefine defineColor;
 
@@ -79,6 +79,11 @@ public class TowerManager : Singleton<TowerManager>
     {
         get { return def; }
         set { def = value; }
+    }
+    public bool ClickableTower
+    {
+        get { return isClickable; }
+        set { isClickable = value; }
     }
 
     public void callScripts()

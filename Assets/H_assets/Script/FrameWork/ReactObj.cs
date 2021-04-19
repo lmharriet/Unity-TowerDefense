@@ -60,6 +60,4 @@ public class ReactObj : MonoBehaviour
         isActive = false;
     }
 
-
-
 }

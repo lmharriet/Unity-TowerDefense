@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MouseDrag : MonoBehaviour
 {
+
     public LayerMask mask;
     private Ray ray;            //좌클릭용
     private RaycastHit hit;     //좌클릭용
@@ -21,8 +22,9 @@ public class MouseDrag : MonoBehaviour
     public bool isMultiSelected = false;
     public float percentage;        //타워가 가진 유닛의 몇 퍼센트만큼 보낼지?
     private Building prevPopUpTower;
+ 
 
-  //  public GameObject circle;
+    //  public GameObject circle;
     void Update()
     {
         //드래그 시작
@@ -84,11 +86,15 @@ public class MouseDrag : MonoBehaviour
             }
             else
             {
-                StartCoroutine(SetUnits(percentage));
-                //SendUnit(percentage);
+                if (TowerManager.Instance.ClickableTower)
+                {
+                    StartCoroutine(SetUnits(percentage));
+                    //SendUnit(percentage);
 
-                //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
-                TowerManager.Instance.ResetBothTowers();
+                    //병력을 보내고 나면 myTower와 towardTower 컨테이너 비우기
+                    TowerManager.Instance.ResetBothTowers();
+                }
+
             }
 
         }
@@ -154,7 +160,6 @@ public class MouseDrag : MonoBehaviour
                 {
 
                     TowerManager.Instance.SetDepartTower(hit);
-
                     //circle = _selectedTower.effectCircle;
                     //circle.GetComponent<TowerEffect>().ActiveCircle(5f, TowerManager.Instance.playerColor, _selectedTower.myId);
                     //circle.SetActive(true);
@@ -267,10 +272,8 @@ public class MouseDrag : MonoBehaviour
 
     IEnumerator SetUnits(float percent)
     {
-
         //출발하는 타워에 저장된 병사의 수
         int _size = TowerManager.Instance.departTower.unit;
-
         // Debug.Log(percent);
         // (25%,50%,75%,100%) UI에서 세팅한 percentage에 맞춰 병력을 보내기 위한 용도
         _size = (int)(_size * percent);
@@ -303,13 +306,14 @@ public class MouseDrag : MonoBehaviour
                 _depart.unitCount--;
                 _depart.showUnit.text = _depart.unit.ToString();
             }
-            if (i % column == column-1)
+            if (i % column == column - 1)
             {
                 yield return new WaitForSeconds(0.7f);
             }
+
         }
     }
-     
+
     public void SendUnitFromMultipleTowers(float percent)
     {
         int _towerSize = TowerManager.Instance.departTowers.Count;
